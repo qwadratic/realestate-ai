@@ -1,0 +1,187 @@
+#!/usr/bin/env bash
+# parallel-search — Batch parallel web search via Exa API
+# Analogous to: mcp__parallel-search__web_search_preview
+#
+# Runs multiple exa searches concurrently and merges results.
+#
+# Usage:
+#   parallel-search "query1" "query2" "query3"
+#   parallel-search -n 5 --highlights "legaltech AI" "contract analysis" "CLM software"
+#   parallel-search -f queries.txt
+#   parallel-search -c company -n 3 "Ironclad" "Juro" "Icertis" "Agiloft"
+#   echo -e "query1\nquery2" | parallel-search -f -
+
+set -euo pipefail
+
+: "${EXA_API_KEY:?EXA_API_KEY not set}"
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+EXA_SEARCH="$SCRIPT_DIR/exa-search"
+
+# Defaults
+CONCURRENCY=5
+EXTRA_ARGS=()
+QUERIES=()
+FROM_FILE=""
+
+usage() {
+  cat <<'EOF'
+parallel-search — Batch parallel web search
+
+USAGE:
+  parallel-search [OPTIONS] "query1" "query2" ...
+  parallel-search -f queries.txt [OPTIONS]
+  echo -e "q1\nq2" | parallel-search -f - [OPTIONS]
+
+OPTIONS:
+  -f, --file FILE        Read queries from file (one per line, - for stdin)
+  -j, --jobs NUM         Max concurrent searches (default: 5)
+  -n, --num NUM          Results per query (passed to exa-search)
+  -t, --type TYPE        Search type (passed to exa-search)
+  -c, --category CAT     Category filter (passed to exa-search)
+  -d, --domains DOMS     Include domains (passed to exa-search)
+  --highlights            Include highlights (passed to exa-search)
+  --text                  Include full text (passed to exa-search)
+  --summary               Include summaries (passed to exa-search)
+  --json                  Output raw JSON array
+  --dedup                 Deduplicate results by URL across queries
+  -h, --help              Show this help
+
+EXAMPLES:
+  parallel-search -n 3 --highlights "Ironclad AI" "Juro contracts" "Icertis CLM"
+  parallel-search -f competitors.txt -c company --dedup
+  parallel-search -j 3 "legal AI series A" "contract management funding" "CLM market"
+EOF
+  exit 0
+}
+
+RAW_JSON=false
+DEDUP=false
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -f|--file)       FROM_FILE="$2"; shift 2 ;;
+    -j|--jobs)       CONCURRENCY="$2"; shift 2 ;;
+    -n|--num)        EXTRA_ARGS+=(-n "$2"); shift 2 ;;
+    -t|--type)       EXTRA_ARGS+=(-t "$2"); shift 2 ;;
+    -c|--category)   EXTRA_ARGS+=(-c "$2"); shift 2 ;;
+    -d|--domains)    EXTRA_ARGS+=(-d "$2"); shift 2 ;;
+    --highlights)    EXTRA_ARGS+=(--highlights); shift ;;
+    --text)          EXTRA_ARGS+=(--text); shift ;;
+    --summary)       EXTRA_ARGS+=(--summary); shift ;;
+    --json)          RAW_JSON=true; shift ;;
+    --dedup)         DEDUP=true; shift ;;
+    -h|--help)       usage ;;
+    -*)              echo "Unknown option: $1" >&2; exit 1 ;;
+    *)               QUERIES+=("$1"); shift ;;
+  esac
+done
+
+# Load queries from file if specified
+if [[ -n "$FROM_FILE" ]]; then
+  if [[ "$FROM_FILE" == "-" ]]; then
+    while IFS= read -r line; do
+      [[ -n "$line" ]] && QUERIES+=("$line")
+    done
+  else
+    while IFS= read -r line; do
+      [[ -n "$line" ]] && QUERIES+=("$line")
+    done < "$FROM_FILE"
+  fi
+fi
+
+if [[ ${#QUERIES[@]} -eq 0 ]]; then
+  echo "No queries provided. Usage: parallel-search \"query1\" \"query2\" ..." >&2
+  exit 1
+fi
+
+TMPDIR_WORK=$(mktemp -d)
+trap 'rm -rf "$TMPDIR_WORK"' EXIT
+
+echo "── parallel-search ─────────────────────────────────"
+echo "  queries: ${#QUERIES[@]} | concurrency: $CONCURRENCY"
+echo "────────────────────────────────────────────────────"
+echo ""
+
+# Launch searches in parallel with concurrency limit
+RUNNING=0
+for i in "${!QUERIES[@]}"; do
+  query="${QUERIES[$i]}"
+  outfile="$TMPDIR_WORK/result_${i}.json"
+  errfile="$TMPDIR_WORK/err_${i}.txt"
+
+  (
+    "$EXA_SEARCH" --json "${EXTRA_ARGS[@]}" "$query" > "$outfile" 2> "$errfile"
+  ) &
+
+  RUNNING=$((RUNNING + 1))
+  if [[ $RUNNING -ge $CONCURRENCY ]]; then
+    wait -n 2>/dev/null || true
+    RUNNING=$((RUNNING - 1))
+  fi
+done
+
+# Wait for all remaining
+wait
+
+# Collect and merge results
+ALL_RESULTS="[]"
+TOTAL=0
+ERRORS=0
+
+for i in "${!QUERIES[@]}"; do
+  query="${QUERIES[$i]}"
+  outfile="$TMPDIR_WORK/result_${i}.json"
+  errfile="$TMPDIR_WORK/err_${i}.txt"
+
+  if [[ -s "$errfile" ]] && ! [[ -s "$outfile" ]]; then
+    echo "  FAILED: \"$query\" — $(cat "$errfile")" >&2
+    ERRORS=$((ERRORS + 1))
+    continue
+  fi
+
+  if [[ -s "$outfile" ]]; then
+    COUNT=$(jq '.results | length' "$outfile" 2>/dev/null || echo 0)
+    TOTAL=$((TOTAL + COUNT))
+
+    # Tag each result with the source query
+    TAGGED=$(jq --arg q "$query" '.results[] | . + {_query: $q}' "$outfile" 2>/dev/null || echo "")
+    if [[ -n "$TAGGED" ]]; then
+      ALL_RESULTS=$(echo "$ALL_RESULTS" | jq --argjson new "[$(echo "$TAGGED" | jq -s '.')]" '. + ($new | .[0])')
+    fi
+
+    echo "  OK: \"$query\" → $COUNT results"
+  fi
+done
+
+echo ""
+echo "  total: $TOTAL results | errors: $ERRORS"
+
+# Dedup if requested
+if [[ "$DEDUP" == true ]]; then
+  BEFORE=$TOTAL
+  ALL_RESULTS=$(echo "$ALL_RESULTS" | jq '[group_by(.url)[] | .[0]]')
+  TOTAL=$(echo "$ALL_RESULTS" | jq 'length')
+  echo "  dedup: $BEFORE → $TOTAL unique URLs"
+fi
+
+echo "────────────────────────────────────────────────────"
+echo ""
+
+if [[ "$RAW_JSON" == true ]]; then
+  echo "$ALL_RESULTS" | jq .
+  exit 0
+fi
+
+# Formatted output grouped by query
+echo "$ALL_RESULTS" | jq -r 'group_by(._query)[] |
+  "## \(.[0]._query)",
+  "",
+  (.[] |
+    "  [\(.title // "untitled")]",
+    "    \(.url)",
+    (if .publishedDate then "    published: \(.publishedDate[:10])" else empty end),
+    (if .highlights then (.highlights[] | "    > \(.)") else empty end),
+    ""
+  ),
+  ""'

@@ -1,0 +1,173 @@
+#!/usr/bin/env bash
+# exa-search — Semantic web search via Exa API
+# Analogous to: mcp__exa__web_search_exa
+#
+# Usage:
+#   exa-search "companies building AI legal tools"
+#   exa-search -t keyword -n 5 "OpenClaw contract AI"
+#   exa-search -c company -d techcrunch.com,crunchbase.com "series A legaltech 2025"
+#   exa-search --highlights "neural search startups"
+#   exa-search --text "Exa AI competitor analysis"
+#   exa-search --after 2025-01-01 --before 2026-01-01 "legaltech funding"
+
+set -euo pipefail
+
+: "${EXA_API_KEY:?EXA_API_KEY not set}"
+
+# Defaults
+TYPE="auto"
+NUM=10
+CATEGORY=""
+INCLUDE_DOMAINS=""
+EXCLUDE_DOMAINS=""
+START_DATE=""
+END_DATE=""
+HIGHLIGHTS=false
+TEXT=false
+SUMMARY=false
+INCLUDE_TEXT=""
+
+usage() {
+  cat <<'EOF'
+exa-search — Semantic web search via Exa API
+
+USAGE:
+  exa-search [OPTIONS] "query"
+
+OPTIONS:
+  -t, --type TYPE        Search type: auto|neural|keyword|deep|fast (default: auto)
+  -n, --num NUM          Number of results (default: 10, max: 100)
+  -c, --category CAT     Category filter: company|research_paper|news|people|financial_report
+  -d, --domains DOMS     Include only these domains (comma-separated)
+  -x, --exclude DOMS     Exclude these domains (comma-separated)
+  --after DATE            Published after (ISO 8601, e.g. 2025-01-01)
+  --before DATE           Published before
+  --highlights            Include LLM-extracted highlights
+  --text                  Include full page text
+  --summary               Include generated summary
+  --contains TEXT         Results must contain this text
+  --json                  Output raw JSON (default: formatted)
+  -h, --help              Show this help
+
+EXAMPLES:
+  exa-search "companies building AI legal tools"
+  exa-search -t neural -c company "legaltech startups"
+  exa-search --highlights -n 5 "contract analysis AI"
+  exa-search -d crunchbase.com,techcrunch.com "series A 2025"
+EOF
+  exit 0
+}
+
+RAW_JSON=false
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -t|--type)      TYPE="$2"; shift 2 ;;
+    -n|--num)       NUM="$2"; shift 2 ;;
+    -c|--category)  CATEGORY="$2"; shift 2 ;;
+    -d|--domains)   INCLUDE_DOMAINS="$2"; shift 2 ;;
+    -x|--exclude)   EXCLUDE_DOMAINS="$2"; shift 2 ;;
+    --after)        START_DATE="$2"; shift 2 ;;
+    --before)       END_DATE="$2"; shift 2 ;;
+    --highlights)   HIGHLIGHTS=true; shift ;;
+    --text)         TEXT=true; shift ;;
+    --summary)      SUMMARY=true; shift ;;
+    --contains)     INCLUDE_TEXT="$2"; shift 2 ;;
+    --json)         RAW_JSON=true; shift ;;
+    -h|--help)      usage ;;
+    -*)             echo "Unknown option: $1" >&2; exit 1 ;;
+    *)              QUERY="$1"; shift ;;
+  esac
+done
+
+: "${QUERY:?No query provided. Usage: exa-search \"your query\"}"
+
+# Build JSON payload
+build_payload() {
+  local payload
+  payload=$(jq -n \
+    --arg query "$QUERY" \
+    --arg type "$TYPE" \
+    --argjson num "$NUM" \
+    '{query: $query, type: $type, numResults: $num}')
+
+  if [[ -n "$CATEGORY" ]]; then
+    payload=$(echo "$payload" | jq --arg c "$CATEGORY" '. + {category: $c}')
+  fi
+
+  if [[ -n "$INCLUDE_DOMAINS" ]]; then
+    payload=$(echo "$payload" | jq --arg d "$INCLUDE_DOMAINS" '. + {includeDomains: ($d | split(","))}')
+  fi
+
+  if [[ -n "$EXCLUDE_DOMAINS" ]]; then
+    payload=$(echo "$payload" | jq --arg d "$EXCLUDE_DOMAINS" '. + {excludeDomains: ($d | split(","))}')
+  fi
+
+  if [[ -n "$START_DATE" ]]; then
+    payload=$(echo "$payload" | jq --arg d "$START_DATE" '. + {startPublishedDate: $d}')
+  fi
+
+  if [[ -n "$END_DATE" ]]; then
+    payload=$(echo "$payload" | jq --arg d "$END_DATE" '. + {endPublishedDate: $d}')
+  fi
+
+  if [[ -n "$INCLUDE_TEXT" ]]; then
+    payload=$(echo "$payload" | jq --arg t "$INCLUDE_TEXT" '. + {includeText: [$t]}')
+  fi
+
+  # Build contents object
+  local contents="{}"
+  if [[ "$TEXT" == true ]]; then
+    contents=$(echo "$contents" | jq '. + {text: true}')
+  fi
+  if [[ "$HIGHLIGHTS" == true ]]; then
+    contents=$(echo "$contents" | jq '. + {highlights: {maxCharacters: 4000}}')
+  fi
+  if [[ "$SUMMARY" == true ]]; then
+    contents=$(echo "$contents" | jq '. + {summary: true}')
+  fi
+
+  if [[ "$contents" != "{}" ]]; then
+    payload=$(echo "$payload" | jq --argjson c "$contents" '. + {contents: $c}')
+  fi
+
+  echo "$payload"
+}
+
+PAYLOAD=$(build_payload)
+
+RESPONSE=$(curl -sS -X POST 'https://api.exa.ai/search' \
+  -H "x-api-key: $EXA_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d "$PAYLOAD")
+
+# Check for errors
+if echo "$RESPONSE" | jq -e '.error' &>/dev/null 2>&1; then
+  echo "ERROR: $(echo "$RESPONSE" | jq -r '.error')" >&2
+  exit 1
+fi
+
+if [[ "$RAW_JSON" == true ]]; then
+  echo "$RESPONSE" | jq .
+  exit 0
+fi
+
+# Formatted output
+RESULT_COUNT=$(echo "$RESPONSE" | jq '.results | length')
+SEARCH_TYPE=$(echo "$RESPONSE" | jq -r '.searchType // "unknown"')
+COST=$(echo "$RESPONSE" | jq -r '.costDollars | if . then "search: $\(.search // 0) + contents: $\(.contents // 0)" else "n/a" end')
+
+echo "── exa-search ──────────────────────────────────────"
+echo "  query:   $QUERY"
+echo "  type:    $SEARCH_TYPE | results: $RESULT_COUNT | cost: $COST"
+echo "────────────────────────────────────────────────────"
+echo ""
+
+echo "$RESPONSE" | jq -r '.results[] |
+  "[\(.title // "untitled")]",
+  "  \(.url)",
+  (if .publishedDate then "  published: \(.publishedDate[:10])" else empty end),
+  (if .author then "  author: \(.author)" else empty end),
+  (if .summary then "  summary: \(.summary)" else empty end),
+  (if .highlights then (.highlights[] | "  > \(.)") else empty end),
+  ""'
