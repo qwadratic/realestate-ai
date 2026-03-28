@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+
+# Secrets
+.env
+.env.*
+
+# Research scrapes (local reference only)
+.firecrawl/
+
+# QA reports and gstack sessions
+.gstack/
+
+# Logs
+logs/
+
+# Backups
+*.backup
+
+# Node
+node_modules/
