@@ -1,8 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({
-  baseURL: "https://openrouter.ai/api/v1",
+  baseURL: "https://openrouter.ai/api",
   apiKey: process.env.OPENROUTER_API_KEY!,
+  defaultHeaders: {
+    "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+  },
 });
 
 export async function extractFeatures(description: string, title: string) {

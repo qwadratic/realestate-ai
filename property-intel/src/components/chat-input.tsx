@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useAgent } from "@/lib/use-chat";
+import type { PropertyValidated, ClientProfile } from "@/types";
 
 const TOOL_LABELS: Record<string, string> = {
   list_properties: "Listing properties",
@@ -9,6 +10,7 @@ const TOOL_LABELS: Record<string, string> = {
   extract_features: "Extracting features",
   lookup_intel: "Looking up signals",
   search_nearby: "Searching nearby",
+  search_nearby_places: "Searching nearby",
   enrich_with_maps: "Maps enrichment",
   compute_commute: "Computing commute",
   validate_compliance: "Validating compliance",
@@ -17,8 +19,16 @@ const TOOL_LABELS: Record<string, string> = {
   web_search: "Searching web",
 };
 
-export function ChatPanel() {
-  const { messages, toolCalls, streaming, error, send } = useAgent();
+interface ChatPanelProps {
+  properties?: PropertyValidated[];
+  clientProfile?: ClientProfile;
+  suggestedQuestions?: string[];
+}
+
+export function ChatPanel({ properties, clientProfile, suggestedQuestions }: ChatPanelProps) {
+  const { messages, toolCalls, streaming, error, send } = useAgent(
+    properties ? { properties, clientProfile } : undefined
+  );
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -31,6 +41,11 @@ export function ChatPanel() {
     if (!input.trim() || streaming) return;
     send(input.trim());
     setInput("");
+  };
+
+  const handleSuggestedClick = (question: string) => {
+    if (streaming) return;
+    send(question);
   };
 
   return (
@@ -88,6 +103,22 @@ export function ChatPanel() {
           )}
 
           <div ref={messagesEndRef} />
+        </div>
+      )}
+
+      {/* Suggested questions — show when no conversation yet */}
+      {suggestedQuestions && suggestedQuestions.length > 0 && messages.length === 0 && (
+        <div className="flex flex-wrap gap-2 mb-3">
+          {suggestedQuestions.map((q) => (
+            <button
+              key={q}
+              onClick={() => handleSuggestedClick(q)}
+              disabled={streaming}
+              className="px-4 py-2 bg-surface text-[15px] text-text rounded-[4px] hover:bg-copper hover:text-white transition-colors disabled:opacity-50 cursor-pointer"
+            >
+              {q}
+            </button>
+          ))}
         </div>
       )}
 

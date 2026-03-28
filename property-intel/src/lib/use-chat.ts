@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import type { ChatMessage } from "@/types";
+import type { ChatMessage, PropertyValidated, ClientProfile } from "@/types";
 
 interface ToolCall {
   name: string;
@@ -16,7 +16,12 @@ interface ChatState {
   error: string | null;
 }
 
-export function useAgent() {
+interface AgentContext {
+  properties?: PropertyValidated[];
+  clientProfile?: ClientProfile;
+}
+
+export function useAgent(context?: AgentContext) {
   const [state, setState] = useState<ChatState>({
     messages: [],
     toolCalls: [],
@@ -38,10 +43,15 @@ export function useAgent() {
       }));
 
       try {
-        const res = await fetch("/api/agent", {
+        const endpoint = context?.properties ? "/api/chat" : "/api/agent";
+        const body: Record<string, unknown> = { messages: newMessages };
+        if (context?.properties) body.properties = context.properties;
+        if (context?.clientProfile) body.clientProfile = context.clientProfile;
+
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: newMessages }),
+          body: JSON.stringify(body),
         });
 
         const reader = res.body?.getReader();
@@ -95,7 +105,7 @@ export function useAgent() {
         setState((s) => ({ ...s, error: String(err), streaming: false }));
       }
     },
-    [state.messages]
+    [state.messages, context]
   );
 
   return { ...state, send };

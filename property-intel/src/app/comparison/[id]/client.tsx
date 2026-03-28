@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { PropertyCard } from "@/components/property-card";
 import { ChatPanel } from "@/components/chat-input";
-import type { PropertyValidated } from "@/types";
+import type { PropertyValidated, ClientProfile } from "@/types";
+import clients from "../../../../fixtures/clients.json";
 
 // Demo data — replaced when pipeline provides real results
 const DEMO_PROPERTIES: PropertyValidated[] = [
@@ -116,19 +117,19 @@ function propertyToCardProps(p: PropertyValidated, index: number) {
   const features = [];
 
   // Build "why this matches" from nearby data
-  if (p.nearby.schools?.[0]) {
+  if (p.nearby?.schools?.[0]) {
     features.push({ label: `${p.nearby.schools[0].name} — ${p.nearby.schools[0].distance_m}m`, score: 4 });
   }
-  if (p.nearby.transit?.[0]) {
+  if (p.nearby?.transit?.[0]) {
     features.push({ label: `${p.nearby.transit[0].name} — ${p.nearby.transit[0].distance_m}m`, score: 3 });
   }
-  if (p.features.elevator) features.push({ label: "Elevator available", score: 3 });
-  if (p.features.balcony) features.push({ label: "Balcony", score: 2 });
-  if (p.features.terrace) features.push({ label: "Dachterrasse", score: 3 });
-  if (p.features.parking) features.push({ label: "Garage included", score: 2 });
-  if (p.features.orientation) features.push({ label: `${p.features.orientation.charAt(0).toUpperCase() + p.features.orientation.slice(1)}-facing`, score: 2 });
-  if (p.features.condition === "renovated") features.push({ label: "Fully renovated", score: 3 });
-  if (p.features.year_built) features.push({ label: `Neubau ${p.features.year_built}`, score: 2 });
+  if (p.features?.elevator) features.push({ label: "Elevator available", score: 3 });
+  if (p.features?.balcony) features.push({ label: "Balcony", score: 2 });
+  if (p.features?.terrace) features.push({ label: "Dachterrasse", score: 3 });
+  if (p.features?.parking) features.push({ label: "Garage included", score: 2 });
+  if (p.features?.orientation) features.push({ label: `${p.features.orientation.charAt(0).toUpperCase() + p.features.orientation.slice(1)}-facing`, score: 2 });
+  if (p.features?.condition === "renovated") features.push({ label: "Fully renovated", score: 3 });
+  if (p.features?.year_built) features.push({ label: `Neubau ${p.features.year_built}`, score: 2 });
 
   const signals: { label: string; variant: "red" | "amber" | "green" }[] = [];
   if (p.intel?.insolvency_status === "proceedings") {
@@ -156,15 +157,15 @@ function propertyToCardProps(p: PropertyValidated, index: number) {
     source: sourceMap[p.source] || p.source,
     price: p.price,
     sqm: p.sqm,
-    sqmVerified: p.validation.sqm_mismatch?.detected,
+    sqmVerified: p.validation?.sqm_mismatch?.detected,
     rooms: p.rooms,
-    floor: p.features.floor ? `${p.features.floor}. OG` : undefined,
+    floor: p.features?.floor ? `${p.features.floor}. OG` : undefined,
     image: p.images[0],
     features: features.slice(0, 5),
     signals,
     signalScore: p.intel?.signal_score,
     recommended: index === 1,
-    complianceFlag: p.validation.sqm_mismatch
+    complianceFlag: p.validation?.sqm_mismatch
       ? "sqm mismatch · § 1299 ABGB"
       : undefined,
     agentNote:
@@ -175,6 +176,8 @@ function propertyToCardProps(p: PropertyValidated, index: number) {
         : "Great area. Ask about the sqm discrepancy before viewing.",
   };
 }
+
+const mullerProfile = (clients as { profile?: ClientProfile }[])[0]?.profile || undefined;
 
 export function ComparisonClient({ comparisonId }: { comparisonId: string }) {
   const [properties, setProperties] = useState<PropertyValidated[]>(DEMO_PROPERTIES);
@@ -234,23 +237,16 @@ export function ComparisonClient({ comparisonId }: { comparisonId: string }) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2 mt-8">
-          {[
+        <ChatPanel
+          properties={properties}
+          clientProfile={mullerProfile}
+          suggestedQuestions={[
             "Compare commute to Stephansplatz",
             "Which has the best school?",
             "Why is #2 recommended?",
             "Price per m² comparison",
-          ].map((q) => (
-            <button
-              key={q}
-              className="px-4 py-2 bg-surface text-[15px] text-text rounded-[4px] hover:bg-copper hover:text-white transition-colors"
-            >
-              {q}
-            </button>
-          ))}
-        </div>
-
-        <ChatPanel />
+          ]}
+        />
 
         <footer className="mt-12 pt-6 text-center text-[14px] text-faint">
           Powered by Klar · Prepared by Marcus Adler · KaiserTech Immobilien

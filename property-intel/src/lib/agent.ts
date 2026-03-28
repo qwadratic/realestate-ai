@@ -21,8 +21,11 @@ export function getStore() {
 
 // --- OpenRouter client ---
 const client = new Anthropic({
-  baseURL: "https://openrouter.ai/api/v1",
+  baseURL: "https://openrouter.ai/api",
   apiKey: process.env.OPENROUTER_API_KEY!,
+  defaultHeaders: {
+    "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+  },
 });
 
 // --- Agent tools ---
