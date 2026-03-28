@@ -6,10 +6,10 @@ export const RemotionRoot: React.FC = () => {
     <Composition
       id="KlarDemo"
       component={KlarDemo}
-      durationInFrames={30 * 90}
+      durationInFrames={5370}
       fps={30}
-      width={1440}
-      height={900}
+      width={4076}
+      height={2298}
     />
   );
 };

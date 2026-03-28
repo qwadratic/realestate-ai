@@ -1,19 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useToast } from "@/components/toast";
 
 export function CallWidget() {
   const [phone, setPhone] = useState("+43 ");
   const [calling, setCalling] = useState(false);
-  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const { addToast } = useToast();
 
   function validateAustrianNumber(num: string): string | null {
-    // Remove spaces, dashes
     const clean = num.replace(/[\s\-()]/g, "");
-    // Must start with +43
     if (!clean.startsWith("+43")) return "Nummer muss mit +43 beginnen";
-    // Austrian mobile/landline: +43 followed by 9-12 digits
     const digits = clean.slice(3);
     if (digits.length < 4 || digits.length > 12) return "Ungültige österreichische Nummer";
     if (!/^\d+$/.test(digits)) return "Nur Ziffern erlaubt";
@@ -23,12 +21,11 @@ export function CallWidget() {
   async function handleCall() {
     const err = validateAustrianNumber(phone);
     if (err) {
-      setError(err);
+      addToast({ type: "error", title: "Ungültige Nummer", message: err, persistent: true });
       return;
     }
-    setError("");
-    setCalling(true);
 
+    setCalling(true);
     const clean = phone.replace(/[\s\-()]/g, "");
 
     try {
@@ -37,15 +34,42 @@ export function CallWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phone_number: clean }),
       });
-      if (res.ok) {
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
         setSuccess(true);
-        setTimeout(() => setSuccess(false), 5000);
+        addToast({
+          type: "success",
+          title: "Anruf gestartet",
+          message: `Maya ruft Sie gleich an: ${phone}`,
+          persistent: false,
+        });
+        setTimeout(() => setSuccess(false), 8000);
       } else {
-        const data = await res.json().catch(() => ({}));
-        setError(data.error || "Anruf fehlgeschlagen");
+        // Show detailed error — persistent, stays until dismissed
+        addToast({
+          type: "error",
+          title: data.code === "AUTH_FAILED"
+            ? "API-Schlüssel ungültig"
+            : data.code === "NO_CREDITS"
+            ? "Guthaben aufgebraucht"
+            : data.code === "RATE_LIMITED"
+            ? "Zu viele Anrufe"
+            : data.code === "NO_AGENT_ID" || data.code === "NO_API_KEY"
+            ? "Konfigurationsfehler"
+            : "Anruf fehlgeschlagen",
+          message: data.error || "Unbekannter Fehler",
+          persistent: true,
+        });
       }
-    } catch {
-      setError("Verbindungsfehler");
+    } catch (e) {
+      addToast({
+        type: "error",
+        title: "Netzwerkfehler",
+        message: "Verbindung zum Server fehlgeschlagen. Bitte prüfen Sie Ihre Internetverbindung.",
+        persistent: true,
+      });
     } finally {
       setCalling(false);
     }
@@ -69,10 +93,8 @@ export function CallWidget() {
         <input
           type="tel"
           value={phone}
-          onChange={(e) => {
-            setPhone(e.target.value);
-            setError("");
-          }}
+          onChange={(e) => setPhone(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleCall()}
           placeholder="+43 660 1234567"
           className="flex-1 bg-surface px-4 py-3 text-[16px] rounded-[4px] outline-none focus:ring-1 focus:ring-copper placeholder:text-faint tabular-nums"
         />
@@ -87,18 +109,9 @@ export function CallWidget() {
               : "bg-copper text-white hover:bg-copper-dark"
           }`}
         >
-          {success ? "Maya ruft an!" : calling ? "Wird verbunden..." : "Anrufen"}
+          {success ? "Maya ruft an!" : calling ? "Verbinde..." : "Anrufen"}
         </button>
       </div>
-
-      {error && (
-        <p className="text-[13px] text-signal-red mt-2">{error}</p>
-      )}
-      {success && (
-        <p className="text-[13px] text-signal-green mt-2">
-          Maya ruft Sie gleich an der Nummer {phone} an.
-        </p>
-      )}
 
       <p className="text-[12px] text-faint mt-3">
         Nur österreichische Nummern (+43). Maya spricht Deutsch und Englisch.
