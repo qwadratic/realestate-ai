@@ -4,6 +4,28 @@ import { useState, useRef, useEffect } from "react";
 import { useAgent } from "@/lib/use-chat";
 import type { PropertyValidated, ClientProfile } from "@/types";
 
+// Simple markdown to HTML for chat responses
+function renderMarkdown(text: string): string {
+  return text
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    // Italic
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    // Inline code
+    .replace(/`(.+?)`/g, '<code class="px-1 py-0.5 bg-surface rounded text-[13px]">$1</code>')
+    // Headers (h3, h2, h1)
+    .replace(/^### (.+)$/gm, '<p class="text-[16px] font-semibold text-text mt-3 mb-1">$1</p>')
+    .replace(/^## (.+)$/gm, '<p class="text-[17px] font-semibold text-text mt-3 mb-1">$1</p>')
+    .replace(/^# (.+)$/gm, '<p class="text-[18px] font-bold text-text mt-3 mb-1">$1</p>')
+    // Bullet lists
+    .replace(/^- (.+)$/gm, '<div class="flex gap-2 ml-2"><span class="text-copper">•</span><span>$1</span></div>')
+    // Numbered lists
+    .replace(/^(\d+)\. (.+)$/gm, '<div class="flex gap-2 ml-2"><span class="text-copper font-medium">$1.</span><span>$2</span></div>')
+    // Line breaks
+    .replace(/\n\n/g, '<div class="h-2"></div>')
+    .replace(/\n/g, "<br/>");
+}
+
 const TOOL_LABELS: Record<string, string> = {
   list_properties: "Listing properties",
   get_property: "Reading property",
@@ -62,15 +84,16 @@ export function ChatPanel({ properties, clientProfile, suggestedQuestions }: Cha
           {messages.map((msg, i) => (
             <div key={i} className={msg.role === "user" ? "text-right" : ""}>
               <span className="text-[11px] font-medium text-faint uppercase tracking-wider">
-                {msg.role === "user" ? "You" : "Klar"}
+                {msg.role === "user" ? "Sie" : "Klar"}
               </span>
-              <p
-                className={`text-[15px] mt-0.5 ${
-                  msg.role === "user" ? "text-muted" : "text-text"
-                } whitespace-pre-wrap`}
-              >
-                {msg.content}
-              </p>
+              {msg.role === "user" ? (
+                <p className="text-[15px] mt-0.5 text-muted">{msg.content}</p>
+              ) : (
+                <div
+                  className="text-[15px] mt-0.5 text-text leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.content) }}
+                />
+              )}
             </div>
           ))}
 
@@ -94,7 +117,7 @@ export function ChatPanel({ properties, clientProfile, suggestedQuestions }: Cha
 
           {streaming && toolCalls.length === 0 && (
             <div className="text-[13px] text-copper animate-pulse">
-              Thinking...
+              Denke nach...
             </div>
           )}
 
@@ -127,7 +150,7 @@ export function ChatPanel({ properties, clientProfile, suggestedQuestions }: Cha
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask Klar anything... (e.g. 'analyze all properties', 'which is best for families?')"
+          placeholder="Fragen Sie Klar... (z.B. 'welche Wohnung passt am besten?')"
           disabled={streaming}
           className="flex-1 bg-surface px-5 py-3.5 text-base rounded-[4px] outline-none focus:ring-1 focus:ring-copper placeholder:text-faint disabled:opacity-50"
         />
