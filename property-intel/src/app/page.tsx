@@ -64,8 +64,9 @@ export default function AboutPage() {
           One root cause: <strong>the agent is the bottleneck.</strong>
         </p>
         <p className="text-[18px] text-muted leading-relaxed max-w-[700px] mt-3">
-          3-in-1 AI assistant: Voice Agent + Property Search + Email Triage.
-          So the agent can focus on relationships, viewings, and negotiations.
+          3-in-1 AI assistant: Voice Agent + Property Intelligence + Email Triage.
+          10-tool Claude agent with real API integrations (Exa, Google Maps, Austrian law validation).
+          Demo runs on fixture data for stability.
         </p>
 
         <div className="flex gap-4 mt-8">
@@ -161,7 +162,7 @@ export default function AboutPage() {
         <div className="max-w-[960px] mx-auto px-8 py-14">
           <h2 className="text-[28px] font-semibold text-text mb-2">10-Tool Property Agent</h2>
           <p className="text-[16px] text-muted mb-8">
-            Claude Sonnet 4 with agentic tool loop. Each tool is a real API call.
+            Claude Sonnet 4 with agentic tool loop. Tools call real APIs (OpenRouter, Exa, Google Maps) when keys are configured. Demo runs on fixture data for stability.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {tools.map((t) => (
@@ -292,7 +293,7 @@ export default function AboutPage() {
         <div className="max-w-[960px] mx-auto px-8 py-14">
           <h2 className="text-[28px] font-semibold text-text mb-2">33 Robot Framework Tests</h2>
           <p className="text-[16px] text-muted mb-6">
-            Human-readable BDD test suite with Playwright backend. Video recording enabled.
+            Human-readable BDD test suite with Playwright backend. Tests define the spec, structured as a 6-act demo narrative. Requires local dev server.
           </p>
           <div className="bg-card rounded-[4px] p-6 font-mono text-[13px] text-text" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
             <pre className="whitespace-pre overflow-x-auto">{`*** Test Cases ***
