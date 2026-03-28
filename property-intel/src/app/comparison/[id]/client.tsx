@@ -1,12 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  ConversationProvider,
-  useConversationControls,
-  useConversationStatus,
-  useConversationMode,
-} from "@elevenlabs/react";
+import Script from "next/script";
 import { PropertyCard } from "@/components/property-card";
 import { ChatPanel } from "@/components/chat-input";
 import type { PropertyValidated, ClientProfile } from "@/types";
@@ -259,72 +254,38 @@ export function ComparisonClient({ comparisonId }: { comparisonId: string }) {
         </footer>
       </main>
 
-      {/* Voice FAB with ElevenLabs */}
-      <VoiceFAB />
-    </div>
-  );
-}
-
-function VoiceFAB() {
-  const agentId = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID;
-  if (!agentId) {
-    return (
-      <button
-        className="fixed bottom-8 right-8 w-14 h-14 bg-copper rounded-full flex items-center justify-center shadow-lg hover:bg-copper-dark transition-colors z-50"
-        title="Sprachassistent"
-      >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-          <line x1="12" y1="19" x2="12" y2="23" />
-        </svg>
-      </button>
-    );
-  }
-  return (
-    <ConversationProvider>
-      <VoiceButton agentId={agentId} />
-    </ConversationProvider>
-  );
-}
-
-function VoiceButton({ agentId }: { agentId: string }) {
-  const { startSession, endSession } = useConversationControls();
-  const { status } = useConversationStatus();
-  const { isSpeaking } = useConversationMode();
-  const connected = status === "connected";
-  const connecting = status === "connecting";
-
-  async function handleClick() {
-    if (connected) {
-      await endSession();
-    } else {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
-      await startSession({ agentId });
-    }
-  }
-
-  return (
-    <button
-      onClick={handleClick}
-      className={`fixed bottom-8 right-8 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all z-50 ${
-        connected
-          ? isSpeaking ? "bg-signal-green scale-110" : "bg-signal-red animate-pulse"
-          : connecting ? "bg-copper/70 animate-pulse" : "bg-copper hover:bg-copper-dark"
-      }`}
-      title={connected ? "Gespräch beenden" : "Sprachassistent starten"}
-    >
-      {connected ? (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-          <rect x="6" y="6" width="12" height="12" rx="2" />
-        </svg>
+      {/* ElevenLabs Widget — voice + text chat */}
+      {process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ? (
+        <>
+          {/* @ts-expect-error — custom element */}
+          <elevenlabs-convai
+            agent-id={process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID}
+            avatar-orb-color-1="#B87333"
+            avatar-orb-color-2="#894D0D"
+            action-text="Maya fragen"
+            start-call-text="Anruf starten"
+            end-call-text="Auflegen"
+            expand-text="Chat öffnen"
+            listening-text="Höre zu..."
+            speaking-text="Maya spricht..."
+          />
+          <Script
+            src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+            strategy="lazyOnload"
+          />
+        </>
       ) : (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-          <line x1="12" y1="19" x2="12" y2="23" />
-        </svg>
+        <button
+          className="fixed bottom-8 right-8 w-14 h-14 bg-copper rounded-full flex items-center justify-center shadow-lg hover:bg-copper-dark transition-colors z-50"
+          title="Sprachassistent"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+          </svg>
+        </button>
       )}
-    </button>
+    </div>
   );
 }
