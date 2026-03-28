@@ -65,7 +65,7 @@ export function PropertyCard({
       {recommended && (
         <div className="px-4 pt-2">
           <span className="text-[13px] font-medium text-copper uppercase tracking-wider">
-            AI Recommendation
+            Empfohlen
           </span>
         </div>
       )}
@@ -112,35 +112,32 @@ export function PropertyCard({
           )}
         </div>
 
-        <div className="mt-4 pt-4 bg-surface -mx-5 px-5 pb-4">
-          <p className="text-[15px] font-medium text-copper mb-2.5">
-            Why this matches
-          </p>
-          <div className="space-y-1.5">
-            {features.map((f) => (
-              <div
-                key={f.label}
-                className="flex items-center text-[15px] text-text"
-              >
-                <span className="flex-1">{f.label}</span>
-                <RelevanceDots score={f.score} />
-              </div>
-            ))}
+        {features.length > 0 && (
+          <div className="mt-4 pt-4 bg-surface -mx-5 px-5 pb-4">
+            <p className="text-[15px] font-medium text-copper mb-2.5">
+              Warum es passt
+            </p>
+            <div className="space-y-1.5">
+              {features.map((f) => (
+                <div
+                  key={f.label}
+                  className="flex items-center text-[15px] text-text"
+                >
+                  <span className="flex-1">{f.label}</span>
+                  <RelevanceDots score={f.score} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {signals && signals.length > 0 && (
+        {signals && signals.length > 0 && !signals.every((s) => s.label.startsWith("Keine Signale") || s.label.startsWith("No distress")) && (
           <div className="flex flex-wrap gap-1.5 mt-3">
-            {signals.map((s) => (
+            {signals.filter((s) => !s.label.startsWith("Keine Signale") && !s.label.startsWith("No distress")).map((s) => (
               <SignalChip key={s.label} variant={s.variant}>
                 {s.label}
               </SignalChip>
             ))}
-            {signalScore !== undefined && (
-              <span className="text-[14px] font-medium text-muted ml-1">
-                Signal: {signalScore}/5
-              </span>
-            )}
           </div>
         )}
 
