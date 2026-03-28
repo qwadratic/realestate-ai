@@ -9,7 +9,7 @@
 3-in-1 AI assistant: Voice Agent + Property Search + Email Triage.
 So the agent can focus on relationships, viewings, and negotiations.
 
-[Live Demo](https://realestate-ai.vercel.app) . [About Page](https://realestate-ai.vercel.app/about) . [GitHub](https://github.com/qwadratic/realestate-ai)
+[Live Demo](https://property-intel-omega.vercel.app) . [About Page](https://property-intel-omega.vercel.app/about) . [GitHub](https://github.com/qwadratic/realestate-ai)
 
 </div>
 
