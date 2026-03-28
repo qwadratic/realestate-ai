@@ -1,0 +1,54 @@
+[
+  {
+    "id": "muller",
+    "name": "Familie Müller",
+    "status": "active",
+    "statusLabel": "Suche aktiv",
+    "summary": "3+ Zimmer, Bezirke 2-9, Budget €300k-€450k",
+    "lastActivity": "Heute, 09:15",
+    "avatar": "MF",
+    "transcript": "Agent: Guten Morgen, Frau Müller! Schön, dass wir telefonieren können. Wie geht es Ihnen und der Familie?\n\nFrau Müller: Danke, gut! Die Kinder werden langsam größer, deswegen wird die jetzige Wohnung wirklich zu eng. Wir brauchen unbedingt mehr Platz.\n\nAgent: Verstehe. Was genau suchen Sie?\n\nFrau Müller: Mindestens drei Zimmer, besser vier. Am liebsten Altbau mit hohen Decken — das hat einfach Charme. Ein Balkon wäre toll, und ganz wichtig: ein Lift! Mit zwei kleinen Kindern und dem Kinderwagen ist das ohne Aufzug wirklich mühsam.\n\nAgent: Absolut nachvollziehbar. Und welche Bezirke kommen für Sie in Frage?\n\nFrau Müller: Wir schauen uns den 2., 3., 7. und 8. Bezirk an. Mein Mann arbeitet am Stephansplatz, also sollte die Anbindung gut sein — maximal 15 Minuten mit den Öffis. Und eine Volksschule in der Nähe ist uns extrem wichtig, die Große kommt nächstes Jahr in die Schule.\n\nAgent: Und preislich?\n\nFrau Müller: Unser Maximum liegt bei 450.000 Euro. Ideal wäre zwischen 300 und 400 Tausend. Wir haben auch etwas Eigenkapital, also ist die Finanzierung grundsätzlich kein Problem.\n\nAgent: Perfekt. Ich setze die Suche auf und melde mich, sobald ich passende Objekte habe. Wird nicht lange dauern!",
+    "profile": {
+      "budget_min": 300000,
+      "budget_max": 450000,
+      "rooms_min": 3,
+      "rooms_preferred": 4,
+      "districts": ["Leopoldstadt", "Landstraße", "Neubau", "Josefstadt"],
+      "district_codes": ["1020", "1030", "1070", "1080"],
+      "family": "2 Erwachsene, 2 Kinder (3 und 6 Jahre)",
+      "priorities": ["Volksschule in der Nähe", "U-Bahn < 15 Min zum Stephansplatz", "Lift", "Balkon"],
+      "style_preference": "Altbau",
+      "move_in": "Sofort / Innerhalb 3 Monate",
+      "financing": "Eigenkapital vorhanden, Finanzierung gesichert",
+      "edited_fields": ["rooms_preferred", "budget_max"],
+      "notes_agent": "Frau Müller betonte den Lift mehrfach. Budget auf 450k angehoben nach Rücksprache mit Ehemann."
+    },
+    "searchCriteria": {
+      "rooms_min": 3,
+      "price_max": 450000,
+      "districts": ["1020", "1030", "1070", "1080"],
+      "must_have": ["elevator", "balcony"],
+      "nice_to_have": ["altbau", "school_nearby"],
+      "commute_max_min": 15,
+      "commute_destination": "Stephansplatz 1, 1010 Wien"
+    }
+  },
+  {
+    "id": "schmidt",
+    "name": "Herr Schmidt",
+    "status": "viewing",
+    "statusLabel": "Besichtigung geplant",
+    "summary": "Besichtigung Fr 14:00, Josefstädter Str. 71",
+    "lastActivity": "Gestern, 16:30",
+    "avatar": "HS"
+  },
+  {
+    "id": "weber",
+    "name": "Frau Weber",
+    "status": "new",
+    "statusLabel": "Neue Anfrage",
+    "summary": "3-Zi, Bezirk 3, ca. €350.000",
+    "lastActivity": "Heute, 10:42",
+    "avatar": "FW"
+  }
+]

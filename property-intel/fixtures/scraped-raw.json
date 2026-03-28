@@ -1,0 +1,212 @@
+[
+  {
+    "title": "KREMSER WOHNDOMIZIL2Zi - 52qm Gartenwohnung mit 65qm Garten, Tiefgarage, in beliebter Grünrühelage",
+    "propertyType": "house",
+    "address": {
+      "postalCode": "3500",
+      "countryCode": "AT",
+      "addressString": "3500 Krems an der Donau, Niederösterreich"
+    },
+    "monetaryDetails": {
+      "transactionType": "rent",
+      "purchasingPrice": null,
+      "purchasingPricePerM2": null,
+      "rent": 0,
+      "rentPerM2": 0,
+      "currencyCode": "EUR",
+      "isCommissionFree": true
+    },
+    "features": {
+      "livingArea": 52.46,
+      "plotArea": 65.05,
+      "yearBuilt": 2024,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 0,
+      "hasGarage": true,
+      "hasCarport": false,
+      "hasParkingSpace": false,
+      "hasTerrace": true,
+      "hasBalcony": true,
+      "hasGarden": true,
+      "hasLoggia": true,
+      "hasPool": false,
+      "hasStorageRoom": true,
+      "isBarrierFree": false,
+      "hasBuiltInKitchen": false,
+      "hasElevator": false,
+      "hasAirConditioning": false,
+      "hasBasementCompartment": true
+    },
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnung/niederoesterreich/krems-an-der-donau/kremser-wohndomizil2zi-52qm-gartenwohnung-mit-65qm-garten-tiefgarage-in-beliebter-gruenruhelage-1013904718/",
+    "snapshotDate": "2026-03-28T07:31:03.577Z"
+  },
+  {
+    "title": "KREMSER WOHNDOMIZIL3Zi- 63qm- Gartenwohnung, 2Terrassen, Lift, Tiefgarage, in beliebter Grünruhelage",
+    "propertyType": "apartment",
+    "address": {
+      "postalCode": "3500",
+      "countryCode": "AT",
+      "addressString": "3500 Krems an der Donau, Niederösterreich"
+    },
+    "monetaryDetails": {
+      "transactionType": "sale",
+      "purchasingPrice": 390000,
+      "purchasingPricePerM2": 6213.16,
+      "rent": null,
+      "rentPerM2": null,
+      "currencyCode": "EUR",
+      "isCommissionFree": false
+    },
+    "features": {
+      "livingArea": 62.77,
+      "plotArea": 93.4,
+      "yearBuilt": 2024,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "floor": 3,
+      "hasGarage": true,
+      "hasCarport": true,
+      "hasParkingSpace": true,
+      "hasTerrace": true,
+      "hasBalcony": false,
+      "hasGarden": true,
+      "hasLoggia": false,
+      "hasPool": false,
+      "hasStorageRoom": true,
+      "isBarrierFree": false,
+      "hasBuiltInKitchen": false,
+      "hasElevator": false,
+      "hasAirConditioning": false,
+      "hasBasementCompartment": false
+    },
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnung/niederoesterreich/krems-an-der-donau/kremser-wohndomizil3zi-63qm-gartenwohnung-2terrassen-lift-tiefgarage-in-beliebter-gruenruhelage-1241890875/",
+    "snapshotDate": "2026-03-28T07:31:15.930Z"
+  },
+  {
+    "title": "Helle Neubauwohnungen direkt an der Traisen",
+    "propertyType": "house",
+    "address": {
+      "postalCode": "3100",
+      "countryCode": "AT",
+      "addressString": "Ferstlergasse 6, 3100 St. Pölten, Sankt Pölten, Niederösterreich"
+    },
+    "monetaryDetails": {
+      "transactionType": "sale",
+      "purchasingPrice": 298600,
+      "purchasingPricePerM2": 5301.85,
+      "rent": null,
+      "rentPerM2": null,
+      "currencyCode": "EUR",
+      "isCommissionFree": false
+    },
+    "features": {
+      "livingArea": 56.32,
+      "plotArea": null,
+      "yearBuilt": 2025,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 2,
+      "hasGarage": false,
+      "hasCarport": false,
+      "hasParkingSpace": false,
+      "hasTerrace": false,
+      "hasBalcony": true,
+      "hasGarden": false,
+      "hasLoggia": false,
+      "hasPool": false,
+      "hasStorageRoom": true,
+      "isBarrierFree": false,
+      "hasBuiltInKitchen": false,
+      "hasElevator": false,
+      "hasAirConditioning": false,
+      "hasBasementCompartment": true
+    },
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnung/niederoesterreich/sankt-poelten/helle-neubauwohnungen-direkt-an-der-traisen-981476072/",
+    "snapshotDate": "2026-03-28T07:31:35.863Z"
+  },
+  {
+    "title": null,
+    "propertyType": "house",
+    "address": {
+      "postalCode": "3500",
+      "countryCode": "AT",
+      "addressString": "3500 Krems an der Donau, Niederösterreich"
+    },
+    "monetaryDetails": {
+      "transactionType": "rent",
+      "purchasingPrice": null,
+      "purchasingPricePerM2": null,
+      "rent": 0,
+      "rentPerM2": 0,
+      "currencyCode": "EUR",
+      "isCommissionFree": false
+    },
+    "features": {
+      "livingArea": 53.26,
+      "plotArea": 0,
+      "yearBuilt": 2024,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 1,
+      "hasGarage": false,
+      "hasCarport": false,
+      "hasParkingSpace": true,
+      "hasTerrace": false,
+      "hasBalcony": true,
+      "hasGarden": false,
+      "hasLoggia": false,
+      "hasPool": false,
+      "hasStorageRoom": false,
+      "isBarrierFree": false,
+      "hasBuiltInKitchen": false,
+      "hasElevator": false,
+      "hasAirConditioning": false,
+      "hasBasementCompartment": false
+    },
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnung/niederoesterreich/krems-an-der-donau/kremser-wohndomizil2zi-53qm-balkon-eigentum-lifttiefgarage-in-beliebter-gruenruhelage-827102277/",
+    "snapshotDate": "2026-03-28T07:31:40.580Z"
+  },
+  {
+    "title": "Langkampfen: Neubauprojekt Bergblick am Schmiedweg Top A 002",
+    "propertyType": "apartment",
+    "address": {
+      "postalCode": "6336",
+      "countryCode": "AT",
+      "addressString": "6336 Langkampfen, Kufstein, Tirol"
+    },
+    "monetaryDetails": {
+      "transactionType": "sale",
+      "purchasingPrice": 347640,
+      "purchasingPricePerM2": 6777.93,
+      "rent": null,
+      "rentPerM2": null,
+      "currencyCode": "EUR",
+      "isCommissionFree": null
+    },
+    "features": {
+      "livingArea": 51.29,
+      "plotArea": 28.44,
+      "yearBuilt": 2026,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 0,
+      "hasGarage": false,
+      "hasCarport": false,
+      "hasParkingSpace": false,
+      "hasTerrace": true,
+      "hasBalcony": true,
+      "hasGarden": true,
+      "hasLoggia": false,
+      "hasPool": false,
+      "hasStorageRoom": null,
+      "isBarrierFree": null,
+      "hasBuiltInKitchen": null,
+      "hasElevator": false,
+      "hasAirConditioning": null,
+      "hasBasementCompartment": false
+    },
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnung/tirol/kufstein/langkampfen-neubauprojekt-bergblick-am-schmiedweg-top-a-002-1645836364/",
+    "snapshotDate": "2026-03-28T07:31:43.433Z"
+  }
+]

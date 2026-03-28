@@ -176,21 +176,35 @@ function propertyToCardProps(p: PropertyValidated, index: number) {
   };
 }
 
-export function ComparisonClient() {
+export function ComparisonClient({ comparisonId }: { comparisonId: string }) {
   const [properties, setProperties] = useState<PropertyValidated[]>(DEMO_PROPERTIES);
 
-  // Load from localStorage if pipeline ran
+  // Load real data if available
   useEffect(() => {
-    const stored = localStorage.getItem("klar-properties");
-    if (stored) {
-      try {
+    // Try localStorage first (set by pipeline)
+    try {
+      const stored = localStorage.getItem("klar-properties");
+      if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
           setProperties(parsed.slice(0, 3));
+          return;
         }
-      } catch {}
+      }
+    } catch {}
+
+    // Try API for "live" mode
+    if (comparisonId === "live") {
+      fetch("/api/properties")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.properties?.length > 0) {
+            setProperties(data.properties.slice(0, 3));
+          }
+        })
+        .catch(() => {});
     }
-  }, []);
+  }, [comparisonId]);
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -242,6 +256,18 @@ export function ComparisonClient() {
           Powered by Klar · Prepared by Marcus Adler · KaiserTech Immobilien
         </footer>
       </main>
+
+      {/* Voice FAB */}
+      <button
+        className="fixed bottom-8 right-8 w-14 h-14 bg-copper rounded-full flex items-center justify-center shadow-lg hover:bg-copper-dark transition-colors z-50"
+        title="Sprachassistent"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+          <line x1="12" y1="19" x2="12" y2="23" />
+        </svg>
+      </button>
     </div>
   );
 }

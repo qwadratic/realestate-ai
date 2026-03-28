@@ -1,5 +1,10 @@
 import { ComparisonClient } from "./client";
 
-export default function ComparisonPage() {
-  return <ComparisonClient />;
+export default async function ComparisonPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  return <ComparisonClient comparisonId={id} />;
 }

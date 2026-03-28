@@ -88,3 +88,58 @@ export interface ChatMessage {
 
 // Voice mode
 export type VoiceMode = "lead_qualification" | "agent_consultation";
+
+// Client types
+export interface ClientProfile {
+  budget_min: number;
+  budget_max: number;
+  rooms_min: number;
+  rooms_preferred?: number;
+  districts: string[];
+  district_codes: string[];
+  family: string;
+  priorities: string[];
+  style_preference?: string;
+  move_in?: string;
+  financing?: string;
+  edited_fields: string[];
+  notes_agent?: string;
+}
+
+export interface SearchCriteria {
+  rooms_min: number;
+  price_max: number;
+  districts: string[];
+  must_have: string[];
+  nice_to_have: string[];
+  commute_max_min: number;
+  commute_destination: string;
+}
+
+export interface Client {
+  id: string;
+  name: string;
+  status: "active" | "viewing" | "new";
+  statusLabel: string;
+  summary: string;
+  lastActivity: string;
+  avatar: string;
+  transcript?: string;
+  profile?: ClientProfile;
+  searchCriteria?: SearchCriteria;
+}
+
+export interface Email {
+  id: string;
+  from: string;
+  subject: string;
+  preview: string;
+  body: string;
+  priority: "urgent" | "signal" | "normal" | "new" | "low";
+  aiLabel: string;
+  suggestedResponse: string | null;
+  time: string;
+  date: string;
+  read: boolean;
+  client: string | null;
+}

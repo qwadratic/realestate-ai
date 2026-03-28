@@ -1,176 +1,107 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import { FeedItem } from "@/components/feed-item";
-import { usePipeline } from "@/lib/use-pipeline";
+import { SignalChip, StatusDot } from "@/components/signal-chip";
+import type { Client } from "@/types";
+import clients from "../../fixtures/clients.json";
 
-const STAGE_LABELS: Record<string, string> = {
-  searching: "Scanning portals...",
-  extracting: "Extracting features with AI...",
-  enriching: "Looking up signals & nearby places...",
-  validating: "Checking compliance...",
-  complete: "Done",
+const statusColors: Record<string, "green" | "amber" | "red"> = {
+  active: "green",
+  viewing: "amber",
+  new: "red",
 };
 
-export function FeedClient() {
-  const pipeline = usePipeline();
-  const [hasRun, setHasRun] = useState(false);
-
-  const handleRunPipeline = () => {
-    setHasRun(true);
-    pipeline.run();
-  };
-
-  // Store results for comparison page
-  if (pipeline.properties.length > 0 && typeof window !== "undefined") {
-    localStorage.setItem("klar-properties", JSON.stringify(pipeline.properties));
-  }
-
+function ClientCard({ client }: { client: Client }) {
+  const isActive = client.status === "active";
   return (
-    <main className="flex-1 max-w-[960px] mx-auto w-full px-8 py-10">
-      {/* Pipeline trigger */}
-      {!hasRun && (
-        <div className="bg-card rounded-[4px] p-6 mb-6" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-          <p className="text-lg font-medium text-text mb-1">Run Intelligence Pipeline</p>
-          <p className="text-[15px] text-muted mb-4">
-            Analyze 6 Vienna properties — extract features, lookup signals, validate compliance.
-          </p>
-          <button
-            onClick={handleRunPipeline}
-            className="px-5 py-2.5 bg-copper text-white text-[15px] font-medium rounded-[4px] hover:bg-copper-dark transition-colors"
-          >
-            Start Pipeline
-          </button>
-        </div>
-      )}
-
-      {/* Pipeline progress */}
-      {pipeline.running && pipeline.stage && (
-        <div className="bg-card rounded-[4px] p-6 mb-6" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-copper animate-pulse" />
-            <p className="text-lg font-medium text-text">
-              {STAGE_LABELS[pipeline.stage] || pipeline.stage}
+    <Link href={`/clients/${client.id}`}>
+      <div
+        className={`bg-card rounded-[4px] p-6 transition-colors hover:bg-surface cursor-pointer ${
+          isActive ? "border-l-2 border-copper" : ""
+        }`}
+        style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}
+      >
+        <div className="flex items-start gap-4">
+          <div className="w-12 h-12 rounded-[4px] bg-surface flex items-center justify-center text-base font-medium text-muted shrink-0">
+            {client.avatar}
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <StatusDot variant={statusColors[client.status] || "gray"} />
+              <span className="text-lg font-medium text-text">
+                {client.name}
+              </span>
+              <SignalChip variant={statusColors[client.status] || "gray"}>
+                {client.statusLabel}
+              </SignalChip>
+            </div>
+            <p className="text-[15px] text-muted">{client.summary}</p>
+            <p className="text-[13px] text-faint mt-1">
+              {client.lastActivity}
             </p>
           </div>
-          {pipeline.detail && (
-            <p className="text-[15px] text-muted mt-1 ml-6">{pipeline.detail}</p>
-          )}
-          {/* Stage progress bar */}
-          <div className="flex gap-1 mt-4">
-            {["searching", "extracting", "enriching", "validating"].map((s) => {
-              const stages = ["searching", "extracting", "enriching", "validating"];
-              const currentIdx = stages.indexOf(pipeline.stage || "");
-              const thisIdx = stages.indexOf(s);
-              return (
-                <div
-                  key={s}
-                  className={`h-1.5 flex-1 rounded-full transition-colors ${
-                    thisIdx <= currentIdx ? "bg-copper" : "bg-ghost-border"
-                  }`}
-                />
-              );
-            })}
-          </div>
+          <span className="text-muted text-lg">→</span>
         </div>
-      )}
+      </div>
+    </Link>
+  );
+}
 
-      {/* Pipeline results */}
-      {pipeline.stage === "complete" && pipeline.properties.length > 0 && (
-        <div className="bg-card rounded-[4px] p-6 mb-6" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-          <p className="text-lg font-medium text-text mb-1">
-            Pipeline complete — {pipeline.properties.length} properties analyzed
-          </p>
-          <p className="text-[15px] text-muted mb-3">
-            {pipeline.properties.filter((p) => p.intel && p.intel.signal_score > 0).length} with signals ·{" "}
-            {pipeline.properties.filter((p) => p.validation.flags.length > 0).length} with compliance flags
-          </p>
-          <a
-            href="/comparison/live"
-            className="inline-block px-5 py-2.5 bg-copper text-white text-[15px] font-medium rounded-[4px] hover:bg-copper-dark transition-colors"
-          >
-            View Comparison Gallery →
-          </a>
-        </div>
-      )}
-
-      {pipeline.error && (
-        <div className="bg-card rounded-[4px] p-6 mb-6 border-l-2 border-signal-red" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-          <p className="text-lg font-medium text-signal-red">Pipeline Error</p>
-          <p className="text-[15px] text-muted mt-1">{pipeline.error}</p>
-        </div>
-      )}
-
-      {/* Static feed items (demo data) */}
+export function FeedClient() {
+  return (
+    <main className="flex-1 max-w-[960px] mx-auto w-full px-8 py-10">
       <p className="text-[15px] font-medium text-muted uppercase tracking-wider mb-4">
-        Today — 3 actions needed
+        Ihre Klienten
+      </p>
+
+      <div className="space-y-3 mb-10">
+        {(clients as Client[]).map((client) => (
+          <ClientCard key={client.id} client={client} />
+        ))}
+      </div>
+
+      <p className="text-[15px] font-medium text-muted uppercase tracking-wider mb-4">
+        Letzte Aktivitäten
       </p>
 
       <div className="space-y-3">
         <FeedItem
           variant="urgent"
-          chipLabel="New Inquiry"
-          title="Herr Weber · 3-Zi Bezirk 3 · €350,000"
-          subtitle="AI drafted response · 3 matching properties found"
+          chipLabel="Neue Anfrage"
+          title="Frau Weber · 3-Zi Bezirk 3 · €350.000"
+          subtitle="KI-Antwort erstellt · 3 passende Objekte gefunden"
           timestamp="10:42"
           actions={[
-            { label: "Respond", primary: true },
-            { label: "Create Profile" },
+            { label: "Antworten", primary: true },
+            { label: "Profil erstellen" },
           ]}
         />
         <FeedItem
           variant="signal"
-          chipLabel="Signal Alert"
-          title="Penthouse Praterstern · Müller Family"
-          subtitle="Owner insolvency filed · Signal 3/5 · Highly motivated seller"
+          chipLabel="Signal"
+          title="Insolvenzverfahren — Taborstraße 18, 1020 Wien"
+          subtitle="Donau Immobilien GmbH · Aktenzeichen 3S 42/26 · Betrifft Penthouse Praterstern"
           copperBorder
           signals={[
-            { label: "Insolvency", variant: "red" },
-            { label: "Motivated Seller", variant: "amber" },
+            { label: "Insolvenz", variant: "red" },
+            { label: "Verhandlungsspielraum", variant: "amber" },
           ]}
-          actions={[
-            { label: "Call Client", primary: true },
-            { label: "View Property" },
-          ]}
-        />
-        <FeedItem
-          variant="match"
-          chipLabel="12 New Matches"
-          title="Müller Family · Last scan 2h ago"
-          subtitle="5 recommended · 2 with signals · 4 need review"
-          actions={[
-            { label: "Curate", primary: true },
-            { label: "Auto-Shortlist" },
-          ]}
-        />
-      </div>
-
-      <p className="text-[15px] font-medium text-muted uppercase tracking-wider mt-8 mb-4">
-        Yesterday
-      </p>
-
-      <div className="space-y-3">
-        <FeedItem
-          variant="done"
-          chipLabel="Sent"
-          title="Comparison page · Müller Family · 3 properties"
-          subtitle="Opened 2x · Client spent 4min on Landstraße listing"
-          muted
+          actions={[{ label: "Details", primary: true }]}
         />
         <FeedItem
           variant="done"
-          chipLabel="Confirmed"
-          title="Herr Schmidt · Viewing Fri 14:00 · Josefstädter Str. 71"
-          subtitle="Generalsaniert in Josefstadt · €375,000"
+          chipLabel="Bestätigt"
+          title="Herr Schmidt · Besichtigung Fr 14:00 · Josefstädter Str. 71"
+          subtitle="Generalsaniert in Josefstadt · €375.000"
           muted
         />
         <FeedItem
           variant="low"
-          chipLabel="Low"
-          title="8 low-priority matches across 3 clients"
-          subtitle="Spread across Bezirke 10, 15, 21"
+          chipLabel="Info"
+          title="Marktbericht Q1 2026 — Wien Wohnungsmarkt"
+          subtitle="Preisrückgang 2,3% · Altbau stabil · 3-4 Zi Nachfrage steigt"
           muted
-          actions={[{ label: "Review Later" }]}
         />
       </div>
     </main>
