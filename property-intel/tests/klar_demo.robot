@@ -12,7 +12,7 @@ ${TIMEOUT}     15s
 Open Klar App
     New Browser    chromium    headless=true
     New Context    viewport={"width": 1440, "height": 900}    recordVideo={"dir": "${OUTPUT_DIR}/videos", "size": {"width": 1440, "height": 900}}
-    New Page       ${BASE_URL}
+    New Page       ${BASE_URL}/feed
     Wait For Load State    domcontentloaded    timeout=${TIMEOUT}
 
 Page Text Should Contain
@@ -270,7 +270,7 @@ Email Shows Full Context And AI Draft
 Complete Agent Workflow In One Flow
     [Documentation]    Full demo path: morning triage → client understanding → search → comparison output
     # Morning: open dashboard
-    Go To    ${BASE_URL}
+    Go To    ${BASE_URL}/feed
     Wait For Load State    domcontentloaded
     Main Text Should Contain    Familie Müller
     # Understand: click into client

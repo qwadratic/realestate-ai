@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const tabs = [
-  { label: "Feed", href: "/" },
+  { label: "Feed", href: "/feed" },
   { label: "Curation", href: "/curation" },
   { label: "Clients", href: "/clients/muller" },
   { label: "Email", href: "/email" },
