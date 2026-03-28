@@ -1,16 +1,25 @@
 import Link from "next/link";
 
 const tools = [
-  { name: "list_properties", desc: "Browse all properties in the system" },
-  { name: "extract_features", desc: "AI extraction from German descriptions" },
-  { name: "lookup_intel", desc: "Owner & insolvency signals via Exa" },
-  { name: "search_nearby", desc: "Schools, transit, supermarkets via Google Maps" },
-  { name: "enrich_with_maps", desc: "Full Maps enrichment + commute calculation" },
-  { name: "compute_commute", desc: "Public transit time to any destination" },
-  { name: "validate_compliance", desc: "Austrian law compliance (MaklerG, ABGB)" },
-  { name: "analyze_property", desc: "Full pipeline: extract + enrich + validate" },
-  { name: "analyze_all", desc: "Batch analysis across all properties" },
-  { name: "web_search", desc: "Exa semantic search for context" },
+  { name: "list_properties", desc: "Browse all properties in the system", status: "live" },
+  { name: "extract_features", desc: "AI extraction from German descriptions", status: "live" },
+  { name: "lookup_intel", desc: "Owner & insolvency signals via Exa", status: "live" },
+  { name: "search_nearby", desc: "Schools, transit, supermarkets via Google Maps", status: "live" },
+  { name: "enrich_with_maps", desc: "Answer geo questions from enriched data (schools, transit, commute)", status: "live" },
+  { name: "compute_commute", desc: "Public transit time to any destination", status: "live" },
+  { name: "validate_compliance", desc: "Austrian law compliance (MaklerG, ABGB)", status: "live" },
+  { name: "analyze_property", desc: "Full pipeline: extract + enrich + validate", status: "live" },
+  { name: "analyze_all", desc: "Batch analysis across all properties", status: "live" },
+  { name: "web_search", desc: "Exa semantic search for context", status: "live" },
+];
+
+const voiceTools = [
+  { name: "lookup_client", desc: "Identify caller as existing client or new lead", status: "live" },
+  { name: "get_property_details", desc: "Retrieve property info by name or address", status: "live" },
+  { name: "search_properties", desc: "Filter properties by district and budget", status: "live" },
+  { name: "schedule_viewing", desc: "Book viewing appointment for client", status: "planned" },
+  { name: "send_comparison_link", desc: "Email shareable comparison page to client", status: "planned" },
+  { name: "log_lead", desc: "Save qualified lead to CRM database", status: "planned" },
 ];
 
 const stack = [
@@ -144,7 +153,7 @@ export default function AboutPage() {
       {/* Agent Tools */}
       <section className="bg-surface">
         <div className="max-w-[960px] mx-auto px-8 py-14">
-          <h2 className="text-[28px] font-semibold text-text mb-2">10-Tool Agent</h2>
+          <h2 className="text-[28px] font-semibold text-text mb-2">10-Tool Property Agent</h2>
           <p className="text-[16px] text-muted mb-8">
             Claude Sonnet 4 with agentic tool loop. Each tool is a real API call.
           </p>
@@ -158,7 +167,36 @@ export default function AboutPage() {
                 <code className="text-[13px] text-copper font-mono bg-copper/5 px-2 py-0.5 rounded shrink-0">
                   {t.name}
                 </code>
-                <span className="text-[14px] text-muted">{t.desc}</span>
+                <span className="text-[14px] text-muted flex-1">{t.desc}</span>
+                <span className="text-[11px] font-medium text-signal-green bg-signal-green/10 px-1.5 py-0.5 rounded shrink-0">
+                  Live
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="text-[22px] font-semibold text-text mt-12 mb-2">Voice Agent Tools (Maya)</h3>
+          <p className="text-[16px] text-muted mb-6">
+            ElevenLabs agent with server webhook tools. Phone: +43 670 301 5333
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {voiceTools.map((t) => (
+              <div
+                key={t.name}
+                className={`bg-card rounded-[4px] px-5 py-3.5 flex items-start gap-3 ${t.status === "planned" ? "opacity-60" : ""}`}
+                style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}
+              >
+                <code className="text-[13px] text-copper font-mono bg-copper/5 px-2 py-0.5 rounded shrink-0">
+                  {t.name}
+                </code>
+                <span className="text-[14px] text-muted flex-1">{t.desc}</span>
+                <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded shrink-0 ${
+                  t.status === "live"
+                    ? "text-signal-green bg-signal-green/10"
+                    : "text-signal-amber bg-signal-amber/10"
+                }`}>
+                  {t.status === "live" ? "Live" : "Planned"}
+                </span>
               </div>
             ))}
           </div>
@@ -271,8 +309,46 @@ Comparison Page Shows Signal Badges
         </div>
       </section>
 
-      {/* Team */}
+      {/* Project Status — honest */}
       <section className="max-w-[960px] mx-auto px-8 py-14">
+        <h2 className="text-[28px] font-semibold text-text mb-2">Project Status</h2>
+        <p className="text-[16px] text-muted mb-8">Honest state of each component. Hackathon prototype, not production.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { feature: "6-Screen Web App", status: "live", detail: "Feed, client detail, curation, comparison, email inbox + detail. All interactive." },
+            { feature: "10-Tool Property Agent", status: "live", detail: "Claude Sonnet 4 via OpenRouter. Feature extraction, Maps, Exa, compliance. Agentic tool loop." },
+            { feature: "Voice Agent (Maya)", status: "live", detail: "ElevenLabs + custom LLM. 3 server tools (client lookup, property search, property detail). Phone: +43 670 301 5333." },
+            { feature: "Shareable Comparison Links", status: "live", detail: "Curation page generates URL-encoded links. Comparison page reads IDs from URL." },
+            { feature: "Grounded Transcript Summary", status: "live", detail: "AI-extracted insights with quote tooltips linking to actual client statements." },
+            { feature: "33 Robot Framework Tests", status: "live", detail: "Playwright backend, video recording, human-readable BDD format." },
+            { feature: "Real Property Data", status: "partial", detail: "8 real Vienna properties scraped via Apify. App uses fixture data for demo stability." },
+            { feature: "Live API Integration", status: "partial", detail: "Agent tools are wired but require API keys (OpenRouter, Exa, Google Maps). Chat works with keys set." },
+            { feature: "Email Triage Agent", status: "separate", detail: "Built as a Pi coding agent extension in a parallel session. 95.4% accuracy, MCC=0.912. Separate codebase." },
+            { feature: "CRM Database Integration", status: "planned", detail: "Client data in JSON fixtures. Supabase integration designed but not yet wired." },
+            { feature: "Portal Monitoring", status: "planned", detail: "Continuous property scanning. Architecture designed, not yet implemented." },
+            { feature: "Multi-tenant Deployment", status: "planned", detail: "Currently single-agent demo. Multi-tenant architecture not started." },
+          ].map((item) => (
+            <div key={item.feature} className={`bg-card rounded-[4px] p-5 ${item.status === "planned" ? "opacity-60" : ""}`} style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded ${
+                  item.status === "live" ? "text-signal-green bg-signal-green/10" :
+                  item.status === "partial" ? "text-signal-amber bg-signal-amber/10" :
+                  item.status === "separate" ? "text-copper bg-copper/10" :
+                  "text-faint bg-surface"
+                }`}>
+                  {item.status === "live" ? "Live" : item.status === "partial" ? "Partial" : item.status === "separate" ? "Separate" : "Planned"}
+                </span>
+                <span className="text-[15px] font-medium text-text">{item.feature}</span>
+              </div>
+              <p className="text-[13px] text-muted">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="bg-surface">
+        <div className="max-w-[960px] mx-auto px-8 py-14">
         <h2 className="text-[28px] font-semibold text-text mb-6">Team</h2>
         <div className="flex gap-6">
           <div className="bg-card rounded-[4px] p-6 flex-1" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
@@ -282,6 +358,7 @@ Comparison Page Shows Signal Badges
               10+ years IT security. Building AI tools for Austrian real estate professionals.
             </p>
           </div>
+        </div>
         </div>
       </section>
 
