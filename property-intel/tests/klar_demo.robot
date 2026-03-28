@@ -11,7 +11,7 @@ ${TIMEOUT}     15s
 *** Keywords ***
 Open Klar App
     New Browser    chromium    headless=true
-    New Context    viewport={"width": 1440, "height": 900}
+    New Context    viewport={"width": 1440, "height": 900}    recordVideo={"dir": "${OUTPUT_DIR}/videos", "size": {"width": 1440, "height": 900}}
     New Page       ${BASE_URL}
     Wait For Load State    domcontentloaded    timeout=${TIMEOUT}
 
