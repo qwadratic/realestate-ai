@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CallWidget } from "@/components/call-widget";
 
 const tools = [
   { name: "list_properties", desc: "Browse all properties in the system", status: "live" },
@@ -102,6 +103,11 @@ export default function AboutPage() {
             <p className="text-[32px] font-bold text-copper">148</p>
             <p className="text-[14px] text-muted">Prospects</p>
           </div>
+        </div>
+
+        {/* Call Maya Widget */}
+        <div className="mt-10">
+          <CallWidget />
         </div>
       </header>
 
