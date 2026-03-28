@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Script from "next/script";
+import { PushToTalk } from "@/components/push-to-talk";
 import { PropertyCard } from "@/components/property-card";
 import { ChatPanel } from "@/components/chat-input";
 import type { PropertyValidated, ClientProfile } from "@/types";
@@ -254,26 +254,9 @@ export function ComparisonClient({ comparisonId }: { comparisonId: string }) {
         </footer>
       </main>
 
-      {/* ElevenLabs Widget — voice + text chat */}
+      {/* Push-to-talk voice agent */}
       {process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ? (
-        <>
-          {/* @ts-expect-error — custom element */}
-          <elevenlabs-convai
-            agent-id={process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID}
-            avatar-orb-color-1="#B87333"
-            avatar-orb-color-2="#894D0D"
-            action-text="Maya fragen"
-            start-call-text="Anruf starten"
-            end-call-text="Auflegen"
-            expand-text="Chat öffnen"
-            listening-text="Höre zu..."
-            speaking-text="Maya spricht..."
-          />
-          <Script
-            src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-            strategy="lazyOnload"
-          />
-        </>
+        <PushToTalk agentId={process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID} />
       ) : (
         <button
           className="fixed bottom-8 right-8 w-14 h-14 bg-copper rounded-full flex items-center justify-center shadow-lg hover:bg-copper-dark transition-colors z-50"
