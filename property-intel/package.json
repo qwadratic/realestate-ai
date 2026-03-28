@@ -5,10 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "voice:setup": "echo 'See voice-agent-prompt.md for ElevenLabs agent setup instructions'",
+    "test": "robot --outputdir tests/results tests/klar_demo.robot"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
+    "@elevenlabs/react": "^1.0.0",
     "@googlemaps/google-maps-services-js": "^3.4.2",
     "ai": "^6.0.141",
     "exa-js": "^2.10.2",

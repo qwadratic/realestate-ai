@@ -20,27 +20,95 @@ const PIPELINE_STEPS = [
   { id: "compliance", label: "Compliance-Prüfung (§ 3 MaklerG)...", stage: "validating" },
 ];
 
-function TranscriptSection({ transcript }: { transcript: string }) {
-  const lines = transcript.split("\n\n");
+// Grounded summary: each insight links to a real transcript quote
+const GROUNDED_INSIGHTS = [
+  {
+    label: "Mindestens 3 Zimmer, bevorzugt 4",
+    quote: "Mindestens drei Zimmer, besser vier. Am liebsten Altbau mit hohen Decken.",
+  },
+  {
+    label: "Lift ist entscheidend",
+    quote: "Ganz wichtig: ein Lift! Mit zwei kleinen Kindern und dem Kinderwagen ist das ohne Aufzug wirklich mühsam.",
+  },
+  {
+    label: "Bezirke 2, 3, 7, 8",
+    quote: "Wir schauen uns den 2., 3., 7. und 8. Bezirk an.",
+  },
+  {
+    label: "Max 15 Min Pendel zum Stephansplatz",
+    quote: "Mein Mann arbeitet am Stephansplatz, also sollte die Anbindung gut sein — maximal 15 Minuten mit den Öffis.",
+  },
+  {
+    label: "Volksschule in der Nähe",
+    quote: "Eine Volksschule in der Nähe ist uns extrem wichtig, die Große kommt nächstes Jahr in die Schule.",
+  },
+  {
+    label: "Budget €300k–€450k",
+    quote: "Unser Maximum liegt bei 450.000 Euro. Ideal wäre zwischen 300 und 400 Tausend.",
+  },
+  {
+    label: "Finanzierung gesichert",
+    quote: "Wir haben auch etwas Eigenkapital, also ist die Finanzierung grundsätzlich kein Problem.",
+  },
+];
+
+function TranscriptSummary({ transcript }: { transcript: string }) {
+  const [showFull, setShowFull] = useState(false);
+
   return (
     <div className="bg-card rounded-[4px] p-6" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-      <h2 className="text-xl font-semibold text-text mb-1">Gesprächsprotokoll</h2>
-      <p className="text-[13px] text-faint mb-4">Telefonat vom 27. März 2026, 09:15</p>
-      <div className="max-h-[350px] overflow-y-auto space-y-3 pr-2">
-        {lines.map((line, i) => {
-          const isAgent = line.startsWith("Agent:");
-          const speaker = isAgent ? "Agent" : "Frau Müller";
-          const text = line.replace(/^(Agent|Frau Müller): ?/, "");
-          return (
-            <div key={i} className={isAgent ? "" : ""}>
-              <span className={`text-[13px] font-medium ${isAgent ? "text-copper" : "text-muted"}`}>
-                {speaker}
-              </span>
-              <p className="text-[15px] text-text mt-0.5">{text}</p>
-            </div>
-          );
-        })}
+      <div className="flex items-center justify-between mb-1">
+        <h2 className="text-xl font-semibold text-text">Gesprächsanalyse</h2>
+        <span className="text-[12px] text-copper font-medium bg-copper/10 px-2 py-0.5 rounded">KI-extrahiert</span>
       </div>
+      <p className="text-[13px] text-faint mb-5">Telefonat vom 27. März 2026, 09:15 · 7 Erkenntnisse</p>
+
+      <div className="space-y-2.5">
+        {GROUNDED_INSIGHTS.map((insight) => (
+          <div key={insight.label} className="group relative">
+            <div className="flex items-start gap-3 px-3 py-2.5 rounded-[4px] hover:bg-surface transition-colors cursor-default">
+              <span className="w-1.5 h-1.5 rounded-full bg-copper mt-2 shrink-0" />
+              <div className="flex-1">
+                <span className="text-[15px] text-text">{insight.label}</span>
+                <span className="text-[12px] text-faint ml-2">&#8220;{insight.quote.slice(0, 40)}...&#8221;</span>
+              </div>
+            </div>
+            {/* Tooltip on hover */}
+            <div className="absolute left-8 top-full z-20 hidden group-hover:block">
+              <div className="mt-1 bg-text text-canvas text-[13px] px-4 py-3 rounded-[4px] max-w-[400px] shadow-lg">
+                <span className="text-copper font-medium">Frau Müller:</span>
+                <br />
+                &#8220;{insight.quote}&#8221;
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={() => setShowFull(!showFull)}
+        className="mt-5 text-[14px] text-copper hover:text-copper-dark font-medium transition-colors"
+      >
+        {showFull ? "Transkript ausblenden ↑" : "Volles Transkript anzeigen ↓"}
+      </button>
+
+      {showFull && (
+        <div className="mt-4 pt-4 border-t border-ghost-border max-h-[300px] overflow-y-auto space-y-3 pr-2">
+          {transcript.split("\n\n").map((line, i) => {
+            const isAgent = line.startsWith("Agent:");
+            const speaker = isAgent ? "Agent" : "Frau Müller";
+            const text = line.replace(/^(Agent|Frau Müller): ?/, "");
+            return (
+              <div key={i}>
+                <span className={`text-[13px] font-medium ${isAgent ? "text-copper" : "text-muted"}`}>
+                  {speaker}
+                </span>
+                <p className="text-[15px] text-text mt-0.5">{text}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -90,26 +158,81 @@ function ProfileSection({ profile }: { profile: NonNullable<Client["profile"]> }
   );
 }
 
-function CriteriaSection({ criteria }: { criteria: NonNullable<Client["searchCriteria"]> }) {
-  const chips = [
-    `${criteria.rooms_min}+ Zimmer`,
-    `Max €${(criteria.price_max / 1000).toFixed(0)}.000`,
-    `Bezirke ${criteria.districts.join(", ")}`,
-    ...criteria.must_have.map((m) => {
-      const labels: Record<string, string> = { elevator: "Lift ✓", balcony: "Balkon ✓" };
-      return labels[m] || m;
-    }),
-    `Pendel max ${criteria.commute_max_min} Min`,
+function CriteriaSection({ criteria: initial }: { criteria: NonNullable<Client["searchCriteria"]> }) {
+  const [criteria, setCriteria] = useState(initial);
+  const [editing, setEditing] = useState<string | null>(null);
+
+  const fields = [
+    { key: "rooms_min", label: "Zimmer min", value: `${criteria.rooms_min}`, suffix: "+" },
+    { key: "price_max", label: "Max Preis", value: `${(criteria.price_max / 1000).toFixed(0)}`, suffix: ".000 €" },
+    { key: "commute_max_min", label: "Pendel max", value: `${criteria.commute_max_min}`, suffix: " Min" },
   ];
+
+  const mustHaveLabels: Record<string, string> = { elevator: "Lift", balcony: "Balkon", altbau: "Altbau", school_nearby: "Schule nah" };
+
+  function handleSave(key: string, rawValue: string) {
+    const num = parseInt(rawValue, 10);
+    if (isNaN(num)) { setEditing(null); return; }
+    setCriteria((prev) => ({
+      ...prev,
+      [key]: key === "price_max" ? num * 1000 : num,
+    }));
+    setEditing(null);
+  }
 
   return (
     <div className="bg-card rounded-[4px] p-6" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.04)" }}>
-      <h2 className="text-xl font-semibold text-text mb-1">Suchkriterien</h2>
+      <div className="flex items-center justify-between mb-1">
+        <h2 className="text-xl font-semibold text-text">Suchkriterien</h2>
+        <span className="text-[12px] text-faint">Klicken zum Bearbeiten</span>
+      </div>
       <p className="text-[13px] text-faint mb-4">Abgeleitet aus Klientenprofil</p>
+
       <div className="flex flex-wrap gap-2">
-        {chips.map((c) => (
-          <span key={c} className="px-3 py-1.5 bg-surface text-[15px] font-medium text-text rounded-[4px]">
-            {c}
+        {fields.map((f) => (
+          <div key={f.key}>
+            {editing === f.key ? (
+              <span className="inline-flex items-center gap-1 px-3 py-1.5 bg-copper/10 text-[15px] font-medium text-text rounded-[4px] ring-2 ring-copper">
+                <span className="text-[13px] text-muted">{f.label}:</span>
+                <input
+                  autoFocus
+                  defaultValue={f.value}
+                  className="w-16 bg-transparent outline-none text-copper font-bold text-center"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSave(f.key, (e.target as HTMLInputElement).value);
+                    if (e.key === "Escape") setEditing(null);
+                  }}
+                  onBlur={(e) => handleSave(f.key, e.target.value)}
+                />
+                <span className="text-muted">{f.suffix}</span>
+              </span>
+            ) : (
+              <button
+                onClick={() => setEditing(f.key)}
+                className="px-3 py-1.5 bg-surface text-[15px] font-medium text-text rounded-[4px] hover:bg-copper/10 hover:text-copper transition-colors cursor-pointer"
+              >
+                {f.value}{f.suffix}
+              </button>
+            )}
+          </div>
+        ))}
+
+        {/* Districts */}
+        <span className="px-3 py-1.5 bg-surface text-[15px] font-medium text-text rounded-[4px]">
+          Bezirke {criteria.districts.join(", ")}
+        </span>
+
+        {/* Must-haves */}
+        {criteria.must_have.map((m) => (
+          <span key={m} className="px-3 py-1.5 bg-signal-green/10 text-[15px] font-medium text-signal-green rounded-[4px]">
+            {mustHaveLabels[m] || m} ✓
+          </span>
+        ))}
+
+        {/* Nice-to-haves */}
+        {criteria.nice_to_have.map((n) => (
+          <span key={n} className="px-3 py-1.5 bg-surface text-[15px] text-muted rounded-[4px]">
+            {mustHaveLabels[n] || n}
           </span>
         ))}
       </div>
@@ -288,8 +411,8 @@ export function ClientDetail({ clientId }: { clientId: string }) {
         </div>
 
         <div className="space-y-6">
-          {/* Transcript */}
-          {client.transcript && <TranscriptSection transcript={client.transcript} />}
+          {/* Transcript Summary with grounded quotes */}
+          {client.transcript && <TranscriptSummary transcript={client.transcript} />}
 
           {/* Profile */}
           {client.profile && <ProfileSection profile={client.profile} />}
@@ -332,10 +455,10 @@ export function ClientDetail({ clientId }: { clientId: string }) {
               </div>
 
               <Link
-                href="/comparison/demo"
+                href="/curation"
                 className="block w-full py-4 bg-copper text-white text-lg font-medium rounded-[4px] hover:bg-copper-dark transition-colors text-center"
               >
-                Vergleichsgalerie erstellen →
+                Objekte kuratieren →
               </Link>
             </>
           )}
