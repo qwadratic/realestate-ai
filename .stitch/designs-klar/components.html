@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Klar — Component Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        'klar-bg': '#FAF9F6',
+                        'klar-surface': '#FFFFFF',
+                        'klar-secondary': '#F4F3F1',
+                        'klar-text': '#1A1C1A',
+                        'klar-muted': '#6B7280',
+                        'klar-copper': '#B87333',
+                        'klar-copper-dark': '#894D0D',
+                        'klar-green': '#4CAF7D',
+                        'klar-amber': '#D4A843',
+                        'klar-red': '#D94F4F',
+                        'klar-border': '#E5E5E5',
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Space Grotesk"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #FAF9F6;
+            color: #1A1C1A;
+            -webkit-font-smoothing: antialiased;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-klar-bg text-klar-text min-h-screen pb-24">
+<!-- Header / Nav Anchor -->
+<header class="bg-white border-b border-klar-secondary sticky top-0 z-50">
+<div class="max-w-[1200px] mx-auto flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-12">
+<span class="text-xl font-semibold tracking-tight text-klar-text">Klar</span>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[14px] font-medium text-klar-text border-b-2 border-klar-copper pb-1" href="#">Feed</a>
+<a class="text-[14px] font-medium text-klar-muted hover:text-klar-text transition-colors" href="#">Curation</a>
+<a class="text-[14px] font-medium text-klar-muted hover:text-klar-text transition-colors" href="#">Clients</a>
+<a class="text-[14px] font-medium text-klar-muted hover:text-klar-text transition-colors" href="#">Email</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-klar-muted cursor-pointer hover:text-klar-text">notifications</span>
+<div class="w-8 h-8 rounded-full bg-klar-secondary flex items-center justify-center text-[12px] font-semibold text-klar-copper overflow-hidden border border-klar-border">
+<img alt="Agent Avatar" class="w-full h-full object-cover" data-alt="professional portrait of a male real estate agent in a neutral studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhUVutEjmp3xzR7nt8GH59GB5ttbFLohp7bMGonMiOvzER6ZyiM8OsgFd__osSPGSEp1K8gJVnaMLF-L8bIFVc-OVCu6F70b4abefaeIfYusXWmCl1RFLI-JSHLiO3Sv6hGj0sTh8Ilq-vER_UMTJLqS-1oTebVEYzi1m0dkszArgPwBW4nvoG1aN4mAmOCei_0dox3-dE0Ps6fWndHdcIiEFWs2jPJMaH6NK7AYyCniv2CDRjPox_3a9aZ-0KBTJEHyEJQI8sfY32"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-6 py-12">
+<h1 class="text-[28px] font-semibold mb-12">Klar — Component Library</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- SECTION 2: Typography -->
+<section class="space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 2 — Typography Scale</h2>
+<div class="bg-white p-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-6">
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Page Title (32px, 600)</p>
+<h1 class="text-[32px] font-semibold leading-tight">Property Intelligence</h1>
+</div>
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Section Header (20px, 600)</p>
+<h2 class="text-[20px] font-semibold">Active Leads in Vienna</h2>
+</div>
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Card Title (18px, 500)</p>
+<h3 class="text-[18px] font-medium">Altbau-Charme in Landstraße</h3>
+</div>
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Body Text (14px, 400)</p>
+<p class="text-[14px] font-normal">This property shows strong potential for long-term rental yield based on current market trends in the third district.</p>
+</div>
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Label/Data (13px, 500)</p>
+<p class="text-[13px] font-medium text-klar-muted uppercase tracking-wider">Market Analysis</p>
+</div>
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Price (16px, 600, tabular-nums)</p>
+<p class="text-[16px] font-semibold tabular-nums">€ 1.240.000,00</p>
+</div>
+<div>
+<p class="text-[12px] text-klar-muted mb-1">Agent Note (13px, 400, italic)</p>
+<p class="text-[13px] font-normal italic text-klar-muted">Note: Client expressed interest in the balcony size during the last call.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Buttons -->
+<section class="space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 3 — Buttons</h2>
+<div class="bg-white p-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-8">
+<div class="flex flex-wrap gap-4 items-center">
+<button class="bg-klar-copper text-white px-6 py-2.5 rounded-lg text-[14px] font-medium hover:bg-klar-copper-dark transition-colors">Primary Action</button>
+<button class="bg-transparent text-klar-text border border-klar-border px-6 py-2.5 rounded-lg text-[14px] font-medium hover:bg-klar-secondary transition-colors">Ghost Button</button>
+<button class="bg-klar-red text-white px-6 py-2.5 rounded-lg text-[14px] font-medium hover:opacity-90 transition-opacity">Delete Property</button>
+</div>
+<div class="flex flex-wrap gap-4 items-end">
+<button class="bg-klar-copper text-white px-4 py-1.5 rounded-lg text-[13px] font-medium">Small Primary</button>
+<button class="bg-transparent text-klar-text border border-klar-border px-4 py-1.5 rounded-lg text-[13px] font-medium">Small Ghost</button>
+</div>
+</div>
+</section>
+<!-- SECTION 4 & 5: Signals and Dots -->
+<section class="space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 4 &amp; 5 — Signals &amp; Status</h2>
+<div class="bg-white p-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-8">
+<div class="flex flex-wrap gap-2">
+<span class="bg-klar-red text-white px-2 py-0.5 rounded text-[11px] font-semibold">OWNER INSOLVENCY</span>
+<span class="bg-klar-amber text-white px-2 py-0.5 rounded text-[11px] font-semibold">3 LISTINGS SAME OWNER</span>
+<span class="bg-klar-green text-white px-2 py-0.5 rounded text-[11px] font-semibold">NO DISTRESS SIGNALS</span>
+<span class="bg-klar-red text-white px-2 py-0.5 rounded text-[11px] font-semibold">SQM MISMATCH</span>
+<span class="bg-klar-amber text-white px-2 py-0.5 rounded text-[11px] font-semibold">FOLLOW-UP</span>
+<span class="bg-klar-red text-white px-2 py-0.5 rounded text-[11px] font-semibold">HOT LEAD</span>
+<span class="bg-gray-200 text-klar-muted px-2 py-0.5 rounded text-[11px] font-semibold uppercase">Low Priority</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-red"></span>
+<span class="text-[13px] font-medium">Urgent</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-amber"></span>
+<span class="text-[13px] font-medium">Needs Review</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-green"></span>
+<span class="text-[13px] font-medium">Recommended</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-muted"></span>
+<span class="text-[13px] font-medium">Low Priority</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6 & 9: Pills -->
+<section class="space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 6 &amp; 9 — Pills &amp; Tags</h2>
+<div class="bg-white p-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-8">
+<div class="flex flex-wrap gap-3">
+<span class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[13px]">Altbau</span>
+<span class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[13px]">3. OG</span>
+<span class="bg-klar-secondary border-l-2 border-klar-copper text-klar-text px-3 py-1 rounded-lg text-[13px]">Südseitig</span>
+<span class="bg-klar-copper/10 text-klar-copper-dark px-3 py-1 rounded-lg text-[13px] font-medium">Ruhige Lage</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="bg-klar-secondary hover:bg-stone-200 px-4 py-2 rounded-full text-[13px] font-medium transition-colors">Compare commute times</button>
+<button class="bg-klar-secondary hover:bg-stone-200 px-4 py-2 rounded-full text-[13px] font-medium transition-colors">Which is quietest?</button>
+<button class="bg-klar-secondary hover:bg-stone-200 px-4 py-2 rounded-full text-[13px] font-medium transition-colors">Nearby schools</button>
+</div>
+</div>
+</section>
+<!-- SECTION 10: Form Elements -->
+<section class="col-span-1 md:col-span-2 space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 10 — Form Elements</h2>
+<div class="bg-white p-8 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-4">
+<div>
+<label class="block text-[12px] font-medium text-klar-muted mb-1.5 uppercase tracking-wide">Property Address</label>
+<input class="w-full bg-klar-secondary border-none rounded-lg p-3 text-[14px] focus:ring-0 focus:border-b-2 focus:border-klar-copper" placeholder="Enter street name..." type="text"/>
+</div>
+<div>
+<label class="block text-[12px] font-medium text-klar-muted mb-1.5 uppercase tracking-wide">Price Range</label>
+<input class="w-full accent-klar-copper" type="range"/>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-[12px] font-medium text-klar-muted mb-1.5 uppercase tracking-wide">District (Bezirk)</label>
+<div class="flex flex-wrap gap-2">
+<button class="bg-klar-copper text-white px-3 py-1 rounded-lg text-[12px] font-medium">1010</button>
+<button class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[12px] font-medium">1020</button>
+<button class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[12px] font-medium">1030</button>
+<button class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[12px] font-medium">1040</button>
+</div>
+</div>
+<div class="relative">
+<label class="block text-[12px] font-medium text-klar-muted mb-1.5 uppercase tracking-wide">Lead Status</label>
+<select class="w-full bg-klar-secondary border-none rounded-lg p-3 text-[14px] focus:ring-0 appearance-none">
+<option>Hot Prospect</option>
+<option>Nurturing</option>
+<option>Closed</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 bottom-3 text-klar-muted pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-6 flex flex-col justify-center">
+<div class="flex items-center justify-between">
+<span class="text-[14px] font-medium">Notifications Enabled</span>
+<div class="w-12 h-6 bg-klar-copper rounded-full relative p-1 cursor-pointer">
+<div class="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[14px] font-medium">Archive on completion</span>
+<div class="w-12 h-6 bg-gray-300 rounded-full relative p-1 cursor-pointer">
+<div class="w-4 h-4 bg-white rounded-full absolute left-1 top-1"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: Property Card -->
+<section class="col-span-1 md:col-span-2 space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 7 — Property Card</h2>
+<div class="bg-white rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col md:flex-row border border-klar-secondary">
+<div class="w-full md:w-[320px] h-[200px] md:h-auto bg-stone-200">
+<img alt="Apartment Building" class="w-full h-full object-cover" data-alt="classic austrian apartment building with intricate stone facade and large windows under clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjkvmyNdsohqlo_7Qn1XMRtrx1Q2gJXOJxa6II9PhZSjDCxNLV5XbdowzWMNTAWOkU3VA0ghTnb08boXDFuwn7GulDrkvsETnRyV9s1U9iP-Q0W0ajOHJVppkMg9Y8puO-lC5CtkC6G85yrd3_1lSBOJZRuJJyiDSBlwjxLnxY51_I9jq2SufhlIRRNgBqRpSFZPtwkzJTLSc_wPU-8NOBSFBDWp6f-vHUKP-J_7Zapv0f1mAz3LGmmqhnHeLOXpbPYaD4_V0SxJaQ"/>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-[18px] font-medium">Altbau-Charme in Landstraße</h3>
+<span class="bg-klar-green text-white px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider">No Distress Signals</span>
+</div>
+<p class="text-[14px] text-klar-muted mb-4">Ungargasse 12, 1030 Wien</p>
+<div class="flex items-baseline gap-4 mb-6">
+<span class="text-[16px] font-semibold tabular-nums">€ 785.000,00</span>
+<span class="text-[13px] text-klar-muted tabular-nums">€ 8.263/m²</span>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[13px]">95m²</span>
+<span class="bg-klar-secondary text-klar-text px-3 py-1 rounded-lg text-[13px]">3 Zimmer</span>
+<span class="bg-klar-secondary border-l-2 border-klar-copper text-klar-text px-3 py-1 rounded-lg text-[13px]">Balkon</span>
+<span class="bg-klar-copper/10 text-klar-copper-dark px-3 py-1 rounded-lg text-[13px] font-medium">Erstbezug nach Sanierung</span>
+</div>
+</div>
+<p class="text-[13px] font-normal italic text-klar-muted mt-4 border-t border-klar-secondary pt-4">"Client expressed strong interest in high-ceiling units for home office." — Agent Note</p>
+</div>
+</div>
+</section>
+<!-- SECTION 8 & 11: Feed & Email Items -->
+<section class="col-span-1 md:col-span-2 space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 8 &amp; 11 — Feed &amp; Email Rows</h2>
+<div class="space-y-4">
+<!-- Feed Item -->
+<div class="bg-white p-6 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-klar-secondary flex items-start gap-4">
+<span class="w-2 h-2 mt-2 rounded-full bg-klar-red shrink-0"></span>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<div class="flex items-center gap-3">
+<span class="bg-klar-red text-white px-2 py-0.5 rounded text-[10px] font-bold">NEW INQUIRY</span>
+<h4 class="text-[15px] font-semibold">Herr Weber · 3-Zi Bezirk 3 · €350,000</h4>
+</div>
+<span class="text-[12px] text-klar-muted">10:42</span>
+</div>
+<p class="text-[14px] text-klar-muted mb-4">AI drafted response: "Thank you for your interest in the Marxer-Projekte. We have two similar units available..."</p>
+<div class="flex gap-3">
+<button class="bg-klar-copper text-white px-4 py-1.5 rounded-lg text-[13px] font-medium">Respond</button>
+<button class="bg-transparent text-klar-text border border-klar-border px-4 py-1.5 rounded-lg text-[13px] font-medium">Create Profile</button>
+</div>
+</div>
+</div>
+<!-- Email Row -->
+<div class="bg-white px-6 py-4 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-klar-secondary flex items-center gap-4 hover:bg-klar-secondary transition-colors cursor-pointer">
+<span class="w-2 h-2 rounded-full bg-klar-red shrink-0"></span>
+<span class="bg-klar-red text-white px-2 py-0.5 rounded text-[10px] font-bold">HOT LEAD</span>
+<span class="text-[14px] font-semibold w-40 truncate">Mag. Sarah Fischer</span>
+<span class="text-[14px] font-medium flex-1 truncate">Feedback on Portfolio: Penthouse Wieden</span>
+<span class="text-[14px] text-klar-muted max-w-xs truncate">The viewing yesterday was impressive, however she mentioned...</span>
+<span class="text-[12px] text-klar-muted tabular-nums ml-auto">09:15</span>
+</div>
+</div>
+</section>
+<!-- SECTION 12: Color Palette -->
+<section class="col-span-1 md:col-span-2 space-y-6">
+<h2 class="text-[13px] font-semibold tracking-widest text-klar-muted uppercase">SECTION 12 — Color Palette</h2>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#FAF9F6] border border-klar-border"></div>
+<p class="text-[11px] font-medium">#FAF9F6 (Canvas)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-white border border-klar-border"></div>
+<p class="text-[11px] font-medium">#FFFFFF (Surface)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#F4F3F1] border border-klar-border"></div>
+<p class="text-[11px] font-medium">#F4F3F1 (Secondary)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#1A1C1A]"></div>
+<p class="text-[11px] font-medium">#1A1C1A (Text Primary)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#6B7280]"></div>
+<p class="text-[11px] font-medium">#6B7280 (Text Muted)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#B87333]"></div>
+<p class="text-[11px] font-medium">#B87333 (Copper Accent)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#894D0D]"></div>
+<p class="text-[11px] font-medium">#894D0D (Copper Dark)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#4CAF7D]"></div>
+<p class="text-[11px] font-medium">#4CAF7D (Signal Green)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#D4A843]"></div>
+<p class="text-[11px] font-medium">#D4A843 (Signal Amber)</p>
+</div>
+<div class="space-y-2">
+<div class="h-16 rounded bg-[#D94F4F]"></div>
+<p class="text-[11px] font-medium">#D94F4F (Signal Red)</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Nav for Mobile (Filtered check) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-[#F4F3F1] border-t border-klar-border px-6 py-4 flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-klar-copper">
+<span class="material-symbols-outlined">rss_feed</span>
+<span class="text-[10px] font-medium">Feed</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-klar-muted">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-[10px] font-medium">Curation</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-klar-muted">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-medium">Clients</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-klar-muted">
+<span class="material-symbols-outlined">email</span>
+<span class="text-[10px] font-medium">Email</span>
+</button>
+</div>
+</body></html>

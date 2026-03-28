@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0ABAB5",
+              "on-primary": "#FFFFFF",
+              surface: "#FFFFFF",
+              background: "#FAFAFA",
+              text: "#1A1A1A",
+              muted: "#6B7280",
+              "signal-green": "#4CAF7D",
+              "signal-amber": "#D4A843",
+              "signal-red": "#D94F4F",
+              divider: "rgba(229, 229, 229, 0.5)"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Space Grotesk"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {
+              "DEFAULT": "4px",
+              "lg": "4px",
+              "xl": "4px",
+              "full": "4px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="bg-[#FAFAFA] text-[#1A1A1A] min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-[#FAFAFA] dark:bg-zinc-900 flex justify-between items-center px-8 h-16 w-full docked full-width top-0 border-b border-gray-200/50 z-50">
+<div class="flex items-center gap-12">
+<span class="text-xl font-bold text-[#1A1A1A] dark:text-white tracking-tight">Property Intelligence</span>
+<nav class="flex items-center gap-8 h-16">
+<a class="text-[#6B7280] hover:text-[#1A1A1A] px-1 font-['Space_Grotesk'] text-[14px] font-normal tabular-nums transition-colors duration-200" href="#">Feed</a>
+<a class="text-[#0ABAB5] border-b-2 border-[#0ABAB5] font-semibold h-full flex items-center px-1 font-['Space_Grotesk'] text-[14px] tabular-nums" href="#">Curation</a>
+<a class="text-[#6B7280] hover:text-[#1A1A1A] px-1 font-['Space_Grotesk'] text-[14px] font-normal tabular-nums transition-colors duration-200" href="#">Clients</a>
+<a class="text-[#6B7280] hover:text-[#1A1A1A] px-1 font-['Space_Grotesk'] text-[14px] font-normal tabular-nums transition-colors duration-200" href="#">Email</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#6B7280] hover:text-[#0ABAB5] transition-colors duration-200 active:opacity-70">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#6B7280] hover:text-[#0ABAB5] transition-colors duration-200 active:opacity-70">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="Agent Profile" class="w-8 h-8 rounded-full object-cover" data-alt="professional headshot of a real estate agent in a modern studio setting with clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4TV9HXJ9rhRRv91HSaeNT4p7e8rWZi2BipbCBNgtq8WCNuWxGBE_m5NNk-60bMoVMvz4ZJdBT2S1lf0yPwgtaO5fG42TZNsr0ngyMgQkpJtvefPahcAsW9PeByONhNZx2MM4U20A--QEx-CuWUE64ofJcUNUglCj_Kv8s9-b_YoW420R7PbLFPgpaKkOUQcNR7ZsPYCG9upaM4-gsfpBpqt8xyerXXR6iq79NgzTOCwFO_1B1Zg-Ayhshf_-GkXO3Qoe8ZOsBNCc"/>
+</div>
+</header>
+<main class="flex-grow w-full max-w-7xl mx-auto px-8 py-12 pb-32">
+<!-- Header Section -->
+<div class="mb-10">
+<h1 class="text-[36px] font-semibold leading-tight mb-2">Curation Queue</h1>
+<p class="text-[14px] text-[#6B7280]">12 new matches for Müller Family · Last scan: 2 hours ago</p>
+</div>
+<!-- Filter Tabs -->
+<div class="flex gap-8 mb-8 border-b border-gray-200/50">
+<button class="pb-3 text-[#0ABAB5] border-b-2 border-[#0ABAB5] font-medium text-[13px] tabular-nums">All (12)</button>
+<button class="pb-3 text-[#6B7280] hover:text-[#1A1A1A] font-medium text-[13px] tabular-nums transition-colors">Recommended (5)</button>
+<button class="pb-3 text-[#6B7280] hover:text-[#1A1A1A] font-medium text-[13px] tabular-nums transition-colors">Needs Review (4)</button>
+<button class="pb-3 text-[#6B7280] hover:text-[#1A1A1A] font-medium text-[13px] tabular-nums transition-colors">Rejected (3)</button>
+</div>
+<!-- Property List -->
+<div class="flex flex-col gap-1 bg-[#F5F5F5]">
+<!-- Card 1 -->
+<div class="bg-white p-6 flex items-center gap-6 group hover:bg-[#FAFAFA] transition-colors">
+<div class="w-2 h-2 rounded-full bg-[#4CAF7D] shrink-0"></div>
+<img alt="Property Thumbnail" class="w-[120px] h-[120px] object-cover rounded-[4px] shrink-0" data-alt="exterior of a classic Viennese apartment building with white facade and detailed architectural ornaments" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDadp0LPZnhTuBiCzfqkOFQP3FG4JqBt5aTx0GVU92LgSZBqOVa8mhVRn-a9qcTSIOAsQWEYm06GgREEgN8iRR0if0fHU1nk2M-2r33v8EYlOLKatRcVM6cBqcnNB_3Xb8Z5yNMeJIoHU9OA82J4Pdd_iQHH6lbU2DGaq3TOFnCPL_MMsQrgbMYKaGvyNkoSyo6Y-emj8B8ZgfhOts4YPnPkMIInrpVvFqU0AADIByAVm55Lk13zjfXoChsNf6jAarLeMWduLbK_Oo"/>
+<div class="flex-grow">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-[16px] font-medium mb-1">Altbau-Charme in Landstraße</h3>
+<p class="text-[13px] text-[#6B7280] mb-2 font-['Space_Grotesk']">Rennweg 42, 1030 Wien · willhaben</p>
+<div class="text-[15px] font-medium tabular-nums mb-3">€345,000 · 78 m² · 3 Zi</div>
+<div class="flex gap-2">
+<span class="bg-[#F5F5F5] text-[#1A1A1A] text-[11px] font-medium px-2 py-0.5 rounded-[2px] uppercase tracking-wider">Südseitig</span>
+<span class="bg-[#F5F5F5] text-[#1A1A1A] text-[11px] font-medium px-2 py-0.5 rounded-[2px] uppercase tracking-wider">Altbau</span>
+<span class="bg-[#0ABAB5]/10 text-[#0ABAB5] text-[11px] font-medium px-2 py-0.5 rounded-[2px] uppercase tracking-wider">Ruhige Lage</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-[13px] text-[#D94F4F] font-medium px-4 py-2 hover:bg-red-50 transition-colors">Reject</button>
+<button class="text-[13px] text-[#1A1A1A] font-medium px-4 py-2 hover:bg-gray-100 transition-colors">Maybe Later</button>
+<button class="bg-[#0ABAB5] text-white text-[13px] font-medium px-6 py-2 rounded-[4px] hover:bg-[#088f8b] transition-all">Shortlist</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white p-6 flex items-center gap-6 border-l-2 border-[#0ABAB5] group hover:bg-[#FAFAFA] transition-colors">
+<div class="w-2 h-2 rounded-full bg-[#4CAF7D] shrink-0"></div>
+<img alt="Property Thumbnail" class="w-[120px] h-[120px] object-cover rounded-[4px] shrink-0" data-alt="luxury penthouse apartment interior with large glass windows overlooking a city park at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQiHxlYNpI8IKm-GOqAGKBUjuS_hBcNV1n3xSL-uWhM7EAXcAzVmugFAKmkXMcT8sM8RutnKMfncfl-qixA0Vh0N5iXtlTgumCqKGnDF2aKYtbhHaWhNQ4LmH3w8Xp11KI9_QLopKkMxTPN4oOdajdyzY6WRY_Zk_2e_OPf5EXrqmGmSZllsepf1ltT0nL6uqzzRYsodDitfJvCi-PF8EkHXj-Nyws4vDgQh2bbYCr6gr37R3KugJnVLb13scOkP3hMEVn5igrttU"/>
+<div class="flex-grow">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-[16px] font-medium mb-1">Penthouse am Praterstern</h3>
+<p class="text-[13px] text-[#6B7280] mb-2 font-['Space_Grotesk']">Taborstraße 18, 1020 Wien</p>
+<div class="text-[15px] font-medium tabular-nums mb-3">€789,000 · 85 m²</div>
+<div class="flex gap-2">
+<span class="bg-[#D94F4F] text-white text-[11px] font-medium px-2 py-0.5 rounded-[2px] uppercase tracking-wider">Owner insolvency</span>
+<span class="bg-[#D4A843] text-white text-[11px] font-medium px-2 py-0.5 rounded-[2px] uppercase tracking-wider">3 listings same owner</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-[13px] text-[#D94F4F] font-medium px-4 py-2 hover:bg-red-50 transition-colors">Reject</button>
+<button class="text-[13px] text-[#1A1A1A] font-medium px-4 py-2 hover:bg-gray-100 transition-colors">Maybe Later</button>
+<button class="bg-[#0ABAB5] text-white text-[13px] font-medium px-6 py-2 rounded-[4px] hover:bg-[#088f8b] transition-all">Shortlist</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-6 flex items-center gap-6 group hover:bg-[#FAFAFA] transition-colors">
+<div class="w-2 h-2 rounded-full bg-[#D4A843] shrink-0"></div>
+<img alt="Property Thumbnail" class="w-[120px] h-[120px] object-cover rounded-[4px] shrink-0" data-alt="modern minimalist apartment kitchen with light wood cabinets and clean white countertops" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoMstneqNwFJfpUwsk4QU0p8qxI3r-6b37I7K8oZlD-DWxg4iH_Ak_QdB2uxDfOZdKk9jNynOa248G0O3Z032ffuBoqq-EHf7YXUYjZIMrAfDaeQtUnv5UjOAgOxrIS7AlxT1NRuZKG-iLCvN-EqYRkBya4_7TMdkVbwfzahfmuq9KBbPQi9YAlnnbJlzK96w-QNInalliUKYu5vtuwVePhXXTD1FLr8oEZgvCrNOK9r1X6BahhMotrKVyibzIAU6ogSo_gfU9byk"/>
+<div class="flex-grow">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-[16px] font-medium mb-1">Erstbezug Margareten</h3>
+<p class="text-[13px] text-[#6B7280] mb-2 font-['Space_Grotesk']">Siebenbrunnengasse, 1050 Wien</p>
+<div class="text-[15px] font-medium tabular-nums mb-2">€425,000 · 72 m²</div>
+<p class="text-[12px] text-[#D4A843] font-medium">Price slightly above budget</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="text-[13px] text-[#D94F4F] font-medium px-4 py-2 hover:bg-red-50 transition-colors">Reject</button>
+<button class="text-[13px] text-[#1A1A1A] font-medium px-4 py-2 hover:bg-gray-100 transition-colors">Maybe Later</button>
+<button class="bg-[#0ABAB5] text-white text-[13px] font-medium px-6 py-2 rounded-[4px] hover:bg-[#088f8b] transition-all">Shortlist</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 (Rejected State) -->
+<div class="bg-white p-6 flex items-center gap-6 opacity-40 grayscale group transition-colors">
+<div class="w-2 h-2 rounded-full bg-gray-400 shrink-0"></div>
+<img alt="Property Thumbnail" class="w-[120px] h-[120px] object-cover rounded-[4px] shrink-0" data-alt="urban apartment building facade in a gritty district with dark grey brickwork and small windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo9Iz_S5wwbdWJRxdZgfnK7xvuRkGX3KemJBa6MSVUys5jaL06qdZo_KV1eB5MJoQCS4pdW63mFb0rOQbpBwCkOEdF5d__xBdajO9AwqdK3DurKrAR44BMZB1Sk1_6N27A2oscm_XPC_dHmTVB0RL5XUFzFC-Wd0LJQTGoweDgIHUWiTSpVNqVu2rICz7yGXhjugWXkZKJ9RjjRYhzB-fNVuShIr-wOxi6NgF8_L-7VtFLwJQY-sSV7mkPwqSMOc7MpapSdYi_apo"/>
+<div class="flex-grow">
+<div class="flex items-start justify-between">
+<div>
+<h3 class="text-[16px] font-medium mb-1 line-through">Gründerzeit Favoriten</h3>
+<p class="text-[13px] text-[#6B7280] mb-2 font-['Space_Grotesk']">Quellenstraße, 1100 Wien</p>
+<div class="text-[15px] font-medium tabular-nums mb-2">€265,000 · 68 m²</div>
+<p class="text-[12px] text-[#6B7280] font-normal">No elevator, family has stroller</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- No actions for rejected state -->
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar / Actions Bar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-end items-center px-8 py-4 bg-white/90 backdrop-blur-sm shadow-lg border-t border-gray-200/50">
+<div class="flex items-center gap-4">
+<button class="text-[#1A1A1A] dark:text-white px-6 py-2 font-['Space_Grotesk'] text-[12px] font-medium hover:bg-gray-100 transition-all scale-95 duration-100 active:opacity-70">
+                Export to PDF
+            </button>
+<button class="bg-[#0ABAB5] text-white rounded-[4px] px-6 py-2 flex items-center gap-2 font-['Space_Grotesk'] text-[12px] font-medium hover:bg-[#088f8b] transition-all scale-95 duration-100 active:opacity-70">
+<span class="material-symbols-outlined text-[18px]" data-icon="analytics">analytics</span>
+                Generate Comparison Page
+            </button>
+</div>
+</footer>
+</body></html>

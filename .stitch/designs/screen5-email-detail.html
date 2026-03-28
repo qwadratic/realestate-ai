@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="light" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Editorial Intelligence | Email Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "outline": "#857467",
+                        "surface-dim": "#dbdad7",
+                        "primary-fixed": "#ffdcc2",
+                        "surface-container": "#efeeeb",
+                        "surface": "#faf9f6",
+                        "on-surface-variant": "#524439",
+                        "tertiary-fixed": "#a8edff",
+                        "on-secondary-container": "#79583c",
+                        "secondary-fixed": "#ffdcc2",
+                        "surface-tint": "#8c4f10",
+                        "surface-container-highest": "#e3e2e0",
+                        "tertiary-container": "#008094",
+                        "primary": "#894d0d",
+                        "on-secondary-fixed-variant": "#5e4026",
+                        "on-primary-container": "#fffbff",
+                        "background": "#faf9f6",
+                        "on-tertiary-fixed-variant": "#004e5b",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#a76526",
+                        "surface-container-high": "#e9e8e5",
+                        "secondary-container": "#ffd1ae",
+                        "inverse-primary": "#ffb77b",
+                        "primary-fixed-dim": "#ffb77b",
+                        "on-tertiary-fixed": "#001f26",
+                        "on-surface": "#1a1c1a",
+                        "on-secondary-fixed": "#2d1602",
+                        "on-background": "#1a1c1a",
+                        "tertiary-fixed-dim": "#74d4ea",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#006576",
+                        "secondary-fixed-dim": "#eabe9c",
+                        "on-primary-fixed-variant": "#6d3a00",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#f9fdff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#79573c",
+                        "surface-variant": "#e3e2e0",
+                        "surface-container-low": "#f4f3f1",
+                        "on-primary-fixed": "#2e1500",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#d8c3b4",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#faf9f6",
+                        "inverse-on-surface": "#f2f1ee",
+                        "inverse-surface": "#2f312f"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Space Grotesk", "monospace"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full flex justify-between items-center px-8 h-20 bg-[#FAF9F6]/80 dark:bg-stone-900/80 backdrop-blur-xl z-50">
+<div class="text-2xl font-serif italic text-[#1A1C1A] dark:text-[#FAF9F6]">Editorial Intelligence</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-medium hover:text-[#894D0D] dark:hover:text-[#B87333] transition-colors duration-300" href="#">Intelligence</a>
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-medium hover:text-[#894D0D] dark:hover:text-[#B87333] transition-colors duration-300" href="#">Market</a>
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-medium hover:text-[#894D0D] dark:hover:text-[#B87333] transition-colors duration-300" href="#">Portfolio</a>
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-medium hover:text-[#894D0D] dark:hover:text-[#B87333] transition-colors duration-300" href="#">Network</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">account_circle</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-20 h-[calc(100vh-5rem)] w-64 flex flex-col pt-6 bg-[#FAF9F6] dark:bg-stone-900 border-none">
+<div class="px-6 mb-8">
+<h2 class="font-serif text-xl text-on-surface">Communications</h2>
+<p class="font-label text-xs uppercase tracking-widest text-on-surface-variant/60">Direct Intelligence</p>
+</div>
+<div class="flex flex-col gap-1 pr-4">
+<a class="flex items-center gap-3 px-6 py-3 bg-[#FFFFFF] dark:bg-stone-800 text-[#894D0D] dark:text-[#B87333] rounded-l-none rounded-r-full font-bold translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inbox</span>
+<span class="font-label text-sm uppercase tracking-wide">Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-700 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-label text-sm uppercase tracking-wide">Drafts</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-700 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">send</span>
+<span class="font-label text-sm uppercase tracking-wide">Sent</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-700 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">archive</span>
+<span class="font-label text-sm uppercase tracking-wide">Archived</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-700 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">delete</span>
+<span class="font-label text-sm uppercase tracking-wide">Trash</span>
+</a>
+</div>
+<div class="mt-auto px-6 pb-10">
+<button class="w-full bg-primary text-white font-label py-3 rounded hover:opacity-90 transition-all uppercase tracking-widest text-sm font-bold">
+                Compose
+            </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<div class="grid grid-cols-12 gap-8">
+<!-- LEFT COLUMN (55%) -->
+<div class="col-span-12 lg:col-span-7 space-y-6">
+<div class="bg-surface-container-lowest rounded p-8 flex flex-col gap-6">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 group cursor-pointer w-fit">
+<span class="material-symbols-outlined text-primary group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-label text-sm uppercase tracking-tighter text-on-surface-variant group-hover:text-primary">Inbox</span>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="bg-error text-white font-label text-[10px] px-2 py-0.5 rounded tracking-widest uppercase font-bold">Hot Lead</span>
+<span class="font-label text-xs text-on-surface-variant/60">28. März 2026, 10:42</span>
+</div>
+<h1 class="font-headline text-4xl text-on-surface leading-tight">Anfrage: 3-Zimmer Wohnung Bezirk 3</h1>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-headline italic text-primary">W</div>
+<div>
+<p class="font-body font-bold text-on-surface">Herr Weber <span class="font-normal text-on-surface-variant">&lt;m.weber@gmail.com&gt;</span></p>
+<p class="font-label text-[10px] uppercase text-primary tracking-widest">Priority Client</p>
+</div>
+</div>
+</div>
+<!-- Email Body -->
+<div class="font-body text-on-surface-variant leading-relaxed text-lg border-l-2 border-surface-container pl-6 py-2">
+                        Sehr geehrte Damen und Herren,<br/><br/>
+                        ich suche eine 3-Zimmer Wohnung im 3. Bezirk, idealerweise mit Balkon und in der Nähe einer U-Bahn Station. Unser Budget liegt bei ca. EUR 350.000. Wir sind eine junge Familie mit einem Kind (2 Jahre). Könnten Sie uns passende Objekte vorschlagen und einen Besichtigungstermin vereinbaren?<br/><br/>
+                        Mit freundlichen Grüßen,<br/>
+                        Martin Weber
+                    </div>
+<!-- Tonal Divider -->
+<div class="h-px w-full bg-surface-container-high my-2"></div>
+<!-- AI Suggested Response Section -->
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#B87333]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-label text-xs uppercase tracking-[0.2em] font-bold text-[#B87333]">AI Suggested Response</h3>
+</div>
+<div class="bg-[#FFF8F2] p-6 rounded relative border border-[#B87333]/10">
+<div class="font-body text-on-surface leading-relaxed italic">
+                                Sehr geehrter Herr Weber, vielen Dank für Ihre Anfrage. Basierend auf Ihren Kriterien habe ich bereits 3 passende Objekte in unserem Portfolio identifiziert:<br/><br/>
+                                1. <span class="font-bold">Altbau-Charme in Landstraße</span> — EUR 345.000, 78 m², 3 Zi., Balkon, 200m zur U3...<br/><br/>
+                                Wir würden uns freuen, Ihnen diese Objekte persönlich zeigen zu dürfen. Welcher Termin in der kommenden Woche würde Ihnen am besten passen?<br/><br/>
+                                Herzliche Grüße,<br/>
+                                [Agent Name]
+                            </div>
+</div>
+<div class="flex gap-4 pt-2">
+<button class="bg-[#B87333] text-white font-label px-8 py-3 rounded text-xs uppercase tracking-widest font-bold hover:brightness-90 transition-all">
+                                Send Response
+                            </button>
+<button class="bg-transparent border-2 border-[#B87333]/30 text-[#B87333] font-label px-8 py-3 rounded text-xs uppercase tracking-widest font-bold hover:bg-[#B87333]/5 transition-all">
+                                Edit Before Sending
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (45%) -->
+<div class="col-span-12 lg:col-span-5 space-y-8">
+<!-- About Contact -->
+<section class="bg-surface-container-low rounded p-8 space-y-6">
+<h2 class="font-headline text-2xl text-on-surface">About This Contact</h2>
+<div class="grid grid-cols-2 gap-y-6 gap-x-4">
+<div class="space-y-1">
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">Full Name</p>
+<p class="font-body font-bold text-on-surface">Martin Weber</p>
+</div>
+<div class="space-y-1">
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">Estimated Budget</p>
+<p class="font-label font-bold text-primary">~EUR 350,000</p>
+</div>
+<div class="space-y-1 col-span-2">
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">Requirements</p>
+<p class="font-body text-sm text-on-surface">3 rooms, Bezirk 3, balcony, near U-Bahn</p>
+</div>
+<div class="space-y-1">
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">Family Status</p>
+<p class="font-body text-sm text-on-surface">Young family, 1 child</p>
+</div>
+<div class="space-y-1 text-right">
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60">Pipeline Status</p>
+<span class="inline-block px-2 py-0.5 bg-surface-container-highest rounded font-label text-[10px] uppercase tracking-widest">New inquiry</span>
+</div>
+</div>
+<button class="w-full bg-[#B87333] text-white font-label py-3 rounded text-xs uppercase tracking-widest font-bold hover:brightness-90 transition-all mt-2">
+                        Create Monitoring Profile
+                    </button>
+</section>
+<!-- Matching Properties -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-2xl text-on-surface">Matching Properties</h2>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary">Intelligence Filter: ON</span>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Property 1 -->
+<div class="flex gap-4 p-4 bg-surface-container-lowest rounded hover:bg-surface-bright transition-all cursor-pointer group">
+<div class="w-20 h-20 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="Interior of a modern Viennese apartment with high ceilings and natural light" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all" data-alt="interior of a modern Viennese apartment with white walls high ceilings large windows and natural light minimalist design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Y3FJmT1K4QEXfbTSxRXhCj-HjbOgHstCWeJ6_L6h-smjSGuOVdCDVGzeV1zjaW61jt1eEyzs2w9_HhWJ0e20v9n6IvA817fq1Bp_lJPOJD_i4m4U5NF3zDjmpSledeAoed3ruI97Gbjj9DRXN3f8R7FYaxOuG04GwdATtjtzh4mJRKSXEN5xPHJxz9_2z-zRjO-kUFc-amx5AW-bbxOXPINx_yd6HRtdnZCXX723ORHH1wj0cpLHW-i0YI2jT4XKmsAN16VRBoKZ"/>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body font-bold text-on-surface">Altbau-Charme Landstraße</h4>
+<span class="font-label text-xs font-bold text-[#B87333]">92%</span>
+</div>
+<div class="flex justify-between items-end">
+<p class="font-label text-sm text-on-surface">EUR 345.000</p>
+<span class="font-label text-[10px] text-on-surface-variant/60 uppercase tracking-widest">78m² · 3 Zi.</span>
+</div>
+</div>
+</div>
+<!-- Property 2 -->
+<div class="flex gap-4 p-4 bg-surface-container-lowest rounded hover:bg-surface-bright transition-all cursor-pointer group">
+<div class="w-20 h-20 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="Modern balcony overlooking a historic European city district" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all" data-alt="modern balcony with metal railing overlooking historic stone buildings in a European city district warm afternoon sun" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc-kgHMaZFejKhhAE8eq5TQt55YVG_NihpeEuobf0VkiCqqa1vbEhZCACypJWUFcycMCTZMrFUUrUvYoy0L_4K6pq2EXJ2ngvO3XmQjAwSGhqG61NcybY1CSTqldRXMZXTvb1txCgZZzNtCu7PdvpcfJgBmjw5hPz8dMIRj2JtsEnkhSYSgTM3RFAZS8JPe1xb4xajkKeQ67Q5eS3ikze2b3metYRKBhxRa6fZAY1vHgmQXbQ3EUOpwMhkMUkcWb75jRzvOIxQfkej"/>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body font-bold text-on-surface">Near-Metro Loft</h4>
+<span class="font-label text-xs font-bold text-[#B87333]">88%</span>
+</div>
+<div class="flex justify-between items-end">
+<p class="font-label text-sm text-on-surface">EUR 329.000</p>
+<span class="font-label text-[10px] text-on-surface-variant/60 uppercase tracking-widest">65m² · 3 Zi.</span>
+</div>
+</div>
+</div>
+<!-- Property 3 -->
+<div class="flex gap-4 p-4 bg-surface-container-lowest rounded hover:bg-surface-bright transition-all cursor-pointer group">
+<div class="w-20 h-20 rounded bg-surface-container overflow-hidden shrink-0">
+<img alt="A bright family living room with wooden floors and child-friendly furniture" class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all" data-alt="bright open living room with wooden floors soft textiles and modern child-friendly furniture soft focus on garden background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClYNI3OPKoVJuSYQE6_f6i3eNaUhhoHNgV9nlBCkFDbEEiJL7aiW-hzLq8Hj-OX9w1pLOUoMxvMkTlWl-1lFhKFucq3rs0MHHpV6zzzDblJuVqEsU2yqEKL1pIPa2QND7Rzi62fqV4rA7h1JP7NWVTw_8iPdzshVWUxbTVMH60a08Vz6Vv1kK2zx13B9caKJoIgkXxmkoq92l_4IBc-RNmEdgF_OXvRtvdJ1s6u-YgmCRcucOdx46xSL4hCU7ZjdBnerR-j5TcGPn1"/>
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-body font-bold text-on-surface">Family Garden Residence</h4>
+<span class="font-label text-xs font-bold text-[#B87333]">84%</span>
+</div>
+<div class="flex justify-between items-end">
+<p class="font-label text-sm text-on-surface">EUR 355.000</p>
+<span class="font-label text-[10px] text-on-surface-variant/60 uppercase tracking-widest">82m² · 3 Zi.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Suggested Actions -->
+<section class="space-y-4">
+<h2 class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/60">Suggested Actions</h2>
+<div class="flex flex-col gap-2">
+<a class="group flex items-center justify-between p-4 bg-surface-container-high/50 rounded hover:bg-surface-container-high transition-all" href="#">
+<span class="font-body text-sm font-medium">Create comparison page</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">analytics</span>
+</a>
+<a class="group flex items-center justify-between p-4 bg-surface-container-high/50 rounded hover:bg-surface-container-high transition-all" href="#">
+<span class="font-body text-sm font-medium">Schedule viewing</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">calendar_today</span>
+</a>
+<a class="group flex items-center justify-between p-4 bg-surface-container-high/50 rounded hover:bg-surface-container-high transition-all" href="#">
+<span class="font-body text-sm font-medium">Set up monitoring profile</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">notifications_active</span>
+</a>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Klar — Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              'klar-bg': '#FAF9F6',
+              'klar-surface': '#FFFFFF',
+              'klar-secondary': '#F4F3F1',
+              'klar-text-primary': '#1A1C1A',
+              'klar-text-muted': '#6B7280',
+              'klar-copper': '#B87333',
+              'klar-copper-dark': '#894D0D',
+              'klar-green': '#4CAF7D',
+              'klar-amber': '#D4A843',
+              'klar-red': '#D94F4F'
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Space Grotesk"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.125rem", 
+              "lg": "0.25rem", 
+              "xl": "0.5rem", 
+              "full": "0.75rem"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #FAF9F6;
+            color: #1A1C1A;
+            -webkit-font-smoothing: antialiased;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-klar-bg text-klar-text-primary">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-[#FAF9F6] dark:bg-stone-900 sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-12">
+<span class="text-xl font-semibold text-[#1A1C1A] dark:text-stone-100 font-['Space_Grotesk']">Klar</span>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-['Space_Grotesk'] text-sm text-[#1A1C1A] dark:text-stone-100 border-b-2 border-[#B87333] pb-1 font-medium transition-colors duration-200" href="#">Feed</a>
+<a class="font-['Space_Grotesk'] text-sm text-[#6B7280] dark:text-stone-400 pb-1 hover:text-[#894D0D] transition-colors duration-200" href="#">Curation</a>
+<a class="font-['Space_Grotesk'] text-sm text-[#6B7280] dark:text-stone-400 pb-1 hover:text-[#894D0D] transition-colors duration-200" href="#">Clients</a>
+<a class="font-['Space_Grotesk'] text-sm text-[#6B7280] dark:text-stone-400 pb-1 hover:text-[#894D0D] transition-colors duration-200" href="#">Email</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#6B7280] hover:text-[#B87333] transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-klar-secondary overflow-hidden border border-[#E5E5E5]">
+<img alt="Agent Avatar" class="w-full h-full object-cover" data-alt="Professional headshot of a male real estate agent in a neutral studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLGFEeF6U5_-KBHGiAz-5FugYvCtKvKYG4sffOxbiuxwIhU6of5D-XfVLDDyY2hp0XFOVwRLvWTZ_-bbVtcd5I4ZYNYEh37bxpa9ByU7PYiz3hE_AvlkCLUSrGFBRMA6vHEEDydKjZFQWOrpgKbLNHIeH457-JwE1jJtJK7CB8KXOAjrX8MVy8GyV5nGjx-D6Nw19sN8hmDhuVGfmRu9o8tMC3H9FUU4TMj1xz2QoTcVsADX6TLM7KiPmvhxdm1wUqJFQC_XNoYBuS"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[800px] mx-auto px-6 py-12">
+<!-- Today Section Header -->
+<div class="mb-6">
+<h2 class="text-[13px] font-medium text-klar-text-muted tracking-[0.1em] uppercase">TODAY — 3 ACTIONS NEEDED</h2>
+</div>
+<!-- Feed Content -->
+<div class="space-y-4">
+<!-- CARD 1 (NEW INQUIRY) -->
+<div class="bg-klar-surface p-5 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-red"></span>
+<span class="bg-klar-red text-white text-[12px] font-medium px-1.5 py-0.5 rounded-[2px] tracking-tight">NEW INQUIRY</span>
+</div>
+<span class="text-[12px] text-klar-text-muted tabular-nums">10:42</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-[16px] font-medium text-klar-text-primary mb-1">Herr Weber · 3-Zi Bezirk 3 · €350,000</h3>
+<p class="text-[14px] text-klar-text-muted">AI drafted response · 3 matching properties found</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-klar-copper text-white text-[14px] font-medium px-4 py-2 rounded transition-colors hover:bg-klar-copper-dark">Respond</button>
+<button class="bg-transparent border border-[#E5E5E5] text-klar-text-primary text-[14px] font-medium px-4 py-2 rounded hover:bg-klar-secondary transition-colors">Create Profile</button>
+</div>
+</div>
+</div>
+<!-- CARD 2 (SIGNAL ALERT) -->
+<div class="bg-klar-surface p-5 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)] border-l-2 border-klar-copper">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-amber"></span>
+<span class="bg-klar-amber text-white text-[12px] font-medium px-1.5 py-0.5 rounded-[2px] tracking-tight uppercase">SIGNAL ALERT</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-[16px] font-medium text-klar-text-primary mb-1">Penthouse Praterstern · Müller Family</h3>
+<p class="text-[14px] text-klar-text-muted mb-3">Owner insolvency filed · Signal 3/5</p>
+<div class="flex gap-2">
+<span class="bg-klar-red text-white text-[11px] font-medium px-1.5 py-0.5 rounded-[2px] uppercase">INSOLVENCY</span>
+<span class="bg-klar-amber text-white text-[11px] font-medium px-1.5 py-0.5 rounded-[2px] uppercase">MOTIVATED SELLER</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="bg-klar-copper text-white text-[14px] font-medium px-4 py-2 rounded transition-colors hover:bg-klar-copper-dark">Call Client</button>
+<button class="bg-transparent border border-[#E5E5E5] text-klar-text-primary text-[14px] font-medium px-4 py-2 rounded hover:bg-klar-secondary transition-colors">View Property</button>
+</div>
+</div>
+</div>
+<!-- CARD 3 (NEW MATCHES) -->
+<div class="bg-klar-surface p-5 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-klar-amber"></span>
+<span class="bg-klar-amber text-white text-[12px] font-medium px-1.5 py-0.5 rounded-[2px] tracking-tight uppercase">12 NEW MATCHES</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h3 class="text-[16px] font-medium text-klar-text-primary mb-1">Müller Family · Last scan 2h ago</h3>
+<p class="text-[14px] text-klar-text-muted">5 recommended · 2 with signals · 4 need review</p>
+</div>
+<div class="flex gap-2">
+<button class="bg-klar-copper text-white text-[14px] font-medium px-4 py-2 rounded transition-colors hover:bg-klar-copper-dark">Curate</button>
+<button class="bg-transparent border border-[#E5E5E5] text-klar-text-primary text-[14px] font-medium px-4 py-2 rounded hover:bg-klar-secondary transition-colors">Auto-Shortlist</button>
+</div>
+</div>
+</div>
+<!-- Yesterday Section Header -->
+<div class="pt-8 mb-4">
+<h2 class="text-[13px] font-medium text-klar-text-muted tracking-[0.1em] uppercase">YESTERDAY</h2>
+</div>
+<!-- CARD 4 (SENT) -->
+<div class="bg-klar-surface p-4 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.02)] opacity-80">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-klar-green"></span>
+<span class="bg-klar-green text-white text-[11px] font-medium px-1.5 py-0.5 rounded-[2px] uppercase">SENT</span>
+</div>
+<h3 class="text-[15px] font-medium text-klar-text-muted mb-1">Comparison page · Müller Family · 3 properties</h3>
+<p class="text-[13px] text-gray-400">Opened 2x · Client spent 4min on Landstraße listing</p>
+</div>
+<!-- CARD 5 (CONFIRMED) -->
+<div class="bg-klar-surface p-4 rounded-lg shadow-[0_2px_8px_rgba(0,0,0,0.02)] opacity-80">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-klar-green"></span>
+<span class="bg-klar-green text-white text-[11px] font-medium px-1.5 py-0.5 rounded-[2px] uppercase">CONFIRMED</span>
+</div>
+<h3 class="text-[15px] font-medium text-klar-text-muted">Herr Schmidt · Viewing Fri 14:00 · Josefstädter Str. 71</h3>
+</div>
+<!-- CARD 6 (LOW PRIORITY) -->
+<div class="bg-klar-secondary p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-gray-400"></span>
+<span class="bg-gray-400 text-white text-[11px] font-medium px-1.5 py-0.5 rounded-[2px] uppercase">LOW</span>
+</div>
+<h3 class="text-[14px] text-gray-400">8 low-priority matches across 3 clients</h3>
+</div>
+<button class="text-klar-text-muted text-[13px] font-medium px-3 py-1 hover:text-klar-text-primary transition-colors">Review Later</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Shared Component for Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 md:hidden bg-white dark:bg-stone-950 border-t border-[#F4F3F1] dark:border-stone-800 shadow-sm">
+<a class="flex flex-col items-center justify-center text-[#B87333] dark:text-[#B87333] font-['Space_Grotesk'] text-[12px] font-medium active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dynamic_feed">dynamic_feed</span>
+<span>Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#6B7280] dark:text-stone-500 font-['Space_Grotesk'] text-[12px] font-medium active:scale-95 transition-transform hover:bg-[#F4F3F1] dark:hover:bg-stone-900 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span>Curation</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#6B7280] dark:text-stone-500 font-['Space_Grotesk'] text-[12px] font-medium active:scale-95 transition-transform hover:bg-[#F4F3F1] dark:hover:bg-stone-900 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Clients</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#6B7280] dark:text-stone-500 font-['Space_Grotesk'] text-[12px] font-medium active:scale-95 transition-transform hover:bg-[#F4F3F1] dark:hover:bg-stone-900 px-2 rounded" href="#">
+<span class="material-symbols-outlined" data-icon="email">email</span>
+<span>Email</span>
+</a>
+</nav>
+</body></html>

@@ -1,346 +1,268 @@
 #!/usr/bin/env bash
-# deep-research — Analyst-grade research reports via iterative Exa searches
+# deep-research — Analyst-grade research reports via Exa Research API
 # Analogous to: mcp__parallel-task__createDeepResearch
 #
-# Performs multi-pass research: broad discovery → focused deep-dives → synthesis.
-# Outputs a structured markdown report.
+# Uses Exa's agentic research endpoint: the API decomposes your instructions,
+# runs multiple searches, reads pages, reasons over facts, and returns a
+# structured report with citations.
 #
 # Usage:
 #   deep-research "Competitive landscape of AI contract management platforms"
 #   deep-research -o report.md "legaltech startups series A 2024-2025"
-#   deep-research --depth 3 --breadth 5 "CLM market analysis"
+#   deep-research --model pro --schema schema.json "CLM market analysis"
 
 set -euo pipefail
 
 : "${EXA_API_KEY:?EXA_API_KEY not set}"
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-EXA_SEARCH="$SCRIPT_DIR/exa-search"
+EXA_BASE="https://api.exa.ai"
 
 # Defaults
-DEPTH=2          # Number of research passes
-BREADTH=4        # Queries per pass
-NUM_RESULTS=5    # Results per query
+MODEL="exa-research"
 OUTPUT=""
-CATEGORY=""
-DOMAINS=""
+SCHEMA_FILE=""
+POLL_INTERVAL=5
+TIMEOUT=300
+RAW_JSON=false
 VERBOSE=false
 
 usage() {
   cat <<'EOF'
-deep-research — Analyst-grade research reports
+deep-research — Analyst-grade research via Exa Research API
 
 USAGE:
-  deep-research [OPTIONS] "research topic"
+  deep-research [OPTIONS] "research instructions"
 
 OPTIONS:
-  --depth NUM        Research passes / iterations (default: 2)
-  --breadth NUM      Queries generated per pass (default: 4)
-  -n, --num NUM      Results per query (default: 5)
-  -o, --output FILE  Write report to file (default: stdout)
-  -c, --category CAT Category filter for all queries
-  -d, --domains DOMS Restrict to these domains
-  -v, --verbose      Show progress details
-  -h, --help         Show this help
+  -m, --model MODEL    Model: fast|default|pro (default: default)
+                         fast = exa-research-fast (~15-30s, cheapest)
+                         default = exa-research (~45-90s, adaptive)
+                         pro = exa-research-pro (~90-180s, max quality)
+  -s, --schema FILE    JSON Schema file for structured output
+  -o, --output FILE    Write report to file (default: stdout)
+  --poll NUM           Poll interval in seconds (default: 5)
+  --timeout NUM        Max wait time in seconds (default: 300)
+  --json               Output raw JSON response
+  -v, --verbose        Show progress details
+  -h, --help           Show this help
 
-RESEARCH PROCESS:
-  Pass 1 (Discovery):
-    Generates BREADTH search queries from the topic covering different angles:
-    market overview, key players, recent developments, technical approaches.
-    Runs all queries in parallel with highlights.
+HOW IT WORKS:
+  The Exa Research API is an agentic pipeline that:
+  1. Plans — decomposes your instructions into research steps
+  2. Searches — issues semantic queries, expanding and refining results
+  3. Reasons — synthesizes facts across sources into a grounded report
 
-  Pass 2+ (Deep-dive):
-    Analyzes Pass 1 results to identify gaps and interesting threads.
-    Generates follow-up queries targeting specific entities, claims, or subtopics.
-    Each pass builds on previous findings.
-
-  Synthesis:
-    Merges all findings into a structured report with sections, sources, and key insights.
+  You get back either structured JSON (with --schema) or a markdown report
+  with citations. The API handles all search/read/reasoning internally.
 
 EXAMPLES:
-  deep-research "AI contract management competitive landscape"
-  deep-research --depth 3 -o analysis.md "legaltech market 2025"
-  deep-research -c company --breadth 6 "CLM software vendors comparison"
+  # Basic research report
+  deep-research "Competitive landscape of AI contract management platforms"
+
+  # Pro model with file output
+  deep-research --model pro -o report.md "legaltech market analysis 2025"
+
+  # Structured output with JSON schema
+  deep-research --schema competitors.json "Compare top 5 CLM vendors"
+
+  # Fast model for quick lookups
+  deep-research -m fast "What is Ironclad's latest funding round?"
+
+SCHEMA EXAMPLE (competitors.json):
+  {
+    "type": "object",
+    "required": ["competitors"],
+    "properties": {
+      "competitors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["name", "founded", "funding", "description"],
+          "properties": {
+            "name": {"type": "string"},
+            "founded": {"type": "string"},
+            "funding": {"type": "string"},
+            "description": {"type": "string"}
+          }
+        }
+      }
+    }
+  }
 EOF
   exit 0
 }
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --depth)     DEPTH="$2"; shift 2 ;;
-    --breadth)   BREADTH="$2"; shift 2 ;;
-    -n|--num)    NUM_RESULTS="$2"; shift 2 ;;
-    -o|--output) OUTPUT="$2"; shift 2 ;;
-    -c|--category) CATEGORY="$2"; shift 2 ;;
-    -d|--domains)  DOMAINS="$2"; shift 2 ;;
+    -m|--model)
+      case "$2" in
+        fast)    MODEL="exa-research-fast" ;;
+        default) MODEL="exa-research" ;;
+        pro)     MODEL="exa-research-pro" ;;
+        *)       MODEL="$2" ;;
+      esac
+      shift 2 ;;
+    -s|--schema)   SCHEMA_FILE="$2"; shift 2 ;;
+    -o|--output)   OUTPUT="$2"; shift 2 ;;
+    --poll)        POLL_INTERVAL="$2"; shift 2 ;;
+    --timeout)     TIMEOUT="$2"; shift 2 ;;
+    --json)        RAW_JSON=true; shift ;;
     -v|--verbose)  VERBOSE=true; shift ;;
     -h|--help)     usage ;;
     -*)            echo "Unknown option: $1" >&2; exit 1 ;;
-    *)             TOPIC="$1"; shift ;;
+    *)             INSTRUCTIONS="$1"; shift ;;
   esac
 done
 
-: "${TOPIC:?No topic provided. Usage: deep-research \"your research topic\"}"
-
-TMPDIR_WORK=$(mktemp -d)
-trap 'rm -rf "$TMPDIR_WORK"' EXIT
+: "${INSTRUCTIONS:?No instructions provided. Usage: deep-research \"your research topic\"}"
 
 log() { [[ "$VERBOSE" == true ]] && echo "  [deep-research] $*" >&2 || true; }
 
-# ─── Query Generation ────────────────────────────────────────────────
-# Generate diverse search queries from a topic using query expansion patterns
-generate_discovery_queries() {
-  local topic="$1"
-  local n="$2"
-  local queries=()
+# ─── Create Research Task ─────────────────────────────────────────────
+build_payload() {
+  local payload
+  payload=$(jq -n \
+    --arg instructions "$INSTRUCTIONS" \
+    --arg model "$MODEL" \
+    '{instructions: $instructions, model: $model}')
 
-  # Core angles for discovery
-  queries+=("$topic")
-  [[ $n -ge 2 ]] && queries+=("$topic market overview landscape")
-  [[ $n -ge 3 ]] && queries+=("$topic key players companies competitors")
-  [[ $n -ge 4 ]] && queries+=("$topic recent news funding developments 2025 2026")
-  [[ $n -ge 5 ]] && queries+=("$topic technology approach comparison")
-  [[ $n -ge 6 ]] && queries+=("$topic challenges problems limitations")
-  [[ $n -ge 7 ]] && queries+=("$topic trends future predictions")
-  [[ $n -ge 8 ]] && queries+=("$topic case studies customers reviews")
-
-  # Output up to n queries
-  for i in $(seq 0 $((n - 1))); do
-    [[ $i -lt ${#queries[@]} ]] && echo "${queries[$i]}"
-  done
-}
-
-# Extract entities and themes from results for follow-up queries
-generate_followup_queries() {
-  local results_file="$1"
-  local topic="$2"
-  local n="$3"
-
-  # Extract unique titles and domains to identify entities
-  local entities
-  entities=$(jq -r '.[].title // empty' "$results_file" 2>/dev/null |
-    sed 's/[|–—:].*//' |
-    sort -u |
-    head -20)
-
-  # Extract highlighted terms for deeper investigation
-  local highlight_terms
-  highlight_terms=$(jq -r '.[].highlights[]? // empty' "$results_file" 2>/dev/null |
-    grep -oE '[A-Z][a-z]+(\s+[A-Z][a-z]+)+' |
-    sort | uniq -c | sort -rn |
-    head -10 |
-    awk '{$1=""; print $0}' |
-    sed 's/^ //')
-
-  local queries=()
-  local count=0
-
-  # Generate queries from entities found
-  while IFS= read -r entity; do
-    [[ -z "$entity" ]] && continue
-    [[ $count -ge $n ]] && break
-    queries+=("$entity $topic detailed analysis")
-    count=$((count + 1))
-  done <<< "$highlight_terms"
-
-  # Fill remaining with entity-based queries
-  while IFS= read -r entity; do
-    [[ -z "$entity" ]] && continue
-    [[ $count -ge $n ]] && break
-    queries+=("\"$entity\" $topic")
-    count=$((count + 1))
-  done <<< "$entities"
-
-  # Output queries
-  for q in "${queries[@]}"; do
-    echo "$q"
-  done
-}
-
-# ─── Search Execution ────────────────────────────────────────────────
-run_search_pass() {
-  local pass_num="$1"
-  local queries_file="$2"
-  local output_file="$3"
-
-  local extra_args=(-n "$NUM_RESULTS" --highlights --json)
-  [[ -n "$CATEGORY" ]] && extra_args+=(-c "$CATEGORY")
-  [[ -n "$DOMAINS" ]] && extra_args+=(-d "$DOMAINS")
-
-  local pids=()
-  local idx=0
-
-  while IFS= read -r query; do
-    [[ -z "$query" ]] && continue
-    local result_file="$TMPDIR_WORK/pass${pass_num}_${idx}.json"
-
-    log "pass $pass_num query $idx: $query"
-    (
-      "$EXA_SEARCH" "${extra_args[@]}" "$query" > "$result_file" 2>/dev/null || true
-    ) &
-    pids+=($!)
-    idx=$((idx + 1))
-
-    # Respect rate limits (10 QPS)
-    if [[ $((idx % 8)) -eq 0 ]]; then
-      sleep 1
+  if [[ -n "$SCHEMA_FILE" ]]; then
+    if [[ ! -f "$SCHEMA_FILE" ]]; then
+      echo "Schema file not found: $SCHEMA_FILE" >&2
+      exit 1
     fi
-  done < "$queries_file"
-
-  # Wait for all
-  for pid in "${pids[@]}"; do
-    wait "$pid" 2>/dev/null || true
-  done
-
-  # Merge all results from this pass
-  local all="[]"
-  for f in "$TMPDIR_WORK"/pass${pass_num}_*.json; do
-    [[ -f "$f" ]] || continue
-    local results
-    results=$(jq '.results // []' "$f" 2>/dev/null || echo "[]")
-    all=$(echo "$all" "$results" | jq -s '.[0] + .[1]')
-  done
-
-  echo "$all" > "$output_file"
-  local count
-  count=$(jq 'length' "$output_file")
-  log "pass $pass_num: $count total results"
-}
-
-# ─── Report Synthesis ─────────────────────────────────────────────────
-synthesize_report() {
-  local all_results="$1"
-  local topic="$2"
-
-  local total
-  total=$(jq 'length' "$all_results")
-  local unique_domains
-  unique_domains=$(jq -r '.[].url' "$all_results" | sed 's|https\?://\([^/]*\).*|\1|' | sort -u | wc -l | tr -d ' ')
-
-  cat <<HEADER
-# Research Report: $topic
-
-**Generated:** $(date '+%Y-%m-%d %H:%M')
-**Sources:** $total results across $unique_domains domains
-**Depth:** $DEPTH passes, $BREADTH queries/pass
-
----
-
-HEADER
-
-  # Key Findings (from highlights)
-  echo "## Key Findings"
-  echo ""
-  jq -r '[.[] | select(.highlights) | .highlights[]] | unique | .[:15] | .[] | "- \(.)"' "$all_results" 2>/dev/null || true
-  echo ""
-
-  # Top Sources by domain
-  echo "## Sources by Domain"
-  echo ""
-  jq -r '[.[].url | capture("https?://(?<domain>[^/]+)") | .domain] | group_by(.) | map({domain: .[0], count: length}) | sort_by(-.count) | .[:15] | .[] | "- **\(.domain)** (\(.count) results)"' "$all_results" 2>/dev/null || true
-  echo ""
-
-  # Detailed Results grouped by theme (approximated by query)
-  echo "## Detailed Results"
-  echo ""
-
-  jq -r 'group_by(._query // "general") | .[] |
-    "### \(.[0]._query // "General")",
-    "",
-    (.[:5][] |
-      "**[\(.title // "Untitled")](\(.url))**",
-      (if .publishedDate then "*Published: \(.publishedDate[:10])*" else empty end),
-      (if .author then "*Author: \(.author)*" else empty end),
-      "",
-      (if .highlights then (.highlights[:2][] | "> \(.)") else empty end),
-      (if .summary then "\(.summary)" else empty end),
-      ""
-    ),
-    "---",
-    ""' "$all_results" 2>/dev/null || true
-
-  # All URLs for reference
-  echo "## All Sources"
-  echo ""
-  jq -r '[.[] | {title: (.title // "Untitled"), url}] | unique_by(.url) | .[] | "- [\(.title)](\(.url))"' "$all_results" 2>/dev/null || true
-  echo ""
-}
-
-# ─── Main ─────────────────────────────────────────────────────────────
-echo "── deep-research ───────────────────────────────────" >&2
-echo "  topic:   $TOPIC" >&2
-echo "  depth:   $DEPTH passes | breadth: $BREADTH queries/pass" >&2
-echo "  results: $NUM_RESULTS per query" >&2
-echo "────────────────────────────────────────────────────" >&2
-
-ALL_RESULTS="$TMPDIR_WORK/all_results.json"
-echo "[]" > "$ALL_RESULTS"
-
-# Pass 1: Discovery
-echo "" >&2
-echo "  Pass 1/$(($DEPTH)): Discovery..." >&2
-QUERIES_FILE="$TMPDIR_WORK/queries_1.txt"
-generate_discovery_queries "$TOPIC" "$BREADTH" > "$QUERIES_FILE"
-
-log "queries:"
-[[ "$VERBOSE" == true ]] && cat "$QUERIES_FILE" | sed 's/^/    /' >&2
-
-PASS_RESULTS="$TMPDIR_WORK/pass_1_merged.json"
-run_search_pass 1 "$QUERIES_FILE" "$PASS_RESULTS"
-
-# Merge into all
-jq -s '.[0] + .[1]' "$ALL_RESULTS" "$PASS_RESULTS" > "$TMPDIR_WORK/tmp_merge.json"
-mv "$TMPDIR_WORK/tmp_merge.json" "$ALL_RESULTS"
-
-PASS_COUNT=$(jq 'length' "$PASS_RESULTS")
-echo "  Pass 1 complete: $PASS_COUNT results" >&2
-
-# Pass 2+: Deep-dives
-for pass in $(seq 2 "$DEPTH"); do
-  echo "" >&2
-  echo "  Pass ${pass}/${DEPTH}: Deep-dive..." >&2
-
-  QUERIES_FILE="$TMPDIR_WORK/queries_${pass}.txt"
-  generate_followup_queries "$ALL_RESULTS" "$TOPIC" "$BREADTH" > "$QUERIES_FILE"
-
-  QUERY_COUNT=$(wc -l < "$QUERIES_FILE" | tr -d ' ')
-  if [[ "$QUERY_COUNT" -eq 0 ]]; then
-    echo "  No follow-up queries generated, skipping." >&2
-    continue
+    payload=$(echo "$payload" | jq --slurpfile schema "$SCHEMA_FILE" '. + {outputSchema: $schema[0]}')
   fi
 
-  log "follow-up queries:"
-  [[ "$VERBOSE" == true ]] && cat "$QUERIES_FILE" | sed 's/^/    /' >&2
+  echo "$payload"
+}
 
-  PASS_RESULTS="$TMPDIR_WORK/pass_${pass}_merged.json"
-  run_search_pass "$pass" "$QUERIES_FILE" "$PASS_RESULTS"
+echo "── deep-research ───────────────────────────────────" >&2
+echo "  model:   $MODEL" >&2
+echo "  topic:   ${INSTRUCTIONS:0:80}$([ ${#INSTRUCTIONS} -gt 80 ] && echo '...')" >&2
+[[ -n "$SCHEMA_FILE" ]] && echo "  schema:  $SCHEMA_FILE" >&2
+echo "────────────────────────────────────────────────────" >&2
 
-  jq -s '.[0] + .[1]' "$ALL_RESULTS" "$PASS_RESULTS" > "$TMPDIR_WORK/tmp_merge.json"
-  mv "$TMPDIR_WORK/tmp_merge.json" "$ALL_RESULTS"
+PAYLOAD=$(build_payload)
+log "payload: $PAYLOAD"
 
-  PASS_COUNT=$(jq 'length' "$PASS_RESULTS")
-  echo "  Pass $pass complete: $PASS_COUNT results" >&2
-done
-
-# Dedup all results
-BEFORE=$(jq 'length' "$ALL_RESULTS")
-jq '[group_by(.url)[] | .[0]]' "$ALL_RESULTS" > "$TMPDIR_WORK/deduped.json"
-mv "$TMPDIR_WORK/deduped.json" "$ALL_RESULTS"
-AFTER=$(jq 'length' "$ALL_RESULTS")
 echo "" >&2
-echo "  Deduped: $BEFORE → $AFTER unique results" >&2
+echo "  Creating research task..." >&2
 
-# Synthesize report
-echo "  Synthesizing report..." >&2
-REPORT=$(synthesize_report "$ALL_RESULTS" "$TOPIC")
+CREATE_RESPONSE=$(curl -sS -X POST "$EXA_BASE/research/v1" \
+  -H "x-api-key: $EXA_API_KEY" \
+  -H 'Content-Type: application/json' \
+  -d "$PAYLOAD")
 
-if [[ -n "$OUTPUT" ]]; then
-  echo "$REPORT" > "$OUTPUT"
-  echo "  Report written to: $OUTPUT" >&2
-else
-  echo ""
-  echo "$REPORT"
+# Check for errors
+if echo "$CREATE_RESPONSE" | jq -e '.error // .message' &>/dev/null 2>&1; then
+  ERROR=$(echo "$CREATE_RESPONSE" | jq -r '.error // .message // "Unknown error"')
+  echo "  ERROR: $ERROR" >&2
+  log "full response: $CREATE_RESPONSE"
+  exit 1
 fi
 
+RESEARCH_ID=$(echo "$CREATE_RESPONSE" | jq -r '.researchId')
+STATUS=$(echo "$CREATE_RESPONSE" | jq -r '.status')
+
+if [[ -z "$RESEARCH_ID" || "$RESEARCH_ID" == "null" ]]; then
+  echo "  ERROR: No researchId returned" >&2
+  echo "  Response: $CREATE_RESPONSE" >&2
+  exit 1
+fi
+
+echo "  Task created: $RESEARCH_ID (status: $STATUS)" >&2
+
+# ─── Poll Until Complete ──────────────────────────────────────────────
+ELAPSED=0
+LAST_STATUS=""
+
+while [[ $ELAPSED -lt $TIMEOUT ]]; do
+  sleep "$POLL_INTERVAL"
+  ELAPSED=$((ELAPSED + POLL_INTERVAL))
+
+  POLL_RESPONSE=$(curl -sS -X GET "$EXA_BASE/research/v1/$RESEARCH_ID" \
+    -H "x-api-key: $EXA_API_KEY")
+
+  STATUS=$(echo "$POLL_RESPONSE" | jq -r '.status')
+
+  if [[ "$STATUS" != "$LAST_STATUS" ]]; then
+    echo "  Status: $STATUS (${ELAPSED}s)" >&2
+    LAST_STATUS="$STATUS"
+  else
+    log "polling... status=$STATUS elapsed=${ELAPSED}s"
+  fi
+
+  case "$STATUS" in
+    completed|complete)
+      echo "  Completed in ${ELAPSED}s" >&2
+      break
+      ;;
+    failed|error)
+      ERROR=$(echo "$POLL_RESPONSE" | jq -r '.error // "Unknown error"')
+      echo "  FAILED: $ERROR" >&2
+      log "full response: $POLL_RESPONSE"
+      exit 1
+      ;;
+    running|pending|processing)
+      continue
+      ;;
+    *)
+      log "unexpected status: $STATUS"
+      continue
+      ;;
+  esac
+done
+
+if [[ $ELAPSED -ge $TIMEOUT ]]; then
+  echo "  TIMEOUT after ${TIMEOUT}s (task $RESEARCH_ID may still be running)" >&2
+  echo "  Check manually: curl -H 'x-api-key: \$EXA_API_KEY' $EXA_BASE/research/v1/$RESEARCH_ID" >&2
+  exit 1
+fi
+
+# ─── Output Results ───────────────────────────────────────────────────
+COST=$(echo "$POLL_RESPONSE" | jq -r '.costDollars // "n/a"')
+echo "  Cost: \$$COST" >&2
+echo "────────────────────────────────────────────────────" >&2
 echo "" >&2
-echo "  Done." >&2
+
+if [[ "$RAW_JSON" == true ]]; then
+  RESULT=$(echo "$POLL_RESPONSE" | jq .)
+else
+  # Extract the output — could be structured JSON or markdown text
+  HAS_OUTPUT=$(echo "$POLL_RESPONSE" | jq -e '.output' &>/dev/null && echo true || echo false)
+
+  if [[ "$HAS_OUTPUT" == true ]]; then
+    OUTPUT_TYPE=$(echo "$POLL_RESPONSE" | jq -r '.output | type')
+    if [[ "$OUTPUT_TYPE" == "string" ]]; then
+      RESULT=$(echo "$POLL_RESPONSE" | jq -r '.output')
+    else
+      RESULT=$(echo "$POLL_RESPONSE" | jq '.output')
+    fi
+  else
+    # Try .data, .result, or fall back to full response
+    for field in data result results text; do
+      HAS=$(echo "$POLL_RESPONSE" | jq -e ".$field" &>/dev/null && echo true || echo false)
+      if [[ "$HAS" == true ]]; then
+        FIELD_TYPE=$(echo "$POLL_RESPONSE" | jq -r ".$field | type")
+        if [[ "$FIELD_TYPE" == "string" ]]; then
+          RESULT=$(echo "$POLL_RESPONSE" | jq -r ".$field")
+        else
+          RESULT=$(echo "$POLL_RESPONSE" | jq ".$field")
+        fi
+        break
+      fi
+    done
+    # Fallback: output everything except metadata
+    if [[ -z "${RESULT:-}" ]]; then
+      RESULT=$(echo "$POLL_RESPONSE" | jq 'del(.researchId, .status, .model, .instructions, .costDollars)')
+    fi
+  fi
+fi
+
+if [[ -n "$OUTPUT" ]]; then
+  echo "$RESULT" > "$OUTPUT"
+  echo "  Report written to: $OUTPUT" >&2
+else
+  echo "$RESULT"
+fi

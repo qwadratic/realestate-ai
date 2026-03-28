@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Intelligence | Alpine Dossier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&amp;family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#cdc6b7",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-on-surface": "#313030",
+                        "surface-container-highest": "#353534",
+                        "secondary-container": "#4a473b",
+                        "on-surface-variant": "#d5c3b8",
+                        "on-secondary-fixed-variant": "#4a473b",
+                        "on-secondary": "#343026",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#473300",
+                        "primary-fixed-dim": "#f3bb90",
+                        "tertiary-container": "#c49935",
+                        "tertiary": "#eec058",
+                        "secondary-fixed": "#e9e2d2",
+                        "on-tertiary": "#402d00",
+                        "on-primary": "#4a2808",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#f3bb90",
+                        "surface-bright": "#3a3939",
+                        "surface": "#131313",
+                        "primary-container": "#c8956c",
+                        "inverse-primary": "#7f5531",
+                        "tertiary-fixed-dim": "#eec058",
+                        "on-secondary-container": "#bbb5a6",
+                        "on-background": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "primary": "#f3bb90",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "surface-container": "#201f1f",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-secondary-fixed": "#1e1b12",
+                        "outline-variant": "#50443c",
+                        "on-primary-container": "#512e0e",
+                        "primary-fixed": "#ffdcc2",
+                        "inverse-surface": "#e5e2e1",
+                        "tertiary-fixed": "#ffdf9f",
+                        "on-primary-fixed": "#2e1500",
+                        "secondary": "#cdc6b7",
+                        "outline": "#9d8e83",
+                        "on-surface": "#e5e2e1",
+                        "on-primary-fixed-variant": "#643e1c",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "surface-variant": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "background": "#131313"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(53, 53, 52, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        .copper-gradient {
+            background: linear-gradient(135deg, #f3bb90 0%, #c8956c 100%);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Authority Sidebar) -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col bg-[#1c1b1b] border-r border-[#50443c]/20 z-50">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 rounded bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="Klaus Weber Avatar" class="w-full h-full object-cover" data-alt="Close-up professional portrait of a senior Austrian male executive in a dark charcoal suit with soft warm ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4CSk9SUzTBHQ3QMNL5--Jk0wTgmw8Z1S_AjhUUUOpByMMNjhi8gm1bZMq00RWe3qBQUwK97dwyA64sqlo2jG0rAC8pPJ74V01YPw7PQd80PoKwpf1eiRnJLCMtZxEeJvuE0zMODs18frhbHDWt-dCOWtGZbJZPRq_lXLENy_YaEdo5N1qVSpC4frC7pFWnWpdK6jnT9QG3uHEbSJBPcyUU7X9v1ysWIbpX55Q5Lkm25g56JOHto1rSMmXMJ3g1igK-53wee3KYctS"/>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Klaus Weber</div>
+<div class="text-[10px] uppercase tracking-widest text-outline">Senior Broker - Vienna</div>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="bg-[#2a2a2a] text-[#f3bb90] border-l-4 border-[#c8956c] py-3 px-4 flex items-center gap-3 font-medium transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Executive Summary</span>
+</a>
+<a class="text-gray-400 py-3 px-4 flex items-center gap-3 opacity-80 hover:opacity-100 hover:bg-[#2a2a2a] hover:text-[#f3bb90] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>District Pulse</span>
+</a>
+<a class="text-gray-400 py-3 px-4 flex items-center gap-3 opacity-80 hover:opacity-100 hover:bg-[#2a2a2a] hover:text-[#f3bb90] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span>Yield Map</span>
+</a>
+<a class="text-gray-400 py-3 px-4 flex items-center gap-3 opacity-80 hover:opacity-100 hover:bg-[#2a2a2a] hover:text-[#f3bb90] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Asset Valuation</span>
+</a>
+<a class="text-gray-400 py-3 px-4 flex items-center gap-3 opacity-80 hover:opacity-100 hover:bg-[#2a2a2a] hover:text-[#f3bb90] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span>Risk Assessment</span>
+</a>
+<a class="text-gray-400 py-3 px-4 flex items-center gap-3 opacity-80 hover:opacity-100 hover:bg-[#2a2a2a] hover:text-[#f3bb90] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Archive</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<button class="w-full py-3 bg-[#2a2a2a] text-[#c8956c] border border-[#c8956c]/20 flex items-center justify-center gap-2 hover:bg-[#353534] transition-all font-medium text-sm">
+<span class="material-symbols-outlined text-sm" data-icon="mic">mic</span>
+                Voice Command
+            </button>
+<div class="space-y-1">
+<a class="text-gray-400 py-2 px-4 flex items-center gap-3 text-sm opacity-80 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+<a class="text-gray-400 py-2 px-4 flex items-center gap-3 text-sm opacity-80 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</div>
+</aside>
+<!-- Content Canvas -->
+<main class="flex-1 ml-64 flex flex-col overflow-hidden bg-surface-dim">
+<!-- TopAppBar (Anchored Identity) -->
+<header class="flex justify-between items-center w-full px-8 py-4 bg-[#131313] z-40">
+<div class="flex items-center gap-12">
+<h1 class="text-xl font-headline font-bold text-[#c8956c] tracking-tight">Property Intelligence</h1>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#f3bb90] border-b-2 border-[#f3bb90] pb-1 font-bold text-sm tracking-wide" href="#">Portfolio</a>
+<a class="text-gray-500 hover:text-[#f3bb90] transition-colors text-sm tracking-wide" href="#">Market Analytics</a>
+<a class="text-gray-500 hover:text-[#f3bb90] transition-colors text-sm tracking-wide" href="#">Insights</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<div class="text-xs font-label text-outline uppercase tracking-wider">Active Search Context</div>
+<div class="text-sm font-medium text-on-surface">Müller Family · €400k · 3+ rooms · Bezirke 2-9</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-[#2a2a2a] transition-all rounded text-outline hover:text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-[#2a2a2a] transition-all rounded text-outline hover:text-primary">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="ml-4 px-4 py-2 bg-primary-container text-on-primary-container font-bold text-xs uppercase tracking-widest hover:scale-[0.98] transition-all">
+                        New Analysis
+                    </button>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<section class="flex-1 overflow-y-auto p-8 no-scrollbar">
+<!-- Intelligence Feed Header -->
+<div class="flex justify-between items-end mb-10">
+<div class="max-w-xl">
+<h2 class="text-4xl font-headline font-bold text-on-surface mb-2">Market Matches</h2>
+<p class="text-outline font-body leading-relaxed">Aggregated intelligence across Austrian portals and private listings. Priority sorted by distress signals and yield potential.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-low px-4 py-2 border border-outline-variant/20 flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#4CAF7D]"></span>
+<span class="font-mono text-xs uppercase tracking-widest text-on-surface">Live Market Stream</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid of Property Dossiers -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Card 1: Standard High End -->
+<article class="bg-surface-container-low group hover:bg-surface-container transition-colors duration-300">
+<div class="h-64 overflow-hidden relative">
+<img alt="Altbau Apartment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Interior of a classic Viennese Altbau apartment with high ceilings, ornate moldings, parquet floors, and large windows with warm sunlight streaming in" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0VWBOdKEaWNvC2nAJe-at--IsUsZG8n4g0WNSNCtqGVR61Vv3chgCK26SjZRQOV1003g1O0LszoMt3rCGsnEhlRDpO4dlb2ThqjG6JHZjL9r90yGWcw9CAkpaFm3UmJqneIL2FozIQjq682yr8aVGnbWS6KFiRa7mTfo54D2oP05-ZVEup0c0o3sOz6iqm6sQS7rYFhE4nyQt9t9LHYpH5yYi6CP207kYfdIyL3jXhigCXv_VuisUW4VqEuZRK41CDniFUeNOs4o0"/>
+<div class="absolute top-4 right-4 bg-surface-dim/80 backdrop-blur px-3 py-1 text-[10px] font-mono font-bold text-[#4CAF7D]">
+                            NO DISTRESS
+                        </div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-2xl font-headline font-semibold text-on-surface">Altbau-Charme in Landstraße</h3>
+<p class="text-sm text-outline mt-1 font-body">Rennweg 42, 1030 Wien · <span class="text-primary/70">willhaben</span></p>
+</div>
+</div>
+<div class="text-3xl font-mono font-medium text-on-surface mb-6 tabular-nums">EUR 345,000</div>
+<div class="flex gap-6 border-y border-outline-variant/10 py-4 mb-6">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-outline font-label">Area</span>
+<span class="text-sm font-mono text-on-surface">82 m²</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-outline font-label">Rooms</span>
+<span class="text-sm font-mono text-on-surface">3</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase text-outline font-label">Floor</span>
+<span class="text-sm font-mono text-on-surface">2nd</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-tight">☀ Südseitig</span>
+<span class="px-3 py-1 bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-tight">🏛 Altbau</span>
+</div>
+<div class="space-y-3 mb-8">
+<div class="flex items-center justify-between text-xs font-body text-on-surface-variant">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="school">school</span> School</div>
+<span class="font-mono">400m</span>
+</div>
+<div class="flex items-center justify-between text-xs font-body text-on-surface-variant">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="train">train</span> Transit</div>
+<span class="font-mono">200m</span>
+</div>
+<div class="flex items-center justify-between text-xs font-body text-on-surface-variant">
+<div class="flex items-center gap-2"><span class="material-symbols-outlined text-sm" data-icon="shopping_basket">shopping_basket</span> Market</div>
+<span class="font-mono">80m</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<span class="font-mono text-xs text-outline uppercase tracking-widest">Signal Score: 4/5</span>
+<button class="text-primary text-[10px] font-bold uppercase tracking-widest hover:underline">Full Analysis</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Intelligence Highlight -->
+<article class="bg-surface-container-high border-2 border-primary-container relative flex flex-col transform lg:-translate-y-4">
+<div class="bg-primary-container text-on-primary-container py-1.5 text-center text-[10px] font-bold tracking-[0.3em] uppercase">
+                        INTELLIGENCE
+                    </div>
+<div class="h-64 overflow-hidden relative">
+<img alt="Penthouse View" class="w-full h-full object-cover opacity-80" data-alt="Ultra-modern penthouse apartment with expansive glass walls overlooking the Vienna Prater Ferris wheel at twilight with warm interior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASUFHL9FFjRs654UhCGzvzRBuLOLUbGtDl3-wEgijiocXHt1i8TS9iCPxszxfE9sxhNUHBl_s_3Gg2Xl81m0cSjzfMlyBSux1VqH8XLFpXCJyZ5UlScWLTB_Tl86QSWuyUW5dOinKjP2Frm_oeWRSimMBIDc778oe1K9P0p8UkcnE0WTADEkOhr8ZTbuVRrF83STqOl1sIW2sj1OmdbBGMKon3ikcr-NkUIhGqmaAnEUWFE_OJBtPNsSoVLJ5BD7f05LIKqyxkejdQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-high to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-6">
+<h3 class="text-3xl font-headline font-bold text-white drop-shadow-md">Penthouse am Praterstern</h3>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="text-4xl font-mono font-medium text-primary mb-8 tabular-nums tracking-tighter">EUR 780,000</div>
+<div class="space-y-4 mb-10">
+<div class="flex items-start gap-3 bg-error-container/20 p-3">
+<span class="material-symbols-outlined text-[#D94F4F] mt-0.5" data-icon="warning">warning</span>
+<div>
+<div class="text-[11px] font-bold text-[#D94F4F] uppercase tracking-wide">High Risk: Owner insolvency</div>
+<p class="text-[10px] text-on-surface-variant opacity-70">Foreclosure proceedings detected in district court registry.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-tertiary-container/10 p-3">
+<span class="material-symbols-outlined text-[#D4A843] mt-0.5" data-icon="layers">layers</span>
+<div>
+<div class="text-[11px] font-bold text-[#D4A843] uppercase tracking-wide">3 listings by owner</div>
+<p class="text-[10px] text-on-surface-variant opacity-70">Multiple assets being liquidated simultaneously. High leverage.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-tertiary-container/10 p-3">
+<span class="material-symbols-outlined text-[#D4A843] mt-0.5" data-icon="description">description</span>
+<div>
+<div class="text-[11px] font-bold text-[#D4A843] uppercase tracking-wide">Building permit incomplete</div>
+<p class="text-[10px] text-on-surface-variant opacity-70">Roof extension authorization lacks final MA37 stamp.</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/30 flex justify-between items-center">
+<div class="font-mono text-[11px] text-primary">Signal Score: 3/5 · Motivated seller</div>
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward_ios">arrow_forward_ios</span>
+</div>
+</div>
+</article>
+<!-- Card 3: Anomaly Detection -->
+<article class="bg-surface-container-low group hover:bg-surface-container transition-colors duration-300">
+<div class="h-64 overflow-hidden relative">
+<img alt="Modern Living" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist modern apartment building exterior with sleek gray panels and large glass balconies under a clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxhkCWgGBSurOB-6SaIfv2ZSuzcp5mIFFKzsj7-pgcxyCxa-YgyPwJ4pCCDHYN1BpxRK7PDRyzqTQwtRk8-EQQCj0XXx6Hk7YzXhFMhJOtJeAqDRVqn-Z7bAPXqQlA_JZOPVZz_9z30-mspm7egrBaXLE4uAQEUBbHLaoYu4ZitpYHwgccCvqJQnogzIHw45b8JkByohrudsx7WVsMYhrLMDXZxazq-ykQMqGbaK-UIugVta7ugLgsuQjbXAvpgO9QcgbUJ-mo0IKD"/>
+<div class="absolute top-4 right-4 bg-surface-dim/80 backdrop-blur px-3 py-1 text-[10px] font-mono font-bold text-[#4CAF7D]">
+                            NO DISTRESS
+                        </div>
+</div>
+<div class="p-6">
+<div class="mb-4">
+<h3 class="text-2xl font-headline font-semibold text-on-surface">Modernes Wohnen im 2. Bezirk</h3>
+<p class="text-sm text-outline mt-1 font-body">Leopoldstadt, 1020 Wien</p>
+</div>
+<div class="text-3xl font-mono font-medium text-on-surface mb-6 tabular-nums">EUR 412,000</div>
+<div class="p-4 bg-surface-container-high mb-6 space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs text-outline font-label uppercase">Declared Space</span>
+<span class="text-sm font-mono line-through opacity-50">85m²</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#D94F4F] font-bold font-label uppercase">Verified Actual</span>
+<span class="text-sm font-mono text-[#D94F4F] font-bold">⚠ 72m² verified</span>
+</div>
+<p class="text-[10px] text-outline italic">Discrepancy detected via AI floorplan analysis vs land registry.</p>
+</div>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 border border-outline-variant/30 text-on-surface-variant text-[11px] font-medium tracking-tight">Underfloor heating</span>
+<span class="px-3 py-1 border border-outline-variant/30 text-on-surface-variant text-[11px] font-medium tracking-tight">Balcony</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#4CAF7D]"></span>
+<span class="font-mono text-xs text-outline uppercase tracking-widest">No distress signals</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Contextual Insights Section -->
+<div class="mt-16 mb-24">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+<h4 class="font-headline text-xl text-on-surface">Contextual Intelligence Queries</h4>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="px-6 py-2.5 rounded-full bg-surface-container-high border border-outline-variant/30 text-sm font-medium text-on-surface hover:bg-surface-container-highest hover:border-primary/50 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="timer">timer</span>
+                        Compare commute times
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-high border border-outline-variant/30 text-sm font-medium text-on-surface hover:bg-surface-container-highest hover:border-primary/50 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="volume_off">volume_off</span>
+                        Which is quietest?
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-high border border-outline-variant/30 text-sm font-medium text-on-surface hover:bg-surface-container-highest hover:border-primary/50 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="family_restroom">family_restroom</span>
+                        Best for family?
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-high border border-outline-variant/30 text-sm font-medium text-on-surface hover:bg-surface-container-highest hover:border-primary/50 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="school">school</span>
+                        School quality nearby
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 w-16 h-16 copper-gradient rounded-full shadow-2xl flex items-center justify-center text-on-primary-container z-[100] hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</body></html>

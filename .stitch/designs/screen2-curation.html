@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Curation View | Editorial Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffdcc2",
+              "surface-bright": "#faf9f6",
+              "error-container": "#ffdad6",
+              "surface-container": "#efeeeb",
+              "tertiary-fixed-dim": "#74d4ea",
+              "on-error": "#ffffff",
+              "primary": "#894d0d",
+              "on-surface": "#1a1c1a",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#d8c3b4",
+              "secondary-container": "#ffd1ae",
+              "surface-tint": "#8c4f10",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e3e2e0",
+              "secondary": "#79573c",
+              "on-primary-fixed-variant": "#6d3a00",
+              "on-tertiary-fixed": "#001f26",
+              "on-primary-fixed": "#2e1500",
+              "inverse-surface": "#2f312f",
+              "surface-container-high": "#e9e8e5",
+              "surface-variant": "#e3e2e0",
+              "primary-container": "#a76526",
+              "secondary-fixed": "#ffdcc2",
+              "tertiary": "#006576",
+              "on-secondary-container": "#79583c",
+              "tertiary-fixed": "#a8edff",
+              "inverse-primary": "#ffb77b",
+              "on-error-container": "#93000a",
+              "on-secondary-fixed-variant": "#5e4026",
+              "on-primary-container": "#fffbff",
+              "on-tertiary-container": "#f9fdff",
+              "on-surface-variant": "#524439",
+              "secondary-fixed-dim": "#eabe9c",
+              "on-secondary-fixed": "#2d1602",
+              "outline": "#857467",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#f2f1ee",
+              "on-primary": "#ffffff",
+              "surface": "#faf9f6",
+              "primary-fixed-dim": "#ffb77b",
+              "background": "#faf9f6",
+              "on-tertiary-fixed-variant": "#004e5b",
+              "surface-dim": "#dbdad7",
+              "error": "#ba1a1a",
+              "on-background": "#1a1c1a",
+              "tertiary-container": "#008094",
+              "surface-container-low": "#f4f3f1"
+            },
+            fontFamily: {
+              "headline": ["Newsreader", "serif"],
+              "body": ["Manrope", "sans-serif"],
+              "label": ["Space Grotesk", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .serif-italic { font-style: italic; }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-[#FAF9F6]/80 backdrop-blur-xl fixed top-0 z-50 w-full">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif italic text-[#1A1C1A]">Editorial Intelligence</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#1A1C1A]/60 font-medium hover:text-[#894D0D] transition-colors font-label uppercase tracking-tight text-xs" href="#">Dashboard</a>
+<a class="text-[#1A1C1A]/60 font-medium hover:text-[#894D0D] transition-colors font-label uppercase tracking-tight text-xs" href="#">Monitoring</a>
+<a class="text-[#894D0D] font-bold border-b-2 border-[#894D0D] pb-1 font-label uppercase tracking-tight text-xs" href="#">Curation</a>
+<a class="text-[#1A1C1A]/60 font-medium hover:text-[#894D0D] transition-colors font-label uppercase tracking-tight text-xs" href="#">Clients</a>
+<a class="text-[#1A1C1A]/60 font-medium hover:text-[#894D0D] transition-colors font-label uppercase tracking-tight text-xs" href="#">Email</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-[#F4F3F1] transition-all rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 hover:bg-[#F4F3F1] transition-all rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 px-8 max-w-screen-2xl mx-auto flex gap-12">
+<!-- Left Column: Main Curation Content -->
+<div class="flex-1">
+<header class="mb-10">
+<h1 class="font-headline text-5xl font-medium mb-2">Curation Queue</h1>
+<p class="font-label text-on-surface-variant/70 text-sm tracking-wide">
+                    12 NEW MATCHES FOR MÜLLER FAMILY · LAST SCAN: 2 HOURS AGO
+                </p>
+</header>
+<!-- Filter Bar -->
+<div class="flex gap-1 mb-8">
+<button class="px-6 py-2 bg-surface-container-lowest text-primary font-label text-xs font-bold border-b-2 border-primary">ALL (12)</button>
+<button class="px-6 py-2 text-on-surface/60 hover:bg-surface-container-low transition-colors font-label text-xs">RECOMMENDED (5)</button>
+<button class="px-6 py-2 text-on-surface/60 hover:bg-surface-container-low transition-colors font-label text-xs">NEEDS REVIEW (4)</button>
+<button class="px-6 py-2 text-on-surface/60 hover:bg-surface-container-low transition-colors font-label text-xs">REJECTED (3)</button>
+</div>
+<!-- Curation List -->
+<div class="space-y-4">
+<!-- Card 1: Recommended -->
+<div class="bg-surface-container-lowest p-5 flex gap-6 group hover:shadow-lg transition-shadow duration-300">
+<div class="w-[120px] h-[120px] flex-shrink-0 relative overflow-hidden bg-surface-container">
+<img alt="Luxury villa exterior" class="w-full h-full object-cover" data-alt="Modern minimalist villa with large glass windows at dusk, warm interior lighting reflecting on a clean pool surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEZV1zJLfCBW9mylub4MV2E0XG944h-RQ23QSlXrRwWAx7UYp-Xv0Sk8eXB8eXtJoFnDjMaTDZKnArG_cqNNo_BpqpMIu6u5RRluJgsjij7Ka_0zgE5Q-2Fb_Ff4MLKEBLcUuN0mxN4Ly7A2dkwU5FI9gpQCPmV9YfuIOxBNgP0kXeuik-YOKCgZSck8OsWY0zTQY8V5OlDw7XMWE0DopzyThqcnwzs8PLPzuKGVoXZc_JfLaJtL7d9Phht9yx-J6vq4SM_d7-TT_r"/>
+<div class="absolute top-2 left-2 bg-green-500 w-2 h-2 rounded-full ring-4 ring-white/20"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h2 class="font-headline text-2xl">Belle Alliance Penthouse</h2>
+<span class="font-label text-primary text-lg">€1,450,000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-2">Gneisenaustraße 12, Kreuzberg · Source: Private Listing</p>
+<div class="font-label text-xs text-on-surface/60 flex gap-4 mb-4">
+<span>142 SQM</span>
+<span>4 ROOMS</span>
+<span>€10,211/SQM</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary font-label text-[10px] font-bold uppercase tracking-wider">High Ceilings</span>
+<span class="px-2 py-0.5 bg-primary/10 text-primary font-label text-[10px] font-bold uppercase tracking-wider">South Facing Terrace</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface/60 font-label text-[10px] font-bold uppercase tracking-wider">Floor Heating</span>
+</div>
+</div>
+<div class="w-48 flex flex-col gap-2 pl-6 border-l border-surface-container">
+<button class="w-full py-2 bg-primary text-on-primary font-label text-[10px] font-bold uppercase tracking-widest hover:brightness-110 transition-all">Shortlist</button>
+<button class="w-full py-2 bg-transparent text-on-surface/60 hover:text-on-surface font-label text-[10px] font-bold uppercase tracking-widest transition-colors">Maybe Later</button>
+<button class="w-full py-2 bg-transparent text-error/60 hover:text-error font-label text-[10px] font-bold uppercase tracking-widest transition-colors">Reject</button>
+</div>
+</div>
+<!-- Card 2: Recommended with Signal Intelligence -->
+<div class="bg-surface-container-lowest p-5 flex gap-6 ring-1 ring-primary/30 relative">
+<div class="w-[120px] h-[120px] flex-shrink-0 overflow-hidden bg-surface-container">
+<img alt="Apartment building" class="w-full h-full object-cover" data-alt="Classic European historic apartment building with ornate balcony details and ivy growing on the facade under soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjcoCnbqUuqA9rBaVCl_Hvx74jrNKZehmUMHSCEAJ8emNCbnstzIGN7B0DaK7JXiTHt_10N4OR9Z5mIFsJRJw_voOiBdhtvB9xfSyEBoM08EyHIr2xks-xi1amB7HYYi_cMjFUjcIJWf3Hs6RP8QHrDxMy_26JmTwTwm57cIPFNUs-9qEjM1U3ahq5ThnCyI7244imXQ0EFw9KzEtsTCBtjD7mi4F--apK7eegFVS56zWC24-Br6SnVIII9xA20FNMHn5TULcE_P27"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h2 class="font-headline text-2xl italic">Charlottenburg Garden Residence</h2>
+<span class="font-label text-primary text-lg">€980,000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-2">Kantstraße 45, Charlottenburg · Source: ZVG Portal</p>
+<div class="font-label text-xs text-on-surface/60 flex gap-4 mb-4">
+<span>110 SQM</span>
+<span>3 ROOMS</span>
+<span>€8,909/SQM</span>
+</div>
+<div class="flex flex-wrap gap-2 items-center">
+<span class="px-2 py-1 bg-primary text-white font-label text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">warning</span>
+                                Owner Insolvency
+                            </span>
+<span class="px-2 py-0.5 bg-primary/10 text-primary font-label text-[10px] font-bold uppercase tracking-wider">Fast Closing Possible</span>
+</div>
+</div>
+<div class="w-48 flex flex-col gap-2 pl-6 border-l border-surface-container">
+<button class="w-full py-2 bg-primary text-on-primary font-label text-[10px] font-bold uppercase tracking-widest">Shortlist</button>
+<button class="w-full py-2 bg-transparent text-on-surface/60 font-label text-[10px] font-bold uppercase tracking-widest">Maybe Later</button>
+<button class="w-full py-2 bg-transparent text-error/60 font-label text-[10px] font-bold uppercase tracking-widest">Reject</button>
+</div>
+</div>
+<!-- Card 3: Needs Review -->
+<div class="bg-surface-container-lowest p-5 flex gap-6">
+<div class="w-[120px] h-[120px] flex-shrink-0 relative overflow-hidden bg-surface-container">
+<img alt="Loft interior" class="w-full h-full object-cover" data-alt="Industrial loft interior with exposed brick walls, high ceilings, and large factory-style windows with warm sunlight streaming in" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8g_DPETyled4Y-cD-DtKjy3keh6PmPoGX7S97_jEKdgM0GNdXPi9XB6HfOQqvpHv36gaFVPNEnx6HGpJ38EEIIpgDKqsRo6nNFIv9RgDnmMNM7vgNUGNwvwozO3ftOsA7zdGx9weSw1jkjn3F_yOH3vnA0TzJmsGlfSKnnp4iVHgWW6wil0d1JOWAm_FpyVOuRVP-DaBy4pGMUTgmiztWRsb28Uc6mlO-elG11qTlIDoy4UWxa9RQ_Yt1ax7nKvc6gtKVqZB-y35X"/>
+<div class="absolute top-2 left-2 bg-amber-500 w-2 h-2 rounded-full"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h2 class="font-headline text-2xl">Industrial Loft Space</h2>
+<span class="font-label text-primary text-lg">€1,850,000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-2">Reichenberger Str. 88, Kreuzberg · Source: Off-Market</p>
+<div class="font-label text-xs text-amber-600 flex gap-4 mb-4 font-bold">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>€250k ABOVE TARGET BUDGET</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface/60 font-label text-[10px] font-bold uppercase tracking-wider">Studio Layout</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface/60 font-label text-[10px] font-bold uppercase tracking-wider">Brickwork</span>
+</div>
+</div>
+<div class="w-48 flex flex-col gap-2 pl-6 border-l border-surface-container">
+<button class="w-full py-2 bg-primary text-on-primary font-label text-[10px] font-bold uppercase tracking-widest">Shortlist</button>
+<button class="w-full py-2 bg-transparent text-on-surface/60 font-label text-[10px] font-bold uppercase tracking-widest">Maybe Later</button>
+<button class="w-full py-2 bg-transparent text-error/60 font-label text-[10px] font-bold uppercase tracking-widest">Reject</button>
+</div>
+</div>
+<!-- Card 4: Rejected State -->
+<div class="bg-surface-container-low p-5 flex gap-6 opacity-60 filter grayscale-[0.5]">
+<div class="w-[120px] h-[120px] flex-shrink-0 overflow-hidden bg-surface-container">
+<img alt="Staircase" class="w-full h-full object-cover" data-alt="Modern geometric spiral staircase in a white minimalist building, top-down view with rhythmic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN9nmFD5rcos-OsB4ppbbNsYZCyQHxfPGXVPPuiVE0pHV1nrolZKgqZdrxDUGHokt4i2KFXJcXzMbrMoyvcy_QJkkjkabZTeaJKrzVIkw0LBw83_bXRg9st-02IanIlWwQxn2vzt0i8oVcngUA-nuFGou2m2BiMlNllDf61KoPn6ukj177cMUDat3Dk7NMEIt9Ilgpqejdtw6rNMRBOJwJLFz-_YHC7YvvrpoYk9sTG4bIXjeBnMn8EehiNgqva4Nxpfo178pf4Ynn"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h2 class="font-headline text-2xl line-through decoration-on-surface/30">Altbau Family Flat</h2>
+<span class="font-label text-on-surface/40 text-lg">€720,000</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm mb-4">Sonnenallee 102, Neukölln · Source: ImmoScout24</p>
+<div class="bg-surface-container-highest p-3 flex flex-col gap-2">
+<label class="font-label text-[9px] uppercase tracking-widest text-on-surface/50 font-bold">REJECTION REASON</label>
+<p class="font-body italic text-sm text-on-surface-variant">"No elevator, family has stroller. Too far from U-Bahn, client needs &lt; 300m"</p>
+</div>
+</div>
+<div class="w-48 flex flex-col justify-center gap-2 pl-6 border-l border-surface-container">
+<button class="w-full py-2 bg-surface-container-highest text-on-surface/40 font-label text-[10px] font-bold uppercase tracking-widest cursor-not-allowed">Archived</button>
+<button class="w-full py-2 text-primary font-label text-[9px] font-bold uppercase tracking-widest hover:underline text-center">Undo Action</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Right -->
+<aside class="w-80 flex flex-col gap-8">
+<div class="bg-surface-container-low p-6">
+<h3 class="font-label text-[10px] font-bold uppercase tracking-widest mb-6 text-on-surface/50">Recent Comparison Pages</h3>
+<div class="space-y-6">
+<!-- Comparison Preview 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container mb-3 overflow-hidden">
+<img alt="Gallery Preview" class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="Collage layout of multiple modern interior photos, architecturally focused with clean lines and soft beige tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfrInavqg0V3SssJCNmonDlnGrIjtRHOb6OmO6c7QpnKKECKL4p1athD8yzvomVtaPZmEqO4qOmnMuT6UYj012Ex5qKZOsFvcnkUuFpF1Xz2QzgBgvCrsXaQ50DqQP_S7elWUfSYyESJ36uTuWZXllP2h4JB9gxzelr78fVWCzc8J87GiEdgTdZnNOf69Ip-PdJrIiPGz-kih7g5VbGccEGdrVAheFrXbBaODjSGIOdbMQMDesbnn-1Jaunv-tkzYdQjeUHCkugzOh"/>
+</div>
+<h4 class="font-headline text-lg mb-1">Müller Initial Selection</h4>
+<div class="flex justify-between items-center">
+<span class="font-label text-[9px] text-on-surface/40 uppercase">3 PROPERTIES · OCT 12</span>
+<a class="font-label text-[10px] text-primary font-bold uppercase hover:tracking-widest transition-all" href="#">View</a>
+</div>
+</div>
+<!-- Comparison Preview 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-video bg-surface-container mb-3 overflow-hidden">
+<img alt="Gallery Preview" class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="Interior of a luxury kitchen with marble countertops and minimalist wooden cabinetry, soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLS6tFumrTOg3RNYdnvjaUef6jOTWTE-MdH7Kmqmp69jItsPOqUXgQFvny-_RXfPr7IA36dJq_rFSWR50b3URDWO9gxgShhYtRjN2vX4-ETl09VkuADTt_4gPOaWmzCrrhvZy0prLXAjNOhVeXwjoi5N-LjAEnQ2Jsdvtw8XXj-e6gADnoTQyq0-RAQdnlP_3YkqN3zC4v0BAglODcskenr92_rwruIvRYTs-omElJ_NaHYGOwx-9LVfJui0b-JVfGSIiGOCga5ZId"/>
+</div>
+<h4 class="font-headline text-lg mb-1">Schmidt Loft Study</h4>
+<div class="flex justify-between items-center">
+<span class="font-label text-[9px] text-on-surface/40 uppercase">5 PROPERTIES · OCT 08</span>
+<a class="font-label text-[10px] text-primary font-bold uppercase hover:tracking-widest transition-all" href="#">View</a>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 p-6 border-l-2 border-primary">
+<h3 class="font-headline text-xl mb-2">Refine Strategy</h3>
+<p class="font-body text-sm text-on-surface-variant mb-4 leading-relaxed">AI is noticing a pattern: You frequently reject 4th floor apartments without lifts. Shall we exclude these automatically?</p>
+<button class="w-full py-2 bg-primary/10 text-primary font-label text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all">Confirm Rule</button>
+</div>
+</aside>
+</main>
+<!-- Bottom Actions -->
+<footer class="fixed bottom-0 left-0 w-full bg-[#FAF9F6] px-8 py-6 flex justify-center items-center gap-4 z-40">
+<button class="px-8 py-3 bg-primary text-on-primary font-label text-sm font-bold uppercase tracking-[0.1em] hover:brightness-110 shadow-lg transition-all flex items-center gap-3">
+            Generate Comparison Page
+            <span class="material-symbols-outlined text-sm">auto_awesome</span>
+</button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface/70 font-label text-sm font-bold uppercase tracking-[0.1em] hover:bg-surface-container-highest transition-all flex items-center gap-3">
+            Export to PDF
+            <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</footer>
+</body></html>

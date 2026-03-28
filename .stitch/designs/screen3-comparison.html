@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&amp;family=Manrope:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#a8edff",
+              "tertiary": "#006576",
+              "surface-container-highest": "#e3e2e0",
+              "on-primary": "#ffffff",
+              "tertiary-container": "#008094",
+              "primary-container": "#a76526",
+              "surface-container": "#efeeeb",
+              "surface": "#faf9f6",
+              "primary": "#894d0d",
+              "error": "#ba1a1a",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#74d4ea",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#79583c",
+              "on-background": "#1a1c1a",
+              "inverse-primary": "#ffb77b",
+              "on-tertiary-container": "#f9fdff",
+              "on-error-container": "#93000a",
+              "surface-bright": "#faf9f6",
+              "primary-fixed-dim": "#ffb77b",
+              "surface-container-high": "#e9e8e5",
+              "surface-variant": "#e3e2e0",
+              "background": "#faf9f6",
+              "surface-container-low": "#f4f3f1",
+              "secondary": "#79573c",
+              "on-secondary-fixed": "#2d1602",
+              "on-tertiary-fixed": "#001f26",
+              "secondary-container": "#ffd1ae",
+              "inverse-on-surface": "#f2f1ee",
+              "on-secondary-fixed-variant": "#5e4026",
+              "on-error": "#ffffff",
+              "surface-tint": "#8c4f10",
+              "on-surface-variant": "#524439",
+              "on-surface": "#1a1c1a",
+              "on-primary-fixed": "#2e1500",
+              "on-tertiary-fixed-variant": "#004e5b",
+              "inverse-surface": "#2f312f",
+              "secondary-fixed": "#ffdcc2",
+              "outline": "#857467",
+              "secondary-fixed-dim": "#eabe9c",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed": "#ffdcc2",
+              "outline-variant": "#d8c3b4",
+              "surface-dim": "#dbdad7",
+              "on-primary-container": "#fffbff",
+              "on-primary-fixed-variant": "#6d3a00",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Newsreader"],
+              "body": ["Manrope"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+        vertical-align: middle;
+      }
+      .copper-dots span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 2px;
+      }
+      .copper-dot-filled { background-color: #B87333; }
+      .copper-dot-empty { background-color: #E3E2E0; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#FAF9F6]/80 dark:bg-stone-900/80 backdrop-blur-md flex justify-between items-center px-8 py-6 w-full max-w-screen-2xl mx-auto">
+<div class="text-2xl font-headline font-medium tracking-tighter text-[#894D0D] dark:text-[#B87333]">VIENNA HERITAGE</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="font-headline italic tracking-wide text-[#894D0D] dark:text-[#B87333] border-b border-[#894D0D]/30 transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-headline italic tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-800 transition-colors duration-300" href="#">Collections</a>
+<a class="font-headline italic tracking-wide text-stone-500 dark:text-stone-400 hover:text-stone-800 transition-colors duration-300" href="#">Concierge</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-xs font-label uppercase tracking-widest text-outline">Search</span>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label text-sm uppercase tracking-wider hover:opacity-80 transition-opacity">Private Viewing</button>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-grow pt-32 pb-20 px-8 max-w-7xl mx-auto w-full">
+<!-- Header Area -->
+<header class="flex flex-col md:flex-row justify-between items-baseline mb-8 gap-4">
+<div class="border-l-4 border-primary pl-6">
+<h1 class="text-4xl md:text-5xl font-headline italic text-on-background">Prepared for Müller Family</h1>
+<p class="font-label text-sm text-outline mt-2 tracking-widest">OCTOBER 24, 2024</p>
+</div>
+<div class="flex items-center gap-4 text-primary bg-surface-container-low px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+<span class="font-label text-xs uppercase tracking-tight">Concierge Curated</span>
+</div>
+</header>
+<!-- Profile Summary Bar -->
+<section class="bg-surface-container-low rounded-xl p-5 mb-12 flex flex-wrap items-center gap-y-4 gap-x-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">account_balance_wallet</span>
+<span class="text-sm font-body text-on-surface-variant font-medium">Budget: <span class="text-on-background">€300k-€450k</span></span>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-8">
+<span class="material-symbols-outlined text-primary text-sm">meeting_room</span>
+<span class="text-sm font-body text-on-surface-variant font-medium">3+ rooms</span>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-8">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+<span class="text-sm font-body text-on-surface-variant font-medium">Bezirke 2-9</span>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-8">
+<span class="material-symbols-outlined text-primary text-sm">family_restroom</span>
+<span class="text-sm font-body text-on-surface-variant font-medium">Family with 2 children</span>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-8">
+<span class="material-symbols-outlined text-primary text-sm">priority_high</span>
+<span class="text-sm font-body text-on-surface-variant font-medium italic">Priority: Schools, Transit, Elevator</span>
+</div>
+</section>
+<!-- Property Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="luxury vienna apartment interior with high ceilings large windows and minimalist mid-century modern furniture in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh1jhnjvzHPRcFFxex9zwnRoIwzUbwxBEsz3YP_4CT_LQjQPGXt_Z6SOVp0Gcvb4bd_AhxImXNCZze9MF46Efnj4LdBCuXpMD76vwYpnDTQFbDskmghtTEQk4FjGWHNhOm9bIgHceKh4A7DONiJKOvDU180u6EQ951Xf4JWs2uOgkAfahACBaZ5hqSZMrIUednnpitL5XWa64ytFX3tDpHaQgg3ymAAgE2m-Ti6fINdiKcJXphKk08M95XgKvCl8ySToKU8vUKJFsE"/>
+<div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-[10px] font-label uppercase tracking-widest text-primary">willhaben</div>
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-headline mb-1">Altbau-Charme in Landstraße</h3>
+<p class="font-body text-sm text-outline mb-4">Rennweg 42, 1030 Wien</p>
+<div class="bg-surface-container-low py-3 px-4 rounded flex justify-between mb-6">
+<span class="font-label text-sm font-medium">€345,000</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium">78sqm</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium">3 Zi</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium text-outline">2.OG</span>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">🏫 Volksschule Landstraße — 400m</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">🚇 U3 Kardinal-Nagl-Platz — 200m</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-empty"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">♿ Elevator available</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-empty"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">☀ South-facing balcony</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-empty"></span><span class="copper-dot-empty"></span><span class="copper-dot-empty"></span>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/20 pt-4">
+<p class="text-xs font-body leading-relaxed text-on-surface-variant italic">
+<span class="text-primary font-bold mr-1">Agent note:</span> "Best overall match for your family. The school is excellent — I know parents there."
+                        </p>
+</div>
+</div>
+</div>
+<!-- Card 2 (AI RECOMMENDATION) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-xl border-t-4 border-[#B87333] transform scale-105 z-10">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="modern luxury penthouse in Vienna with wide rooftop terrace floor to ceiling glass walls overlooking city skyline at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2kHvMQ5DeEf5JnpnpS-AtKjaFzfStju2wL9lE6hg3e_IGNWef8VKbwg9EjA4D5myfNDXmf45Uo4rOupCPfBgSFaGmOk9WTd-2uuOX06c4RP_7--gp1nWJGJeBp6DynxnxGEieLCF82DaZDiUUt05tKmIYnlbozUpzEAqXFlwG4_nP_pHGetD4sK1fR6TG3Ovs-zp8vQTtwm1NRncy3rqCUqJ5Pg4XgcY9TnjZPeyXOcK3cxsjDHkuusMp1xN2AypW4fZ0tOrKFkF6"/>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-label px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">AI Recommendation</div>
+<div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-[10px] font-label uppercase tracking-widest text-primary">Immowelt</div>
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-headline mb-1">Modernes Penthouse am Hietzinger Platzl</h3>
+<p class="font-body text-sm text-outline mb-4">Hietzinger Hauptstraße 45, 1130 Wien</p>
+<div class="bg-surface-container-high py-3 px-4 rounded flex justify-between mb-6">
+<span class="font-label text-sm font-semibold text-primary">€1,120,000</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium">115sqm</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium">4 Zi</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium text-outline">5.OG</span>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">🏫 Gymnasium Hietzing — 300m</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">🚇 U4 Hietzing — 400m</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-empty"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">♿ Modern elevator</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">☀ Rooftop terrace</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/20 pt-4">
+<p class="text-xs font-body leading-relaxed text-on-surface-variant italic">
+<span class="text-primary font-bold mr-1">Agent note:</span> "A premium choice with exceptional school access and modern amenities."
+                        </p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow opacity-90 grayscale-[20%] hover:grayscale-0">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="quiet garden apartment in Vienna with lush private courtyard green trees and patio furniture in late afternoon soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0HH-K4em9INWkWP-E-sk6WQQI68kfJcFTpO_PBKm3JNdvayyMLj954xwro5Y_HX54lHiOTw59Qx4d3cf9sCLEEdVjGRuvMMSohFGneM2eIdPqNDLkIpP7UJyhcqRXKnwqG1BYHpPzjd7a_odSDmh35MUX9GTUPstxg44vkhgzA5QLrWTXwloVTRP4viTaCYR3uq7IqEJipGIotxQYlnGZ57Fbk0V_5sZtSGyTYvNQGeLJ8m1jnxwde8Y6rENhSfWxNYNCxqktyHmC"/>
+<div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-[10px] font-label uppercase tracking-widest text-primary">ImmobilienScout24</div>
+</div>
+<div class="p-6">
+<h3 class="text-2xl font-headline mb-1">Gartenapartment in Döbling</h3>
+<p class="font-body text-sm text-outline mb-4">Billrothstraße 12, 1190 Wien</p>
+<div class="bg-surface-container-low py-3 px-4 rounded flex justify-between mb-4">
+<span class="font-label text-sm font-medium">€425,000</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium">65sqm</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium">2 Zi</span>
+<div class="h-4 w-px bg-outline-variant/30"></div>
+<span class="font-label text-sm font-medium text-outline">EG</span>
+</div>
+<div class="flex items-center gap-2 mb-6 text-error">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="font-label text-[10px] uppercase tracking-wider font-bold">SQM MISMATCH: 65sqm vs 58sqm verified</span>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">🏫 Grinzing Primary — 600m</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-empty"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">🚇 Tram 38 — 150m</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-empty"></span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-headline italic text-sm">♿ Barrier-free access</span>
+<div class="copper-dots flex">
+<span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span><span class="copper-dot-filled"></span>
+</div>
+</div>
+</div>
+<div class="border-t border-outline-variant/20 pt-4">
+<p class="text-xs font-body leading-relaxed text-on-surface-variant italic">
+<span class="text-primary font-bold mr-1">Agent note:</span> "A solid quiet option, though the size discrepancy needs checking."
+                        </p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Interaction Section -->
+<section class="mt-20 max-w-4xl mx-auto">
+<!-- Questions Pill Badges -->
+<div class="flex flex-wrap justify-center gap-3 mb-8">
+<button class="px-5 py-2 rounded-full border border-outline-variant/30 text-xs font-label uppercase tracking-widest text-on-surface hover:bg-surface-container-high transition-colors">Compare commute to Stephansplatz</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant/30 text-xs font-label uppercase tracking-widest text-on-surface hover:bg-surface-container-high transition-colors">Which has the best school?</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant/30 text-xs font-label uppercase tracking-widest text-on-surface hover:bg-surface-container-high transition-colors">Show me the neighborhood</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant/30 text-xs font-label uppercase tracking-widest text-on-surface hover:bg-surface-container-high transition-colors">Why is #2 recommended?</button>
+<button class="px-5 py-2 rounded-full border border-outline-variant/30 text-xs font-label uppercase tracking-widest text-on-surface hover:bg-surface-container-high transition-colors">Price per m² comparison</button>
+</div>
+<!-- AI Chat Area -->
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant/30 focus:border-primary focus:ring-0 py-6 px-10 text-lg font-headline italic text-on-surface placeholder:text-outline/50 rounded-t-xl transition-all" placeholder="Ask anything about these properties..." type="text"/>
+<button class="absolute right-6 top-1/2 -translate-y-1/2 text-[#B87333] hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-3xl">mic</span>
+</button>
+</div>
+<div class="flex justify-between items-center mt-3 px-2">
+<p class="text-[10px] font-label uppercase tracking-[0.2em] text-outline/60">Answers verified against source data · § 1299 ABGB</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] font-label text-outline/60 uppercase tracking-widest">AI Concierge Online</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#F4F3F1] dark:bg-stone-950 w-full py-12 px-8 border-t border-stone-200/20 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full max-w-7xl mx-auto gap-8">
+<div class="text-lg font-headline text-stone-900 dark:text-stone-100">VIENNA HERITAGE ADVISORY</div>
+<div class="flex gap-8">
+<a class="font-label uppercase tracking-[0.1em] text-[10px] text-stone-400 hover:text-[#894D0D] transition-all" href="#">Privacy Policy</a>
+<a class="font-label uppercase tracking-[0.1em] text-[10px] text-stone-400 hover:text-[#894D0D] transition-all" href="#">Terms of Service</a>
+<a class="font-label uppercase tracking-[0.1em] text-[10px] text-stone-400 hover:text-[#894D0D] transition-all" href="#">Accessibility</a>
+<a class="font-label uppercase tracking-[0.1em] text-[10px] text-stone-400 hover:text-[#894D0D] transition-all" href="#">Contact</a>
+</div>
+<p class="font-label uppercase tracking-[0.1em] text-[10px] text-stone-400">© 2024 VIENNA HERITAGE ADVISORY. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+</body></html>

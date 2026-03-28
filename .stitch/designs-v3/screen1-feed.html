@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Intelligence | Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #FAFAFA;
+            color: #1A1A1A;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        /* Design System Specifics */
+        .chip-red { background-color: #D94F4F; color: white; }
+        .chip-amber { background-color: #D4A843; color: white; }
+        .chip-green { background-color: #4CAF7D; color: white; }
+        .chip-gray { background-color: #6B7280; color: white; }
+        .accent-tiffany { color: #0ABAB5; }
+        .bg-tiffany { background-color: #0ABAB5; }
+        
+        /* Custom scrollbar for data-dense look */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #FAFAFA; }
+        ::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 2px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: "#0ABAB5",
+                            foreground: "#FFFFFF"
+                        },
+                        background: "#FAFAFA",
+                        surface: "#FFFFFF",
+                        text: "#1A1A1A",
+                        muted: "#6B7280",
+                        signal: {
+                            red: "#D94F4F",
+                            amber: "#D4A843",
+                            green: "#4CAF7D"
+                        }
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Space Grotesk"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="antialiased min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-white dark:bg-neutral-900 flex justify-between items-center w-full px-6 h-16 max-w-full sticky top-0 z-50 border-b border-neutral-200/50 dark:border-neutral-800/50 font-['Space_Grotesk'] tabular-nums">
+<div class="flex items-center gap-12">
+<span class="text-lg font-bold tracking-tight text-neutral-900 dark:text-white">Property Intelligence</span>
+<nav class="hidden md:flex items-center gap-8 h-16 pt-4">
+<a class="text-[#0ABAB5] border-b-2 border-[#0ABAB5] pb-4 font-semibold text-[14px]" href="#">Feed</a>
+<a class="text-neutral-500 dark:text-neutral-400 pb-4 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors text-[14px]" href="#">Curation</a>
+<a class="text-neutral-500 dark:text-neutral-400 pb-4 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors text-[14px]" href="#">Clients</a>
+<a class="text-neutral-500 dark:text-neutral-400 pb-4 hover:text-neutral-900 dark:hover:text-neutral-200 transition-colors text-[14px]" href="#">Email</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 material-symbols-outlined text-sm">search</span>
+<input class="bg-neutral-50 border-none text-xs w-64 pl-9 rounded-sm focus:ring-1 focus:ring-[#0ABAB5]" placeholder="Search portfolio..." type="text"/>
+</div>
+<button class="text-neutral-500 hover:text-neutral-900 p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-neutral-500 hover:text-neutral-900 p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-neutral-200 overflow-hidden ml-2 ring-1 ring-neutral-200">
+<img alt="Agent Avatar" class="w-full h-full object-cover" data-alt="professional real estate agent headshot with clean corporate background soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUKZR7JI4wXhZQ5IfBBYWLQDRijUSqKgLww9wHHDf_MHIRA12o3l9XViOkrwzff9Lq8-KVFvsFjGCnvie_FKTVukIj92gsds0nDaAMeHq0xJaWpS2icP1m6XX0oD9ke_AdDdeSTiin5AfXQ1u1bw3ST9m2uI2uFcEu7LOGa9TXX-BXtwLPIpJqIndzb75N__XK53HCfPyJPkSe9fL07L3lOyyGWvNXC71BGqRnC86UVjdmDiBWEjX8If_Zlb5HRbgXULzfwO7D8us"/>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6 py-8">
+<!-- Feed Section: Today -->
+<section class="mb-10">
+<header class="mb-4 flex items-center justify-between">
+<h2 class="text-[13px] font-medium text-[#6B7280] uppercase tracking-wider">Today — 3 actions needed</h2>
+<span class="text-[12px] text-neutral-400 tabular-nums">Updated 2m ago</span>
+</header>
+<div class="space-y-3">
+<!-- ITEM 1: New Inquiry -->
+<div class="bg-white p-5 rounded-[4px] shadow-sm flex flex-col md:flex-row justify-between items-start gap-4 transition-all hover:shadow-md border-l-0">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="chip-red text-[10px] font-bold px-2 py-0.5 rounded-[2px] tracking-wide">NEW INQUIRY</span>
+</div>
+<div>
+<h3 class="text-[18px] font-semibold text-[#1A1A1A]">Herr Weber · 3-Zi Bezirk 3 · €350,000</h3>
+<p class="text-[14px] text-[#6B7280] mt-1">AI drafted response · 3 matching properties found</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-4 min-w-[140px]">
+<span class="text-[13px] text-[#6B7280] tabular-nums">10:42</span>
+<div class="flex gap-2">
+<button class="bg-[#0ABAB5] text-white text-[13px] font-medium px-4 py-2 rounded-[4px] hover:opacity-90 transition-opacity">Respond</button>
+<button class="bg-transparent text-[#1A1A1A] text-[13px] font-medium px-4 py-2 rounded-[4px] hover:bg-neutral-50 transition-colors border border-neutral-100">Create Profile</button>
+</div>
+</div>
+</div>
+<!-- ITEM 2: Signal Alert -->
+<div class="bg-white p-5 rounded-[4px] shadow-sm flex flex-col md:flex-row justify-between items-start gap-4 transition-all hover:shadow-md border-l-2 border-[#0ABAB5]">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="chip-amber text-[10px] font-bold px-2 py-0.5 rounded-[2px] tracking-wide">SIGNAL ALERT</span>
+</div>
+<div>
+<h3 class="text-[18px] font-semibold text-[#1A1A1A]">Penthouse Praterstern · Müller Family</h3>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-[14px] text-[#6B7280]">Owner insolvency filed · Signal 3/5 · Highly motivated seller</p>
+<span class="bg-[#D94F4F] w-2 h-2 rounded-full"></span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-4 min-w-[140px]">
+<span class="text-[13px] text-[#6B7280] tabular-nums">Yesterday</span>
+<div class="flex gap-2">
+<button class="bg-[#0ABAB5] text-white text-[13px] font-medium px-4 py-2 rounded-[4px] hover:opacity-90 transition-opacity">Call Client</button>
+<button class="bg-transparent text-[#1A1A1A] text-[13px] font-medium px-4 py-2 rounded-[4px] hover:bg-neutral-50 transition-colors border border-neutral-100">View Property</button>
+</div>
+</div>
+</div>
+<!-- ITEM 3: Matches -->
+<div class="bg-white p-5 rounded-[4px] shadow-sm flex flex-col md:flex-row justify-between items-start gap-4 transition-all hover:shadow-md">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="chip-amber text-[10px] font-bold px-2 py-0.5 rounded-[2px] tracking-wide">12 NEW MATCHES</span>
+</div>
+<div>
+<h3 class="text-[18px] font-semibold text-[#1A1A1A]">Müller Family · Last scan 2h ago</h3>
+<p class="text-[14px] text-[#6B7280] mt-1">5 recommended · 2 with signals · 4 need review</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-4 min-w-[140px]">
+<span class="text-[13px] text-[#6B7280] tabular-nums">14:15</span>
+<div class="flex gap-2">
+<button class="bg-[#0ABAB5] text-white text-[13px] font-medium px-4 py-2 rounded-[4px] hover:opacity-90 transition-opacity">Curate</button>
+<button class="bg-transparent text-[#1A1A1A] text-[13px] font-medium px-4 py-2 rounded-[4px] hover:bg-neutral-50 transition-colors border border-neutral-100">Auto-Shortlist</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feed Section: Yesterday -->
+<section class="opacity-80">
+<header class="mb-4">
+<h2 class="text-[13px] font-medium text-[#6B7280] uppercase tracking-wider">Yesterday</h2>
+</header>
+<div class="space-y-3">
+<!-- ITEM 4: Sent -->
+<div class="bg-white p-5 rounded-[4px] shadow-sm flex flex-col md:flex-row justify-between items-start gap-4 border-l-0">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="chip-green text-[10px] font-bold px-2 py-0.5 rounded-[2px] tracking-wide">SENT</span>
+</div>
+<div>
+<h3 class="text-[16px] font-semibold text-[#1A1A1A]">Comparison page · Müller Family · 3 properties</h3>
+<p class="text-[14px] text-[#6B7280] mt-1">Opened 2x · Client spent 4min on Landstraße listing</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[13px] text-[#6B7280] tabular-nums">16:40</span>
+</div>
+</div>
+<!-- ITEM 5: Confirmed -->
+<div class="bg-white p-5 rounded-[4px] shadow-sm flex flex-col md:flex-row justify-between items-start gap-4">
+<div class="flex-1 space-y-2">
+<div class="flex items-center gap-3">
+<span class="chip-green text-[10px] font-bold px-2 py-0.5 rounded-[2px] tracking-wide">CONFIRMED</span>
+</div>
+<div>
+<h3 class="text-[16px] font-semibold text-[#1A1A1A]">Herr Schmidt · Viewing Fri 14:00 · Josefstädter Str. 71</h3>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[13px] text-[#6B7280] tabular-nums">11:20</span>
+</div>
+</div>
+<!-- ITEM 6: Low Priority Collapsed -->
+<div class="bg-neutral-100/50 p-3 rounded-[4px] flex justify-between items-center transition-colors hover:bg-neutral-100">
+<div class="flex items-center gap-4">
+<span class="chip-gray text-[10px] font-bold px-2 py-0.5 rounded-[2px] tracking-wide">LOW</span>
+<h3 class="text-[14px] font-semibold text-[#1A1A1A]">8 low-priority matches across 3 clients</h3>
+</div>
+<button class="bg-transparent text-[#6B7280] text-[12px] font-medium px-3 py-1 hover:text-[#1A1A1A] transition-colors">Review Later</button>
+</div>
+</div>
+</section>
+<!-- Market Overview (Visual Density Element) -->
+<section class="mt-12 pt-8 border-t border-neutral-200/50">
+<h2 class="text-[13px] font-medium text-[#6B7280] uppercase tracking-wider mb-6">Market Intel — Vienna Central</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white p-4 rounded-[4px] shadow-sm">
+<span class="text-[11px] text-[#6B7280] block mb-1">Avg. Price / m²</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold tabular-nums">€8,420</span>
+<span class="text-[11px] text-[#4CAF7D] font-medium">+1.2%</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-[4px] shadow-sm">
+<span class="text-[11px] text-[#6B7280] block mb-1">New Listings (24h)</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold tabular-nums">42</span>
+<span class="text-[11px] text-[#D94F4F] font-medium">-4%</span>
+</div>
+</div>
+<div class="bg-white p-4 rounded-[4px] shadow-sm">
+<span class="text-[11px] text-[#6B7280] block mb-1">Agent Sentiment</span>
+<div class="flex items-baseline gap-2">
+<span class="text-xl font-bold tracking-tight">STABLE</span>
+<div class="flex gap-0.5 ml-1">
+<div class="w-1.5 h-3 bg-[#4CAF7D]"></div>
+<div class="w-1.5 h-3 bg-[#4CAF7D]"></div>
+<div class="w-1.5 h-3 bg-neutral-200"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB: Microphone -->
+<button class="fixed bottom-8 right-8 w-12 h-12 bg-[#0ABAB5] text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform active:scale-95 z-50">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<!-- Side Map Preview (Architectural depth) -->
+<div class="hidden xl:block fixed right-6 top-24 w-72 h-[calc(100vh-120px)] rounded-[4px] overflow-hidden shadow-sm bg-neutral-200">
+<div class="absolute inset-0 bg-neutral-300">
+<img alt="Market Map" class="w-full h-full object-cover opacity-80 mix-blend-multiply" data-alt="minimalist clean map layout of vienna district with architectural lines and soft gray tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC59erVlFruA9HXVOqf2I6IMS5xhQ8oqCzTQpzDr6WEsvaq3AbA_vXmE_kTEjlG7qJEgiAMcqw3vmgzed9zs2daY9r8WzVDunWNdfxC7VUEy8J-PWw0O7AuUdfvOnATWfKXkpDWRKkcRDff6U5kowTWRJbDT6selkHdo3WWSfpkz0dld3XjHStCfWmAPJFs6JngVJzGGgx4EUvL93Lk8B5MYFccdlYLBzewBoKyEu1pNRq9FLVjIZGvmC2yeLt__CqkszeXHTPrvBI"/>
+</div>
+<div class="absolute top-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-[2px]">
+<span class="text-[10px] font-bold text-[#6B7280] uppercase block mb-2">Live Activity Focus</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#D94F4F] animate-pulse"></div>
+<span class="text-[12px] font-medium">District 3 Hotspot</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 space-y-2">
+<div class="bg-white/95 p-2 rounded-[2px] shadow-sm flex items-center justify-between">
+<span class="text-[11px]">3-Zi Apartments</span>
+<span class="text-[11px] font-bold text-[#0ABAB5]">Active</span>
+</div>
+<div class="bg-white/95 p-2 rounded-[2px] shadow-sm flex items-center justify-between">
+<span class="text-[11px]">Penthouse Listings</span>
+<span class="text-[11px] font-bold text-[#D4A843]">Low Vol</span>
+</div>
+</div>
+</div>
+</body></html>

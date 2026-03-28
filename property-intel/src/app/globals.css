@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-canvas: #FAF9F6;
+  --color-card: #FFFFFF;
+  --color-surface: #F4F3F1;
+  --color-text: #1A1C1A;
+  --color-muted: #555B64;
+  --color-faint: #7D838C;
+  --color-copper: #B87333;
+  --color-copper-dark: #894D0D;
+  --color-signal-green: #4CAF7D;
+  --color-signal-amber: #D4A843;
+  --color-signal-red: #D94F4F;
+  --color-ghost-border: #E5E5E5;
+  --radius-sm: 2px;
+  --radius-default: 4px;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+  font-size: 18px;
+}

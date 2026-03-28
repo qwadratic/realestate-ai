@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Property Intelligence — Monitoring Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ABAB5",
+                        background: "#FAFAFA",
+                        surface: "#FFFFFF",
+                        text: "#1A1A1A",
+                        muted: "#6B7280",
+                        divider: "rgba(229, 229, 229, 0.5)",
+                        success: "#4CAF7D",
+                        warning: "#D4A843",
+                        error: "#D94F4F"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Space Grotesk"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "4px",
+                        "lg": "4px",
+                        "xl": "4px",
+                        "full": "4px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #FAFAFA;
+            color: #1A1A1A;
+            -webkit-font-smoothing: antialiased;
+        }
+        .tabular-nums {
+            font-variant-numeric: tabular-nums;
+        }
+        /* Custom range slider styling for Tiffany accent */
+        input[type='range']::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #0ABAB5;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background text-text">
+<!-- TopNavBar (Shared Component Logic) -->
+<header class="bg-[#FAFAFA] dark:bg-slate-900 border-b border-[#E5E5E5]/50 flex justify-between items-center w-full px-6 pt-4 max-w-full sticky top-0 z-50">
+<div class="flex items-center gap-12">
+<span class="text-lg font-bold text-[#1A1A1A] dark:text-white tracking-tight">Property Intelligence</span>
+<nav class="flex gap-8">
+<a class="text-[#6B7280] pb-4 px-1 hover:text-[#1A1A1A] transition-colors" href="#">Feed</a>
+<a class="text-[#6B7280] pb-4 px-1 hover:text-[#1A1A1A] transition-colors" href="#">Curation</a>
+<a class="text-[#0ABAB5] border-b-2 border-[#0ABAB5] pb-4 px-1 font-semibold" href="#">Clients</a>
+<a class="text-[#6B7280] pb-4 px-1 hover:text-[#1A1A1A] transition-colors" href="#">Email</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 pb-4">
+<button class="text-[#6B7280] hover:text-[#0ABAB5] transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#6B7280] hover:text-[#0ABAB5] transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 bg-slate-200 rounded overflow-hidden">
+<img alt="Agent Profile" class="w-full h-full object-cover" data-alt="professional headshot of a real estate agent in a clean studio setting with neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTXA0Ga3Oi6MWc0RGYqMhUdgwKHT5MaXL9riKKZ_xLZahxRy-OcC5WefXUKcBLxb0fnA4EKmkSTsnnNEcDquqv-vb1_CsPepRj3izd4tYWIr70xxt4RnfUZfo7JEgRWSGX6x9_RtSEJx_wv2jbiLREDq7_d_jqewAn45NKTNDyvf9lA0LMgr6dLcAni3ZSIC_mbwtZSwi_gD6HGG57e_kxcmnPeH9NZG-vgvi0PsUtHUjeCX9M50Mmnq74_yBl_XQSmTTeWU4Ikrc"/>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-10">
+<!-- Title Section -->
+<div class="mb-10">
+<h1 class="text-[28px] font-semibold leading-tight mb-1">New Monitoring Profile</h1>
+<p class="text-sm text-muted">Continuous monitoring across Austrian portals</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-10 gap-8">
+<!-- LEFT COLUMN: Client Profile (60%) -->
+<section class="md:col-span-6 bg-surface p-8 shadow-sm rounded">
+<h2 class="text-[18px] font-medium mb-8">Client Profile</h2>
+<div class="space-y-8">
+<!-- Name -->
+<div>
+<label class="block text-[13px] font-medium text-muted mb-2">Name</label>
+<p class="text-[16px] font-normal">Müller Family</p>
+</div>
+<!-- Budget Range -->
+<div>
+<div class="flex justify-between items-center mb-4">
+<label class="block text-[13px] font-medium text-muted">Budget Range</label>
+<span class="text-[14px] font-medium tabular-nums">€300,000 – €450,000</span>
+</div>
+<div class="relative w-full h-1 bg-[#F0F0F0] rounded">
+<div class="absolute left-[20%] right-[30%] h-full bg-primary"></div>
+<div class="absolute left-[20%] top-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded border-2 border-white shadow-sm"></div>
+<div class="absolute right-[30%] top-1/2 -translate-y-1/2 w-4 h-4 bg-primary rounded border-2 border-white shadow-sm"></div>
+</div>
+</div>
+<!-- Districts -->
+<div>
+<label class="block text-[13px] font-medium text-muted mb-3">Districts (Vienna)</label>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary text-white text-[12px] font-medium tabular-nums rounded">2</span>
+<span class="px-3 py-1 bg-primary text-white text-[12px] font-medium tabular-nums rounded">3</span>
+<span class="px-3 py-1 bg-[#F5F5F5] text-muted text-[12px] font-medium tabular-nums rounded">4</span>
+<span class="px-3 py-1 bg-primary text-white text-[12px] font-medium tabular-nums rounded">5</span>
+<span class="px-3 py-1 bg-[#F5F5F5] text-muted text-[12px] font-medium tabular-nums rounded">6</span>
+<span class="px-3 py-1 bg-primary text-white text-[12px] font-medium tabular-nums rounded">7</span>
+<span class="px-3 py-1 bg-primary text-white text-[12px] font-medium tabular-nums rounded">8</span>
+<span class="px-3 py-1 bg-primary text-white text-[12px] font-medium tabular-nums rounded">9</span>
+<span class="px-3 py-1 bg-[#F5F5F5] text-muted text-[12px] font-medium tabular-nums rounded">10</span>
+</div>
+</div>
+<!-- Type -->
+<div class="grid grid-cols-3 gap-4">
+<label class="col-span-3 text-[13px] font-medium text-muted mb-1">Property Type</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-4 h-4 text-primary border-muted focus:ring-primary rounded-full" name="type" type="radio"/>
+<span class="text-[14px]">Apartment</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 text-primary border-muted focus:ring-primary rounded-full" name="type" type="radio"/>
+<span class="text-[14px]">House</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-4 h-4 text-primary border-muted focus:ring-primary rounded-full" name="type" type="radio"/>
+<span class="text-[14px]">Penthouse</span>
+</label>
+</div>
+<!-- Rooms Stepper -->
+<div>
+<label class="block text-[13px] font-medium text-muted mb-2">Min. Rooms</label>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center bg-[#F5F5F5] text-text rounded hover:bg-divider">
+<span class="material-symbols-outlined text-[18px]" data-icon="remove">remove</span>
+</button>
+<span class="text-[16px] font-medium tabular-nums w-8 text-center">3+</span>
+<button class="w-8 h-8 flex items-center justify-center bg-[#F5F5F5] text-text rounded hover:bg-divider">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Details -->
+<div>
+<label class="block text-[13px] font-medium text-muted mb-2">Additional Details</label>
+<div class="bg-background p-4 rounded text-[14px] leading-relaxed text-text">
+                            Couple with 2 children (ages 4, 7). Both work in Bezirk 1. Need elevator.
+                        </div>
+</div>
+<!-- Priority Ranking -->
+<div>
+<label class="block text-[13px] font-medium text-muted mb-4">Priority Ranking</label>
+<div class="space-y-2">
+<div class="flex items-center gap-4 p-3 bg-background rounded group cursor-grab active:cursor-grabbing">
+<span class="text-[12px] font-medium text-muted tabular-nums">01</span>
+<span class="flex-grow text-[14px]">Near school</span>
+<span class="material-symbols-outlined text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-background rounded group cursor-grab">
+<span class="text-[12px] font-medium text-muted tabular-nums">02</span>
+<span class="flex-grow text-[14px]">U-Bahn &lt; 300m</span>
+<span class="material-symbols-outlined text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-background rounded group cursor-grab">
+<span class="text-[12px] font-medium text-muted tabular-nums">03</span>
+<span class="flex-grow text-[14px]">Elevator</span>
+<span class="material-symbols-outlined text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-background rounded group cursor-grab">
+<span class="text-[12px] font-medium text-muted tabular-nums">04</span>
+<span class="flex-grow text-[14px]">South-facing</span>
+<span class="material-symbols-outlined text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-background rounded group cursor-grab">
+<span class="text-[12px] font-medium text-muted tabular-nums">05</span>
+<span class="flex-grow text-[14px]">Quiet street</span>
+<span class="material-symbols-outlined text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-background rounded group cursor-grab">
+<span class="text-[12px] font-medium text-muted tabular-nums">06</span>
+<span class="flex-grow text-[14px]">Balcony</span>
+<span class="material-symbols-outlined text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: Monitoring Settings (40%) -->
+<section class="md:col-span-4 space-y-8">
+<div class="bg-surface p-8 shadow-sm rounded">
+<h2 class="text-[18px] font-medium mb-8">Monitoring Settings</h2>
+<!-- Portal Coverage -->
+<div class="mb-10">
+<label class="block text-[13px] font-medium text-muted mb-4 uppercase tracking-wider">Portal Coverage</label>
+<div class="space-y-4">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[14px]">willhaben</span>
+<div class="w-5 h-5 border-2 border-primary bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="check">check</span>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[14px]">ImmobilienScout24</span>
+<div class="w-5 h-5 border-2 border-primary bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="check">check</span>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[14px]">ImmoWelt</span>
+<div class="w-5 h-5 border-2 border-primary bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="check">check</span>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-[14px]">dieBOE insolvency</span>
+<div class="w-5 h-5 border-2 border-primary bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="check">check</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Intelligence -->
+<div class="mb-10">
+<label class="block text-[13px] font-medium text-muted mb-4 uppercase tracking-wider">Intelligence Engines</label>
+<div class="space-y-5">
+<div class="flex items-center justify-between">
+<span class="text-[14px]">Signal Intelligence</span>
+<div class="w-10 h-5 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[14px]">Photo Analysis</span>
+<div class="w-10 h-5 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[14px]">Map Enrichment</span>
+<div class="w-10 h-5 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[14px]">Output Validation</span>
+<div class="w-10 h-5 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dropdowns -->
+<div class="space-y-6">
+<div>
+<label class="block text-[13px] font-medium text-muted mb-2">Notifications</label>
+<div class="relative">
+<button class="w-full text-left px-4 py-3 bg-background text-[14px] flex justify-between items-center rounded">
+                                    Notify when 3+ matches found
+                                    <span class="material-symbols-outlined text-muted" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block text-[13px] font-medium text-muted mb-2">Frequency</label>
+<div class="relative">
+<button class="w-full text-left px-4 py-3 bg-background text-[14px] flex justify-between items-center rounded">
+                                    Every 6 hours
+                                    <span class="material-symbols-outlined text-muted" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Status Summary (Visual Polish for Intelligence Tool) -->
+<div class="bg-[#F5F5F5] p-6 rounded">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-2 h-2 bg-success rounded-full"></span>
+<span class="text-[12px] font-semibold text-text uppercase tracking-widest">Profile Readiness High</span>
+</div>
+<p class="text-[13px] text-muted leading-relaxed">
+                        Current parameters cover <span class="tabular-nums font-medium text-text">92%</span> of the Austrian market volume for the selected districts.
+                    </p>
+</div>
+</section>
+</div>
+<!-- BOTTOM ACTIONS -->
+<div class="mt-12 pt-8 flex items-center gap-4">
+<button class="bg-primary text-white px-8 py-3 text-[14px] font-semibold hover:opacity-90 transition-opacity rounded">
+                Start Monitoring
+            </button>
+<button class="text-text px-8 py-3 text-[14px] font-medium hover:bg-surface transition-colors rounded">
+                Save as Draft
+            </button>
+</div>
+</main>
+<!-- Footer Identity -->
+<footer class="mt-20 border-t border-divider py-10">
+<div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+<span class="text-[12px] text-muted font-medium uppercase tracking-widest">© 2024 Property Intelligence GmbH</span>
+<div class="flex gap-6">
+<a class="text-[12px] text-muted hover:text-text transition-colors" href="#">Terms of Service</a>
+<a class="text-[12px] text-muted hover:text-text transition-colors" href="#">Intelligence API</a>
+<a class="text-[12px] text-muted hover:text-text transition-colors" href="#">Agent Support</a>
+</div>
+</div>
+</footer>
+</body></html>

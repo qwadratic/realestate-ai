@@ -1,0 +1,109 @@
+[
+  {
+    "id": "wh-001",
+    "source": "willhaben",
+    "url": "https://www.willhaben.at/iad/immobilien/d/mietwohnungen/wien/wien-1030-landstrasse/altbau-charme-in-landstrasse-123456789",
+    "title": "Altbau-Charme in Landstraße",
+    "price": 345000,
+    "currency": "EUR",
+    "sqm": 78,
+    "rooms": 3,
+    "address": "Rennweg 42, 1030 Wien",
+    "district": "Landstraße",
+    "city": "Wien",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800"
+    ],
+    "description_raw": "Wunderschöne 3-Zimmer Altbauwohnung im Herzen des 3. Bezirks. Südseitig gelegen mit Blick auf einen ruhigen Innenhof. Die Wohnung befindet sich im 2. Obergeschoss eines gepflegten Gründerzeithauses mit Lift. Parkettböden, hohe Decken (3,20m), großzügiger Balkon nach Süden. Ruhige Lage, trotzdem nur 200m zur U3 Kardinal-Nagl-Platz. Volksschule in unmittelbarer Nähe (400m). Billa und Hofer in Gehweite. Ideal für Familien. Sofort bezugsfertig."
+  },
+  {
+    "id": "is-002",
+    "source": "immoscout",
+    "url": "https://www.immobilienscout24.at/expose/penthouse-am-praterstern-234567890",
+    "title": "Penthouse am Praterstern",
+    "price": 789000,
+    "currency": "EUR",
+    "sqm": 85,
+    "rooms": 3,
+    "address": "Taborstraße 18, 1020 Wien",
+    "district": "Leopoldstadt",
+    "city": "Wien",
+    "images": [
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800"
+    ],
+    "description_raw": "Exklusives Penthouse mit Dachterrasse im Neubau aus 2021. 5. OG mit Panoramablick über den Prater. Hochwertige Ausstattung: Fußbodenheizung, Eichenparkett, bodentiefe Fenster. Garagenplatz im Haus inkludiert. Hofseite, dadurch absolut ruhig trotz zentraler Lage. 150m zur U2 Taborstraße. Perfekt für Paare oder als Investition. Betriebskosten EUR 280/Monat. Eigentümer ist eine GmbH die mehrere Objekte in Wien besitzt. Energieausweis: HWB 25 kWh/m²a."
+  },
+  {
+    "id": "iw-003",
+    "source": "immowelt",
+    "url": "https://www.immowelt.at/expose/generalsaniert-in-josefstadt-345678901",
+    "title": "Generalsaniert in Josefstadt",
+    "price": 375000,
+    "currency": "EUR",
+    "sqm": 85,
+    "rooms": 3,
+    "address": "Josefstädter Straße 71, 1080 Wien",
+    "district": "Josefstadt",
+    "city": "Wien",
+    "images": [
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800"
+    ],
+    "description_raw": "Generalsanierte Altbauwohnung in der beliebten Josefstadt. 3 Zimmer, westseitig mit Abendsonne. Die Wohnung wurde 2024 komplett saniert: neue Elektrik, neue Bäder, Fußbodenheizung. Fläche laut Grundbuch: 72 m². Einbauküche inklusive. Kein Lift vorhanden (2. OG). Nahe zum Rathaus und zur U2 Rathaus (500m). Theater in der Josefstadt um die Ecke. Ruhige Wohnstraße. Besichtigung nach Vereinbarung."
+  },
+  {
+    "id": "wh-004",
+    "source": "willhaben",
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnungen/wien/wien-1050-margareten/erstbezug-margareten-456789012",
+    "title": "Erstbezug Margareten — Naschmarkt-Nähe",
+    "price": 425000,
+    "currency": "EUR",
+    "sqm": 72,
+    "rooms": 3,
+    "address": "Schönbrunner Straße 47, 1050 Wien",
+    "district": "Margareten",
+    "city": "Wien",
+    "images": [
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?w=800"
+    ],
+    "description_raw": "Erstbezug nach Generalsanierung! Moderne 3-Zimmer-Wohnung in unmittelbarer Nähe zum Naschmarkt. 3. OG mit Lift. Südost-Ausrichtung, durchgehender Balkon. Smart-Home-Ausstattung (KNX), Klimaanlage, dreifach verglaste Fenster. U4 Kettenbrückengasse in 3 Gehminuten. Perfekte Anbindung. Geeignet für Familien und Anleger gleichermaßen. Hauseigene Fahrradabstellplätze. BK EUR 320/Monat inkl. Rücklage."
+  },
+  {
+    "id": "is-005",
+    "source": "immoscout",
+    "url": "https://www.immobilienscout24.at/expose/gruenderzeit-favoriten-567890123",
+    "title": "Gründerzeit-Juwel in Favoriten",
+    "price": 265000,
+    "currency": "EUR",
+    "sqm": 68,
+    "rooms": 2,
+    "address": "Quellenstraße 132, 1100 Wien",
+    "district": "Favoriten",
+    "city": "Wien",
+    "images": [
+      "https://images.unsplash.com/photo-1600585153490-76fb20a32601?w=800"
+    ],
+    "description_raw": "Charmante 2-Zimmer Gründerzeitwohnung im aufstrebenden 10. Bezirk. Hohe Decken, Flügeltüren, originale Stuckelemente. Sanierungsbedürftig — ideal für Handwerker oder Investoren mit Vision. 1. OG ohne Lift. Gasheizung (Kombitherme). Gute Infrastruktur: U1 Reumannplatz 400m, Quellenstraße Einkaufsstraße direkt vor der Tür. Viktor-Adler-Markt 5 Minuten. Sofort verfügbar. Keine Maklergebühr (Privatverkauf). Der Eigentümer verkauft drei weitere Wohnungen im selben Haus."
+  },
+  {
+    "id": "wh-006",
+    "source": "willhaben",
+    "url": "https://www.willhaben.at/iad/immobilien/d/eigentumswohnungen/wien/wien-1070-neubau/loftartig-neubau-678901234",
+    "title": "Loftartige Wohnung im 7. Bezirk",
+    "price": 520000,
+    "currency": "EUR",
+    "sqm": 95,
+    "rooms": 3,
+    "address": "Zieglergasse 29, 1070 Wien",
+    "district": "Neubau",
+    "city": "Wien",
+    "images": [
+      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800"
+    ],
+    "description_raw": "Außergewöhnliche loftartige Wohnung in Toplage des 7. Bezirks. Offener Grundriss, Deckenhöhe 4,50m im Wohnbereich mit Galerie. Industriecharme trifft modernes Design. Sichtbeton, bodentiefe Fenster, Designerküche. Nordseitig zur Straße, Schlafzimmer hofseitig und ruhig. U3 Zieglergasse direkt vor der Tür. Museumsquartier 5 Min zu Fuß. Keine Garage verfügbar, Kurzparkzone. BK EUR 450/Monat. Provisionsfrei vom Eigentümer."
+  }
+]

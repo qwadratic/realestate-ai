@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vienna Heritage | Email Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "tertiary": "#006576",
+                "primary-fixed": "#ffdcc2",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#e3e2e0",
+                "on-secondary-fixed": "#2d1602",
+                "on-tertiary-fixed-variant": "#004e5b",
+                "on-primary-fixed": "#2e1500",
+                "surface-container-low": "#f4f3f1",
+                "outline-variant": "#d8c3b4",
+                "surface-tint": "#8c4f10",
+                "primary": "#894d0d",
+                "on-primary-fixed-variant": "#6d3a00",
+                "inverse-surface": "#2f312f",
+                "on-secondary-container": "#79583c",
+                "surface": "#faf9f6",
+                "secondary-container": "#ffd1ae",
+                "on-primary-container": "#fffbff",
+                "primary-container": "#a76526",
+                "secondary-fixed-dim": "#eabe9c",
+                "tertiary-fixed-dim": "#74d4ea",
+                "tertiary-container": "#008094",
+                "surface-container-high": "#e9e8e5",
+                "on-tertiary-container": "#f9fdff",
+                "inverse-on-surface": "#f2f1ee",
+                "secondary-fixed": "#ffdcc2",
+                "on-secondary-fixed-variant": "#5e4026",
+                "tertiary-fixed": "#a8edff",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "on-surface-variant": "#524439",
+                "on-background": "#1a1c1a",
+                "secondary": "#79573c",
+                "surface-bright": "#faf9f6",
+                "on-tertiary": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-dim": "#dbdad7",
+                "surface-container-lowest": "#ffffff",
+                "on-surface": "#1a1c1a",
+                "on-error": "#ffffff",
+                "surface-variant": "#e3e2e0",
+                "surface-container": "#efeeeb",
+                "outline": "#857467",
+                "on-tertiary-fixed": "#001f26",
+                "inverse-primary": "#ffb77b",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#ffb77b",
+                "background": "#faf9f6"
+              },
+              fontFamily: {
+                "headline": ["Newsreader", "serif"],
+                "body": ["Manrope", "sans-serif"],
+                "label": ["Space Grotesk", "monospace"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E9E8E5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 max-w-full bg-[#FAF9F6]/80 dark:bg-stone-900/80 backdrop-blur-xl">
+<div class="flex items-center gap-12">
+<span class="font-['Newsreader'] text-2xl italic font-bold text-[#1A1C1A] dark:text-[#FAF9F6]">Vienna Heritage</span>
+<div class="hidden md:flex items-center gap-8 h-full">
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-['Manrope'] hover:text-[#894D0D] transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-['Manrope'] hover:text-[#894D0D] transition-colors duration-200" href="#">Monitoring</a>
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-['Manrope'] hover:text-[#894D0D] transition-colors duration-200" href="#">Curation</a>
+<a class="text-[#1A1C1A]/60 dark:text-[#FAF9F6]/60 font-['Manrope'] hover:text-[#894D0D] transition-colors duration-200" href="#">Clients</a>
+<a class="text-[#894D0D] dark:text-[#B87333] border-b-2 border-[#894D0D] pb-1 font-['Newsreader'] text-lg font-semibold tracking-tight" href="#">Email</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden ml-2 bg-surface-container-highest">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="portrait of a professional man in a tailored suit with a confident expression in a sunlit interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJJ47fCz4TwV7sK5cQBr5q_sglCYJC8nDxoAoju52Hz7jGlzLh2iRJgSoBbL8e4qsrP9Zi18Jz8676S_P0z0o6S_RNT27EcSNU61RPq77ZmKQeEIkbVrvYhYY5V-0X9XR9wusbFUou3BLzy4tIgTSmnwUQMdnwV4PQ3IYM4qhF6-vLZ1rGVIErpGgx8cMrIkJDdZH5oa59PCv36vUAIGZRdrHK3RylOZnLprwt_0QKpbBK8nLFIuxSEl2Z_WhBhT4EqvmWNbQ9LKQ1"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-20 flex flex-col pt-8 h-screen w-64 bg-[#FAF9F6] dark:bg-stone-950">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-sm leading-tight">Intelligence Filter</h3>
+<p class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70">AI Priority Sorting</p>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3 rounded font-label text-[10px] uppercase tracking-widest hover:brightness-110 transition-all active:scale-95 duration-100 shadow-sm">
+                Compose Report
+            </button>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="group flex items-center px-6 py-4 text-[#894D0D] dark:text-[#B87333] bg-white dark:bg-stone-800 rounded-l-none rounded-r-full shadow-sm" href="#">
+<span class="material-symbols-outlined mr-4" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label uppercase tracking-widest text-[10px]">Hot Lead</span>
+</a>
+<a class="group flex items-center px-6 py-4 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-4 text-on-surface-variant" data-icon="history_toggle_off">history_toggle_off</span>
+<span class="font-label uppercase tracking-widest text-[10px]">Follow-up</span>
+</a>
+<a class="group flex items-center px-6 py-4 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-4 text-on-surface-variant" data-icon="contact_support">contact_support</span>
+<span class="font-label uppercase tracking-widest text-[10px]">Info Request</span>
+</a>
+<a class="group flex items-center px-6 py-4 text-[#1A1C1A]/70 dark:text-[#FAF9F6]/70 hover:bg-[#E9E8E5] dark:hover:bg-stone-800 hover:translate-x-1 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mr-4 text-on-surface-variant" data-icon="inventory_2">inventory_2</span>
+<span class="font-label uppercase tracking-widest text-[10px]">Archived</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 min-h-screen px-12 pb-12">
+<!-- Header Section -->
+<header class="mb-10 flex justify-between items-end">
+<div>
+<h1 class="font-headline text-5xl font-bold text-on-surface mb-2 tracking-tight">Inbox</h1>
+<p class="font-label text-sm text-on-surface-variant/80 tracking-wide">
+                    14 unread · 3 high priority · Last synced: 2 min ago
+                </p>
+</div>
+<div class="flex gap-2 p-1 bg-surface-container-low rounded">
+<button class="px-5 py-2 font-label text-[11px] uppercase tracking-widest bg-surface-container-lowest text-primary shadow-sm rounded">All (47)</button>
+<button class="px-5 py-2 font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors rounded">High Priority (3)</button>
+<button class="px-5 py-2 font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors rounded">Follow-up (8)</button>
+<button class="px-5 py-2 font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors rounded">Info Request (12)</button>
+<button class="px-5 py-2 font-label text-[11px] uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors rounded">Low Priority (24)</button>
+</div>
+</header>
+<!-- Email Grid Layout (Editorial / Asymmetric approach) -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Main Email List -->
+<div class="col-span-8">
+<div class="space-y-3">
+<!-- Row 1: Hot Lead (Unread) -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 border-l-4 border-error/40 hover:surface-bright transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-error rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-error/10 text-error font-label text-[10px] uppercase tracking-wider rounded">Hot Lead</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-bold text-on-surface truncate">Herr Weber</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">10:42</span>
+</div>
+<p class="font-body font-semibold text-on-surface text-sm mb-1 truncate">Anfrage: 3-Zimmer Wohnung Bezirk 3</p>
+<p class="font-body text-on-surface-variant text-sm truncate opacity-70">Sehr geehrte Damen und Herren, ich suche eine...</p>
+</div>
+<div class="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-1">archive</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary p-1">star</button>
+</div>
+</div>
+<!-- Row 2: Hot Lead (Unread) -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 border-l-4 border-error/40 hover:surface-bright transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-error rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-error/10 text-error font-label text-[10px] uppercase tracking-wider rounded">Hot Lead</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-bold text-on-surface truncate">Frau Schneider</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">09:15</span>
+</div>
+<p class="font-body font-semibold text-on-surface text-sm mb-1 truncate">Dringend: Besichtigungstermin morgen?</p>
+<p class="font-body text-on-surface-variant text-sm truncate opacity-70">Können wir den Termin für die Wohnung in der...</p>
+</div>
+</div>
+<!-- Row 3: Follow-up -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 hover:bg-surface-container-low transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-secondary rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase tracking-wider rounded">Follow-up</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-medium text-on-surface/80 truncate">Grundwert Immobilien</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">Yesterday</span>
+</div>
+<p class="font-body text-on-surface/80 text-sm mb-1 truncate">Re: Kooperationsanfrage MLS</p>
+<p class="font-body text-on-surface-variant text-xs truncate opacity-60">Vielen Dank für Ihr Interesse an unserem...</p>
+</div>
+</div>
+<!-- Row 4: Info Request -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 hover:bg-surface-container-low transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-primary-fixed text-on-primary-fixed font-label text-[10px] uppercase tracking-wider rounded">Info Request</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-medium text-on-surface/80 truncate">Notar Dr. Berger</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">Yesterday</span>
+</div>
+<p class="font-body text-on-surface/80 text-sm mb-1 truncate">Grundbuchauszug Taborstraße 18</p>
+<p class="font-body text-on-surface-variant text-xs truncate opacity-60">Anbei der angeforderte Grundbuchauszug...</p>
+</div>
+</div>
+<!-- Row 5: Auto-replied -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 hover:bg-surface-container-low transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-tertiary-container rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-tertiary/10 text-tertiary font-label text-[10px] uppercase tracking-wider rounded">Auto-replied</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-medium text-on-surface/80 truncate">willhaben Notification</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">Mar 26</span>
+</div>
+<p class="font-body text-on-surface/80 text-sm mb-1 truncate">Neue Immobilien in Ihren Suchkriterien</p>
+<p class="font-body text-on-surface-variant text-xs truncate opacity-60">3 neue Objekte in Bezirk 3, 5, 8...</p>
+</div>
+</div>
+<!-- Row 6: Low Priority -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 hover:bg-surface-container-low transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-surface-container-highest rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-label text-[10px] uppercase tracking-wider rounded">Low Priority</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-medium text-on-surface/80 truncate">Newsletter ImmobilienScout</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">Mar 25</span>
+</div>
+<p class="font-body text-on-surface/80 text-sm mb-1 truncate">Marktbericht Wien Q1 2026</p>
+<p class="font-body text-on-surface-variant text-xs truncate opacity-60">Der Wiener Immobilienmarkt zeigt...</p>
+</div>
+</div>
+<!-- Row 7: Follow-up -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 hover:bg-surface-container-low transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-secondary rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container font-label text-[10px] uppercase tracking-wider rounded">Follow-up</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-medium text-on-surface/80 truncate">Herr Müller</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">Mar 25</span>
+</div>
+<p class="font-body text-on-surface/80 text-sm mb-1 truncate">Re: Besichtigung Rennweg 42</p>
+<p class="font-body text-on-surface-variant text-xs truncate opacity-60">Die Besichtigung war sehr gut, wir würden...</p>
+</div>
+</div>
+<!-- Row 8: System -->
+<div class="group bg-surface-container-lowest p-6 rounded-lg flex items-center gap-6 hover:bg-surface-container-low transition-all duration-300">
+<div class="flex-shrink-0 flex items-center">
+<span class="w-3 h-3 bg-surface-container-highest rounded-full"></span>
+</div>
+<div class="min-w-[100px]">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant font-label text-[10px] uppercase tracking-wider rounded">Low</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h4 class="font-body font-medium text-on-surface/80 truncate">System</h4>
+<span class="font-label text-[11px] text-on-surface-variant/70">Mar 25</span>
+</div>
+<p class="font-body text-on-surface/80 text-sm mb-1 truncate">Monitoring Report: 12 neue Treffer</p>
+<p class="font-body text-on-surface-variant text-xs truncate opacity-60">Für Profil 'Müller Family' wurden 12...</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Detail / Insights Panel -->
+<div class="col-span-4 space-y-8">
+<!-- AI Insight Card -->
+<section class="bg-primary p-8 rounded shadow-xl text-on-primary">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] mb-4 block text-primary-fixed">Intelligence Hub</span>
+<h3 class="font-headline text-3xl mb-4 leading-tight">Priority Detected in Bezirk 3</h3>
+<p class="font-body text-sm text-primary-fixed/90 leading-relaxed mb-6">
+                        AI has flagged two "Hot Leads" looking for 3-room apartments in Landstraße. Market competition is high; immediate follow-up is recommended to secure viewings.
+                    </p>
+<div class="flex gap-4">
+<button class="bg-white text-primary px-4 py-2 rounded font-label text-[10px] uppercase tracking-widest font-bold">Action All</button>
+<button class="border border-white/30 px-4 py-2 rounded font-label text-[10px] uppercase tracking-widest">View Analysis</button>
+</div>
+</section>
+<!-- Activity Feed -->
+<section class="bg-surface-container-low p-8 rounded">
+<h4 class="font-headline text-xl mb-6">Recent Activity</h4>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<p class="text-sm font-body leading-tight"><span class="font-bold">AI Scanner</span> auto-replied to 4 newsletters.</p>
+<span class="text-[10px] font-label text-on-surface-variant/60 uppercase">12 MIN AGO</span>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+</div>
+<div>
+<p class="text-sm font-body leading-tight"><span class="font-bold">Herr Weber</span> sent a priority inquiry.</p>
+<span class="text-[10px] font-label text-on-surface-variant/60 uppercase">1 HOUR AGO</span>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
+</div>
+<div>
+<p class="text-sm font-body leading-tight"><span class="font-bold">You</span> archived the Q4 Report.</p>
+<span class="text-[10px] font-label text-on-surface-variant/60 uppercase">2 HOURS AGO</span>
+</div>
+</li>
+</ul>
+</section>
+<!-- Featured Property Card (Editorial Aesthetic) -->
+<div class="relative rounded overflow-hidden aspect-[4/5] group cursor-pointer">
+<img alt="Luxury Viennese apartment" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="interior of a luxury Viennese apartment with high ceilings, ornate moldings, and classic parquet flooring under soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC74VA4S7dxBkN_K0qjyKR8j5cm7ofw-vOw1l0XV4eA-mWHc2hI_4blB_iutL13Q0kc4jJe9u5LPtl5SB694LfU0hEZ_ugLslZpiBNrQVh3Ilok-wAtBRHCwNEmpkr-I5p07R2xs911CbnvetIKaCzm6uPxLVeYyLsgIbuZWEeDOrsF5bDLjyRmVOQ12ew3EMgxPQIjwBt-OUJdUGW2yl7DWNg171hjxzzOl0LjeqpBmStjvbBu6y_s6C5VzMleSs70m31wNqzm-6uk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/20 to-transparent"></div>
+<div class="absolute bottom-0 p-8">
+<span class="font-label text-[10px] uppercase tracking-widest text-primary-fixed mb-2 block">Market Highlight</span>
+<h2 class="font-headline text-2xl text-white mb-2 italic">Palais Schwarzenberg Vicinity</h2>
+<p class="font-label text-sm text-white/70 uppercase tracking-widest">€2.450.000 · 145m²</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action for Mobile (Hidden by default based on rules) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl md:hidden flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</body></html>

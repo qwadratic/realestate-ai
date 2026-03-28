@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Inbox - Property Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-container": "#ffdad6",
+                        "primary-container": "#0abab5",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-fixed": "#6df7f1",
+                        "surface-container-highest": "#e2e2e2",
+                        "secondary": "#5f5e5e",
+                        "outline-variant": "#bbc9c8",
+                        "on-surface-variant": "#3c4948",
+                        "secondary-container": "#e2dfde",
+                        "primary": "#006a67",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-primary-fixed-variant": "#00504d",
+                        "tertiary-fixed-dim": "#4adbd5",
+                        "primary-fixed": "#6df7f1",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#00504d",
+                        "on-primary-fixed": "#00201f",
+                        "on-tertiary-container": "#004442",
+                        "surface-bright": "#f9f9f9",
+                        "surface-container": "#eeeeee",
+                        "on-surface": "#1a1c1c",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#4adbd5",
+                        "tertiary-container": "#0abab5",
+                        "primary-fixed-dim": "#4adbd5",
+                        "tertiary": "#006a67",
+                        "on-secondary-container": "#636262",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary-container": "#004442",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-tint": "#006a67",
+                        "surface-variant": "#e2e2e2",
+                        "outline": "#6c7a79",
+                        "background": "#f9f9f9",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-tertiary-fixed": "#00201f",
+                        "on-background": "#1a1c1c",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-dim": "#dadada",
+                        "error": "#ba1a1a"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Space Grotesk"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for technical look */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #F3F3F3; }
+        ::-webkit-scrollbar-thumb { background: #0ABAB5; }
+    </style>
+</head>
+<body class="bg-[#FAFAFA] text-on-surface">
+<!-- TopNavBar (Immutable Content from JSON) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 h-16 bg-[#FAFAFA]/90 dark:bg-zinc-900/90 backdrop-blur-xl shadow-[0px_12px_32px_rgba(26,28,28,0.04)]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-zinc-900 dark:text-zinc-50">Property Intelligence</span>
+<nav class="hidden md:flex items-center space-x-6 h-full pt-2">
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors font-['Space_Grotesk'] text-sm tracking-tight font-medium uppercase" href="#">Feed</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors font-['Space_Grotesk'] text-sm tracking-tight font-medium uppercase" href="#">Curation</a>
+<a class="text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors font-['Space_Grotesk'] text-sm tracking-tight font-medium uppercase" href="#">Clients</a>
+<a class="text-[#0ABAB5] border-b-2 border-[#0ABAB5] pb-2 font-bold font-['Space_Grotesk'] text-sm tracking-tight uppercase" href="#">Email</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer p-2 rounded-full hover:bg-zinc-100 transition-all" data-icon="notifications">notifications</span>
+</div>
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer p-2 rounded-full hover:bg-zinc-100 transition-all" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full bg-zinc-200 overflow-hidden ml-2 border border-outline-variant/10">
+<img alt="User Profile" data-alt="professional male real estate agent headshot in a bright office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqC6BItj0KhuUGzgt93cp4veenU0OaaRVanqu_vgRsr0qW-BazLsz6sorbtSzVz-3zcg96EN6qzwb5z4Uqv_W9K3-k_GbPHl7M4VFuQ7W4dwBwVeo7hyZZqHlvdoDYK8QkY0DuJaG-PoNYxWysk4gKNI8pLgGn-MfnLOkVmS9khPFYwtwjlUIXodet0yiJU2eQIqq8dba7CU8OlSS_QYaPufx5pfkyniMRjxDB2kz1DYLYlIDClyqEU8Orle4B7_psbN2VMMCSykI"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Immutable Content from JSON) -->
+<aside class="fixed left-0 top-16 w-64 h-[calc(100vh-64px)] flex flex-col p-4 space-y-2 bg-[#F3F3F3] dark:bg-zinc-800/50">
+<div class="mb-6 px-2">
+<div class="text-lg font-black text-zinc-900 dark:text-white uppercase tracking-tight">Property Intel</div>
+<div class="text-[10px] text-zinc-500 uppercase tracking-widest">Austrian Market</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-fixed font-bold py-3 px-4 mb-4 flex items-center gap-2 hover:opacity-90 active:scale-[0.99] transition-all rounded-none">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span class="font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]">Compose</span>
+</button>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-[#FFFFFF] dark:bg-zinc-900 text-[#0ABAB5] font-bold font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em] group" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="bolt">bolt</span>
+<span>Priority</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-[#E8E8E8] dark:hover:bg-zinc-700 transition-all font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="inbox">inbox</span>
+<span>Inbox</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-[#E8E8E8] dark:hover:bg-zinc-700 transition-all font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="send">send</span>
+<span>Sent</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-[#E8E8E8] dark:hover:bg-zinc-700 transition-all font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="draft">draft</span>
+<span>Drafts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-[#E8E8E8] dark:hover:bg-zinc-700 transition-all font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="archive">archive</span>
+<span>Archive</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-zinc-200 mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-[#E8E8E8] dark:hover:bg-zinc-700 transition-all font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-zinc-500 dark:text-zinc-400 hover:bg-[#E8E8E8] dark:hover:bg-zinc-700 transition-all font-['Space_Grotesk'] text-xs uppercase tracking-[0.05em]" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-12 min-h-screen">
+<header class="mb-10 text-left">
+<h1 class="text-[28px] font-semibold text-on-surface mb-1">Inbox</h1>
+<p class="text-[13px] text-zinc-500">14 unread · 3 high priority · Last synced: 2 min ago</p>
+</header>
+<!-- Filter Tabs -->
+<div class="flex items-center gap-6 mb-8 border-b border-surface-container overflow-x-auto pb-px">
+<button class="pb-3 border-b-2 border-primary-container text-on-surface font-semibold text-xs uppercase tracking-[0.05em]">All (47)</button>
+<button class="pb-3 border-b-2 border-transparent text-zinc-500 hover:text-on-surface transition-colors text-xs uppercase tracking-[0.05em]">High Priority (3)</button>
+<button class="pb-3 border-b-2 border-transparent text-zinc-500 hover:text-on-surface transition-colors text-xs uppercase tracking-[0.05em]">Follow-up (8)</button>
+<button class="pb-3 border-b-2 border-transparent text-zinc-500 hover:text-on-surface transition-colors text-xs uppercase tracking-[0.05em]">Info Request (12)</button>
+<button class="pb-3 border-b-2 border-transparent text-zinc-500 hover:text-on-surface transition-colors text-xs uppercase tracking-[0.05em]">Low (24)</button>
+</div>
+<!-- Email List Container -->
+<div class="bg-surface-container-lowest shadow-[0px_12px_32px_rgba(26,28,28,0.04)] rounded-none overflow-hidden">
+<!-- Row 1: Unread, Tiffany Border -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-[#0ABAB5] hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-error-container text-on-error-container text-[9px] font-bold tracking-widest uppercase">HOT LEAD</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-medium text-on-surface">Herr Weber</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-on-surface truncate">Anfrage: 3-Zimmer Wohnung Bezirk 3</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Sehr geehrte Damen und Herren, ich suche eine...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400 font-medium">10:42</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 2: Unread -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-error-container text-on-error-container text-[9px] font-bold tracking-widest uppercase">HOT LEAD</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-medium text-on-surface">Frau Schneider</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-on-surface truncate">Dringend: Besichtigungstermin morgen?</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Können wir den Termin...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400 font-medium">09:15</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface/50">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-amber-100 text-amber-800 text-[9px] font-bold tracking-widest uppercase">FOLLOW-UP</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-normal text-zinc-600">Grundwert Immobilien</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-zinc-600 truncate">Re: Kooperationsanfrage MLS</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Vielen Dank für die Unterlagen bezüglich...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400">Yesterday</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface/50">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-[#0ABAB5]"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-primary-container/10 text-[#0ABAB5] text-[9px] font-bold tracking-widest uppercase">INFO</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-normal text-zinc-600">Notar Dr. Berger</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-zinc-600 truncate">Grundbuchauszug Taborstraße 18</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Anbei erhalten Sie die gewünschten Auszüge für...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400">Yesterday</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 5 -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface/50">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-emerald-100 text-emerald-800 text-[9px] font-bold tracking-widest uppercase">AUTO-REPLIED</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-normal text-zinc-600">willhaben Notification</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-zinc-600 truncate">Neue Immobilien in Ihren Suchkriterien</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">3 neue Objekte entsprechen Ihrem Suchprofil...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400">Mar 26</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 6 -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface/50">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-zinc-400"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-zinc-200 text-zinc-600 text-[9px] font-bold tracking-widest uppercase">LOW</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-normal text-zinc-600">Newsletter ImmobilienScout</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-zinc-600 truncate">Marktbericht Wien Q1 2026</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Entdecken Sie die neuesten Trends am Wiener Markt...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400">Mar 25</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 7 -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface/50">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-amber-100 text-amber-800 text-[9px] font-bold tracking-widest uppercase">FOLLOW-UP</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-normal text-zinc-600">Herr Müller</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-zinc-600 truncate">Re: Besichtigung Rennweg 42</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Gerne bestätige ich den Termin für nächsten...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400">Mar 25</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+<!-- Row 8 -->
+<div class="flex items-center px-6 py-5 border-l-[4px] border-transparent hover:bg-surface-container-low transition-colors cursor-pointer group bg-surface/50">
+<div class="w-12 flex-shrink-0 flex items-center justify-start">
+<div class="w-2 h-2 rounded-full bg-zinc-400"></div>
+</div>
+<div class="w-32 flex-shrink-0">
+<span class="inline-flex items-center px-2 py-0.5 rounded-none bg-zinc-200 text-zinc-600 text-[9px] font-bold tracking-widest uppercase">LOW</span>
+</div>
+<div class="w-48 flex-shrink-0">
+<span class="text-sm font-normal text-zinc-600">System</span>
+</div>
+<div class="flex-grow min-w-0 pr-8">
+<span class="block text-sm font-normal text-zinc-600 truncate">Monitoring Report: 12 neue Treffer</span>
+<span class="block text-xs text-zinc-500 truncate mt-0.5">Ihre Suchagenten waren aktiv. Hier sind die Details...</span>
+</div>
+<div class="w-20 text-right">
+<span class="text-[11px] text-zinc-400">Mar 25</span>
+</div>
+<div class="w-12 text-right opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="star">star</span>
+</div>
+</div>
+</div>
+<!-- Pagination / Data Footer -->
+<div class="mt-8 flex justify-between items-center text-[11px] text-zinc-400 uppercase tracking-widest font-medium">
+<div class="flex items-center gap-4">
+<span>Showing 1-8 of 47 emails</span>
+<span class="w-1 h-1 bg-zinc-300 rounded-full"></span>
+<button class="hover:text-primary transition-colors">Select All</button>
+</div>
+<div class="flex gap-4">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span></button>
+<span class="flex items-center">Page 1 of 6</span>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Only on main dashboard/home/inbox as per mandate) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary-container text-on-primary-fixed shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 rounded-full">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+</body></html>

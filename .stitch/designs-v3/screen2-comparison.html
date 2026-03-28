@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0ABAB5",
+                        surface: "#FFFFFF",
+                        background: "#FAFAFA",
+                        muted: "#6B7280",
+                        dark: "#1A1A1A",
+                        divider: "#E5E5E5",
+                        signal: {
+                            green: "#4CAF7D",
+                            amber: "#D4A843",
+                            red: "#D94F4F"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Space Grotesk", "sans-serif"],
+                        headline: ["Space Grotesk"],
+                        body: ["Space Grotesk"],
+                        label: ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+    </style>
+</head>
+<body class="bg-[#FAFAFA] text-[#1A1A1A]">
+<!-- Top Navigation (Shared Component Integration) -->
+<nav class="bg-[#FFFFFF] dark:bg-slate-900 border-b border-[#E5E5E5]/50 flex justify-between items-center w-full px-6 h-16 sticky top-0 z-50">
+<div class="text-[18px] font-bold text-[#1A1A1A] dark:text-white tracking-tight font-['Space_Grotesk']">
+            Property Intelligence
+        </div>
+<div class="hidden md:flex gap-8 h-full items-center">
+<a class="font-['Space_Grotesk'] font-medium text-[14px] antialiased text-[#6B7280] pb-4 transition-colors duration-200 hover:text-[#0ABAB5]" href="#">Feed</a>
+<a class="font-['Space_Grotesk'] font-medium text-[14px] antialiased text-[#6B7280] pb-4 transition-colors duration-200 hover:text-[#0ABAB5]" href="#">Curation</a>
+<a class="font-['Space_Grotesk'] font-medium text-[14px] antialiased text-[#0ABAB5] border-b-2 border-[#0ABAB5] pb-4 mb-[-17px] transition-colors duration-200" href="#">Clients</a>
+<a class="font-['Space_Grotesk'] font-medium text-[14px] antialiased text-[#6B7280] pb-4 transition-colors duration-200 hover:text-[#0ABAB5]" href="#">Email</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#6B7280] cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-[#6B7280] cursor-pointer">settings</span>
+<div class="w-8 h-8 rounded-full bg-[#F5F5F5] overflow-hidden">
+<img alt="Agent Profile" data-alt="professional real estate agent headshot in a modern office setting with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5nLFpUpP9qx3a8ZmV7PYVH2Nhtk4AajcYeOJnUtx0ZPukhYfmWB6rVaxtF4uKrKWlA4gc3M71imy1nUzHbvTpst8fABcQT6Ih5eiwMZD2dYp13LNnwg8nfk1ZPDNstF-0nRjplci8kRvWWno4PVjyT6fcz3-2MRF1TrKnDqlZM-K2VpYrOFSVIrbKWMY84aG01aXQC19r6B56LIc5TzfzOmjNkm2vpGhve9nU8YkIhEF5YnoNuQ401bg8ATNABTaM1qVb_TSPkSU"/>
+</div>
+</div>
+</nav>
+<!-- Header Section -->
+<header class="max-w-7xl mx-auto px-6 pt-12 pb-6 flex justify-between items-end">
+<div>
+<span class="text-[12px] font-medium text-primary tracking-widest uppercase">Property Intelligence</span>
+</div>
+<div class="text-right">
+<h1 class="text-[28px] font-semibold text-dark leading-none">Prepared for Müller Family</h1>
+<p class="text-[14px] text-muted mt-2">28. März 2026</p>
+</div>
+</header>
+<!-- Client Parameters Bar -->
+<section class="w-full bg-[#F5F5F5] py-3 px-6 mb-12">
+<div class="max-w-7xl mx-auto">
+<p class="text-[13px] text-muted font-normal tracking-tight">
+                Budget: <span class="text-dark">€300k–€450k</span> · 3+ rooms · Bezirke 2-9 · Family, 2 children · Priority: <span class="text-dark">Schools, Transit, Elevator</span>
+</p>
+</div>
+</section>
+<!-- Property Gallery -->
+<main class="max-w-7xl mx-auto px-6 pb-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+<!-- Card 1 -->
+<div class="bg-white rounded-[4px] overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+<div class="h-[280px] bg-gray-100 relative">
+<img class="w-full h-full object-cover" data-alt="classic vienna altbau apartment exterior with intricate stone carvings and large windows in landstrasse district" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRHTrooDWJrzQUZCDjlIld1D-oKbQjrSHOGbtx66llPOsc40cT4OTo4ELEgCDkrkZv4UUtL7cW0S0VZIootQ1ogyfFxq6F1fvOMJWFG93TPZK1OUxsnt_PWbsHKjQkl7JpZ0uiQGI7tYoaQ8mSyCQn8BmJaz03NXdNhYl4g7vO5_xAmj27dsm2lTdQ2AYnBhpHZ02AFBifYDVIDT_0DOffOa0G3bSSE6GvPfq_L6wQL3YEiTjnDPIigwVU4eufUqn70qyMbmEzot0"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h2 class="text-[20px] font-semibold text-dark mb-1">Altbau-Charme in Landstraße</h2>
+<p class="text-[14px] text-muted mb-4">Rennweg 42, 1030 Wien · <span class="underline">willhaben</span></p>
+<div class="flex gap-3 text-[14px] font-medium tabular-nums border-b border-divider pb-4 mb-4">
+<span>€345,000</span>
+<span class="text-divider">|</span>
+<span>78 m²</span>
+<span class="text-divider">|</span>
+<span>3 Zi</span>
+<span class="text-divider">|</span>
+<span>2. OG</span>
+</div>
+<div class="mb-4">
+<h3 class="text-[14px] font-medium text-dark mb-3">Why this matches</h3>
+<ul class="space-y-2 text-[13px]">
+<li class="flex justify-between items-center">
+<span class="text-muted">Volksschule Landstraße — 400m</span>
+<span class="text-primary tracking-tighter">●●●●○</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-muted">U3 Kardinal-Nagl-Platz — 200m</span>
+<span class="text-primary tracking-tighter">●●●○○</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-muted">Elevator available</span>
+<span class="text-primary tracking-tighter">●●●○○</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-muted">South-facing balcony</span>
+<span class="text-primary tracking-tighter">●●○○○</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto">
+<div class="inline-block bg-signal-green text-white text-[11px] font-medium px-2 py-1 rounded-[2px] mb-3">
+                            No distress signals · 0/5
+                        </div>
+<p class="text-[13px] text-muted italic">"Best overall match. The school is excellent."</p>
+</div>
+</div>
+</div>
+<!-- Card 2 (AI Recommended) -->
+<div class="bg-white rounded-[4px] overflow-hidden flex flex-col h-full shadow-sm border-t-2 border-primary relative">
+<div class="absolute top-4 left-4 z-10">
+<div class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-[2px] tracking-wider">AI RECOMMENDATION</div>
+</div>
+<div class="h-[280px] bg-gray-100">
+<img class="w-full h-full object-cover" data-alt="luxury penthouse apartment with floor to ceiling windows overlooking the vienna prater ferris wheel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX1uSynvIN7I-XirRU3QXFiCoAX8pz2anY4Vy7NAq3B9SX7fGSx97o2a4B7Y0pTdyj2v9BQwzxgcz0kIVJh56LCAqRbeapARojClsIIMSSmastt196JvL5rs7tM0AJpdSkItEvg7LRkO7PWXZrHHLlVut7c-He9HATTjLKfK3wwevwdrSFxQ8Pi9kZEi_tOwQanyjAPw4TGcFBzRdHkUec4LsEfZxVCinPAPW8mMW0AsgnqJCSzwqm4b-S5l_8litnYeQbHQ6qfL0"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h2 class="text-[20px] font-semibold text-dark mb-1">Penthouse am Praterstern</h2>
+<p class="text-[14px] text-muted mb-4">Taborstraße 18, 1020 Wien</p>
+<div class="flex gap-3 text-[14px] font-medium tabular-nums border-b border-divider pb-4 mb-4">
+<span>€789,000</span>
+<span class="text-divider">|</span>
+<span>85 m²</span>
+<span class="text-divider">|</span>
+<span>3 Zi</span>
+<span class="text-divider">|</span>
+<span>5. OG</span>
+</div>
+<div class="mb-4">
+<h3 class="text-[14px] font-medium text-dark mb-3">Relevance Highlights</h3>
+<ul class="space-y-2 text-[13px]">
+<li class="flex justify-between items-center">
+<span class="text-muted">Elevator &amp; Accessibility</span>
+<span class="text-primary tracking-tighter">●●●●●</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-muted">District 2 Center</span>
+<span class="text-primary tracking-tighter">●●●●○</span>
+</li>
+</ul>
+</div>
+<div class="mt-auto">
+<div class="flex flex-wrap gap-2 mb-3">
+<div class="bg-signal-red text-white text-[11px] font-medium px-2 py-1 rounded-[2px]">Owner insolvency</div>
+<div class="bg-signal-amber text-white text-[11px] font-medium px-2 py-1 rounded-[2px]">3 listings same owner</div>
+<div class="text-[11px] text-muted font-bold self-center ml-auto">SIGNAL: 3/5</div>
+</div>
+<p class="text-[13px] text-muted italic">"Premium but signals suggest negotiation leverage."</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-[4px] overflow-hidden flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+<div class="h-[280px] bg-gray-100">
+<img class="w-full h-full object-cover" data-alt="fully renovated interior of a historical apartment in josefstadt with clean white walls and light herringbone wood floors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8_njvaDREG9MN-_hjB234eROXarTb1Q9Hnq0NziOwJ5zbHniCMKErSoaKzw5X4y2NHNS-NzI-ZnDs1BCr0hyWXXzMABQKzgNYXf3uE9E5boKmy9eHHa4Gz6TCnx2B1j9FUTyqqjIozpAJ6He5qDJuSKitLfA8u7SsqrKUtFPVh-t_BffFO1VBKfnlAw9AuJuYahCQ_5MdUyXg_5ZAD5e9eXny6IP5h9jsriYZUwnragipbIPvUSdyt5eJSv5p2-Y0R14_GKPnS8g"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h2 class="text-[20px] font-semibold text-dark mb-1">Generalsaniert in Josefstadt</h2>
+<p class="text-[14px] text-muted mb-4">Josefstädter Str. 71, 1080 Wien</p>
+<div class="flex gap-3 text-[14px] font-medium tabular-nums border-b border-divider pb-4 mb-4 items-center flex-wrap">
+<span class="text-dark">€375,000</span>
+<span class="text-divider">|</span>
+<span class="line-through text-muted">85 m²</span>
+<span class="material-symbols-outlined text-[14px] text-signal-red">arrow_forward</span>
+<span class="text-signal-red">72 m² verified</span>
+</div>
+<div class="mb-4">
+<h3 class="text-[14px] font-medium text-dark mb-3">Verification Findings</h3>
+<p class="text-[13px] text-muted mb-2">Registry check flagged discrepancy in living area calculation versus cadastral plan.</p>
+</div>
+<div class="mt-auto">
+<div class="inline-block bg-signal-red text-white text-[11px] font-medium px-2 py-1 rounded-[2px] mb-3">
+                            sqm mismatch · § 1299 ABGB
+                        </div>
+<p class="text-[13px] text-muted italic">"Critical error found in listing data. Price per m² is significantly higher than advertised."</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Section -->
+<div class="mt-16 bg-white p-8 rounded-[4px] shadow-sm">
+<div class="flex flex-wrap gap-3 mb-8">
+<button class="px-4 py-2 bg-[#F5F5F5] hover:bg-primary hover:text-white transition-colors text-[13px] font-medium rounded-full">Compare commute</button>
+<button class="px-4 py-2 bg-[#F5F5F5] hover:bg-primary hover:text-white transition-colors text-[13px] font-medium rounded-full">Best school?</button>
+<button class="px-4 py-2 bg-[#F5F5F5] hover:bg-primary hover:text-white transition-colors text-[13px] font-medium rounded-full">Why is #2 recommended?</button>
+<button class="px-4 py-2 bg-[#F5F5F5] hover:bg-primary hover:text-white transition-colors text-[13px] font-medium rounded-full">Price per m²</button>
+</div>
+<div class="relative">
+<p class="text-[12px] text-muted mb-2 ml-1">Verified against source data · § 1299 ABGB</p>
+<div class="flex gap-2">
+<div class="relative flex-grow">
+<input class="w-full bg-[#FAFAFA] border-none focus:ring-1 focus:ring-primary rounded-[4px] py-4 px-6 text-[15px] placeholder:text-muted/60" placeholder="Ask anything about these properties..." type="text"/>
+</div>
+<button class="bg-primary text-white w-14 h-14 flex items-center justify-center rounded-[4px] hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">mic</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 border-t border-divider/30 bg-[#FAFAFA]">
+<div class="max-w-7xl mx-auto px-6 text-center text-[12px] text-muted space-y-1">
+<p>Powered by <span class="font-bold text-dark">Property Intelligence</span></p>
+<p>Prepared by <span class="text-dark">Markus Steiner</span> · <span class="text-dark">Elite Real Estate Vienna</span></p>
+</div>
+</footer>
+</body></html>
