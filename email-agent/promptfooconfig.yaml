@@ -1,0 +1,30 @@
+description: Email classification eval - Personal Email AI Agent
+
+providers:
+  - id: anthropic:messages:claude-sonnet-4-6
+    config:
+      max_tokens: 256
+      temperature: 0
+
+prompts:
+  - file://prompts/v1_classify.txt
+  - file://prompts/v2_classify.txt
+  - file://prompts/v3_classify.txt
+
+defaultTest:
+  assert:
+    - type: is-json
+    - type: javascript
+      value: |
+        const parsed = JSON.parse(output);
+        const validActions = ['archive','reply','pay','read','delegate','save_to_minime'];
+        return parsed.action && validActions.includes(parsed.action) &&
+               typeof parsed.suggestion === 'string' && parsed.suggestion.length > 0 &&
+               typeof parsed.confidence === 'number' && parsed.confidence >= 0 && parsed.confidence <= 1;
+
+tests: file://golden.jsonl
+
+outputPath: results.json
+
+evaluateOptions:
+  maxConcurrency: 5

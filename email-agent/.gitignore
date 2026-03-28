@@ -1,0 +1,24 @@
+# Secrets
+.env
+credentials.json
+token.json
+
+# Data (contains real email content)
+golden.jsonl
+results.json
+minime_queue.jsonl
+
+# Logs
+email_agent.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (promptfoo)
+node_modules/
+
+# OS
+.DS_Store
