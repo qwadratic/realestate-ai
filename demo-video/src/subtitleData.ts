@@ -2,117 +2,6 @@ export const subtitleLines = [
   {
     "words": [
       {
-        "word": "mind",
-        "start": 0.0,
-        "end": 0.221,
-        "startFrame": 0,
-        "endFrame": 7
-      },
-      {
-        "word": "i'm",
-        "start": 0.221,
-        "end": 0.468,
-        "startFrame": 7,
-        "endFrame": 14
-      },
-      {
-        "word": "going",
-        "start": 0.468,
-        "end": 0.612,
-        "startFrame": 14,
-        "endFrame": 18
-      },
-      {
-        "word": "to",
-        "start": 0.612,
-        "end": 0.807,
-        "startFrame": 18,
-        "endFrame": 24
-      },
-      {
-        "word": "record",
-        "start": 0.807,
-        "end": 1.431,
-        "startFrame": 24,
-        "endFrame": 43
-      },
-      {
-        "word": "without",
-        "start": 1.431,
-        "end": 2.043,
-        "startFrame": 43,
-        "endFrame": 61
-      },
-      {
-        "word": "the",
-        "start": 2.043,
-        "end": 2.433,
-        "startFrame": 61,
-        "endFrame": 73
-      },
-      {
-        "word": "agents",
-        "start": 2.433,
-        "end": 4.06,
-        "startFrame": 73,
-        "endFrame": 122
-      },
-      {
-        "word": "like",
-        "start": 4.06,
-        "end": 4.294,
-        "startFrame": 122,
-        "endFrame": 129
-      },
-      {
-        "word": "in",
-        "start": 4.294,
-        "end": 4.489,
-        "startFrame": 129,
-        "endFrame": 135
-      },
-      {
-        "word": "the",
-        "start": 4.489,
-        "end": 4.58,
-        "startFrame": 135,
-        "endFrame": 137
-      },
-      {
-        "word": "working",
-        "start": 4.58,
-        "end": 4.75,
-        "startFrame": 137,
-        "endFrame": 142
-      }
-    ],
-    "startFrame": 0,
-    "endFrame": 142
-  },
-  {
-    "words": [
-      {
-        "word": "state",
-        "start": 4.75,
-        "end": 4.932,
-        "startFrame": 142,
-        "endFrame": 148
-      },
-      {
-        "word": "but",
-        "start": 4.932,
-        "end": 5.088,
-        "startFrame": 148,
-        "endFrame": 153
-      },
-      {
-        "word": "anyways",
-        "start": 5.088,
-        "end": 5.283,
-        "startFrame": 153,
-        "endFrame": 158
-      },
-      {
         "word": "we",
         "start": 5.283,
         "end": 5.712,
@@ -176,7 +65,7 @@ export const subtitleLines = [
         "endFrame": 243
       }
     ],
-    "startFrame": 142,
+    "startFrame": 158,
     "endFrame": 243
   },
   {
@@ -194,13 +83,6 @@ export const subtitleLines = [
         "end": 8.432,
         "startFrame": 248,
         "endFrame": 253
-      },
-      {
-        "word": "uh",
-        "start": 8.432,
-        "end": 9.018,
-        "startFrame": 253,
-        "endFrame": 271
       },
       {
         "word": "when",
@@ -231,20 +113,6 @@ export const subtitleLines = [
         "endFrame": 317
       },
       {
-        "word": "the",
-        "start": 10.566,
-        "end": 10.761,
-        "startFrame": 317,
-        "endFrame": 323
-      },
-      {
-        "word": "the",
-        "start": 10.761,
-        "end": 11.23,
-        "startFrame": 323,
-        "endFrame": 337
-      },
-      {
         "word": "discovery",
         "start": 11.23,
         "end": 11.464,
@@ -252,7 +120,7 @@ export const subtitleLines = [
         "endFrame": 344
       },
       {
-        "word": "goals",
+        "word": "calls",
         "start": 11.464,
         "end": 11.711,
         "startFrame": 344,
@@ -321,13 +189,6 @@ export const subtitleLines = [
         "endFrame": 438
       },
       {
-        "word": "i",
-        "start": 14.613,
-        "end": 14.899,
-        "startFrame": 438,
-        "endFrame": 447
-      },
-      {
         "word": "noticed",
         "start": 14.899,
         "end": 15.316,
@@ -340,7 +201,13 @@ export const subtitleLines = [
         "end": 15.641,
         "startFrame": 459,
         "endFrame": 469
-      },
+      }
+    ],
+    "startFrame": 358,
+    "endFrame": 469
+  },
+  {
+    "words": [
       {
         "word": "like",
         "start": 15.641,
@@ -354,13 +221,7 @@ export const subtitleLines = [
         "end": 16.812,
         "startFrame": 491,
         "endFrame": 504
-      }
-    ],
-    "startFrame": 358,
-    "endFrame": 504
-  },
-  {
-    "words": [
+      },
       {
         "word": "clusters",
         "start": 16.812,
@@ -409,7 +270,13 @@ export const subtitleLines = [
         "end": 19.519,
         "startFrame": 570,
         "endFrame": 586
-      },
+      }
+    ],
+    "startFrame": 469,
+    "endFrame": 586
+  },
+  {
+    "words": [
       {
         "word": "the",
         "start": 19.519,
@@ -444,13 +311,7 @@ export const subtitleLines = [
         "end": 21.978,
         "startFrame": 652,
         "endFrame": 659
-      }
-    ],
-    "startFrame": 504,
-    "endFrame": 659
-  },
-  {
-    "words": [
+      },
       {
         "word": "build",
         "start": 21.978,
@@ -478,7 +339,13 @@ export const subtitleLines = [
         "end": 23.084,
         "startFrame": 691,
         "endFrame": 693
-      },
+      }
+    ],
+    "startFrame": 586,
+    "endFrame": 693
+  },
+  {
+    "words": [
       {
         "word": "by",
         "start": 23.084,
@@ -534,20 +401,20 @@ export const subtitleLines = [
         "end": 25.205,
         "startFrame": 749,
         "endFrame": 756
-      }
-    ],
-    "startFrame": 659,
-    "endFrame": 756
-  },
-  {
-    "words": [
+      },
       {
         "word": "various",
         "start": 25.205,
         "end": 25.817,
         "startFrame": 756,
         "endFrame": 774
-      },
+      }
+    ],
+    "startFrame": 693,
+    "endFrame": 774
+  },
+  {
+    "words": [
       {
         "word": "work",
         "start": 25.817,
@@ -612,7 +479,7 @@ export const subtitleLines = [
         "endFrame": 860
       }
     ],
-    "startFrame": 756,
+    "startFrame": 774,
     "endFrame": 860
   },
   {
@@ -748,7 +615,13 @@ export const subtitleLines = [
         "end": 36.122,
         "startFrame": 1077,
         "endFrame": 1084
-      },
+      }
+    ],
+    "startFrame": 999,
+    "endFrame": 1084
+  },
+  {
+    "words": [
       {
         "word": "not",
         "start": 36.122,
@@ -769,13 +642,7 @@ export const subtitleLines = [
         "end": 37.684,
         "startFrame": 1105,
         "endFrame": 1131
-      }
-    ],
-    "startFrame": 999,
-    "endFrame": 1131
-  },
-  {
-    "words": [
+      },
       {
         "word": "really",
         "start": 37.684,
@@ -817,7 +684,13 @@ export const subtitleLines = [
         "end": 40.312,
         "startFrame": 1203,
         "endFrame": 1209
-      },
+      }
+    ],
+    "startFrame": 1084,
+    "endFrame": 1209
+  },
+  {
+    "words": [
       {
         "word": "GDPR",
         "start": 40.312,
@@ -859,13 +732,7 @@ export const subtitleLines = [
         "end": 42.759,
         "startFrame": 1278,
         "endFrame": 1283
-      }
-    ],
-    "startFrame": 1131,
-    "endFrame": 1283
-  },
-  {
-    "words": [
+      },
       {
         "word": "with",
         "start": 42.759,
@@ -886,7 +753,13 @@ export const subtitleLines = [
         "end": 43.396,
         "startFrame": 1292,
         "endFrame": 1302
-      },
+      }
+    ],
+    "startFrame": 1209,
+    "endFrame": 1302
+  },
+  {
+    "words": [
       {
         "word": "we",
         "start": 43.396,
@@ -951,7 +824,7 @@ export const subtitleLines = [
         "endFrame": 1378
       }
     ],
-    "startFrame": 1283,
+    "startFrame": 1302,
     "endFrame": 1378
   },
   {
@@ -1018,7 +891,13 @@ export const subtitleLines = [
         "end": 48.471,
         "startFrame": 1451,
         "endFrame": 1454
-      },
+      }
+    ],
+    "startFrame": 1378,
+    "endFrame": 1454
+  },
+  {
+    "words": [
       {
         "word": "the",
         "start": 48.471,
@@ -1039,13 +918,7 @@ export const subtitleLines = [
         "end": 49.876,
         "startFrame": 1461,
         "endFrame": 1496
-      }
-    ],
-    "startFrame": 1378,
-    "endFrame": 1496
-  },
-  {
-    "words": [
+      },
       {
         "word": "this",
         "start": 49.876,
@@ -1087,7 +960,13 @@ export const subtitleLines = [
         "end": 50.735,
         "startFrame": 1517,
         "endFrame": 1522
-      },
+      }
+    ],
+    "startFrame": 1454,
+    "endFrame": 1522
+  },
+  {
+    "words": [
       {
         "word": "that",
         "start": 50.735,
@@ -1129,13 +1008,7 @@ export const subtitleLines = [
         "end": 52.388,
         "startFrame": 1554,
         "endFrame": 1572
-      }
-    ],
-    "startFrame": 1496,
-    "endFrame": 1572
-  },
-  {
-    "words": [
+      },
       {
         "word": "see",
         "start": 52.388,
@@ -1156,7 +1029,13 @@ export const subtitleLines = [
         "end": 53.546,
         "startFrame": 1601,
         "endFrame": 1606
-      },
+      }
+    ],
+    "startFrame": 1522,
+    "endFrame": 1606
+  },
+  {
+    "words": [
       {
         "word": "envision",
         "start": 53.546,
@@ -1221,7 +1100,7 @@ export const subtitleLines = [
         "endFrame": 1724
       }
     ],
-    "startFrame": 1572,
+    "startFrame": 1606,
     "endFrame": 1724
   },
   {
@@ -1288,7 +1167,13 @@ export const subtitleLines = [
         "end": 59.662,
         "startFrame": 1781,
         "endFrame": 1790
-      },
+      }
+    ],
+    "startFrame": 1724,
+    "endFrame": 1790
+  },
+  {
+    "words": [
       {
         "word": "details",
         "start": 59.662,
@@ -1309,13 +1194,7 @@ export const subtitleLines = [
         "end": 61.002,
         "startFrame": 1816,
         "endFrame": 1830
-      }
-    ],
-    "startFrame": 1724,
-    "endFrame": 1830
-  },
-  {
-    "words": [
+      },
       {
         "word": "lot",
         "start": 61.002,
@@ -1357,7 +1236,13 @@ export const subtitleLines = [
         "end": 63.084,
         "startFrame": 1874,
         "endFrame": 1893
-      },
+      }
+    ],
+    "startFrame": 1790,
+    "endFrame": 1893
+  },
+  {
+    "words": [
       {
         "word": "let's",
         "start": 63.084,
@@ -1399,13 +1284,7 @@ export const subtitleLines = [
         "end": 66.194,
         "startFrame": 1950,
         "endFrame": 1986
-      }
-    ],
-    "startFrame": 1830,
-    "endFrame": 1986
-  },
-  {
-    "words": [
+      },
       {
         "word": "sometimes",
         "start": 66.194,
@@ -1426,7 +1305,13 @@ export const subtitleLines = [
         "end": 68.731,
         "startFrame": 2042,
         "endFrame": 2062
-      },
+      }
+    ],
+    "startFrame": 1893,
+    "endFrame": 2062
+  },
+  {
+    "words": [
       {
         "word": "sometimes",
         "start": 68.731,
@@ -1456,13 +1341,6 @@ export const subtitleLines = [
         "endFrame": 2089
       },
       {
-        "word": "usual",
-        "start": 69.629,
-        "end": 70.527,
-        "startFrame": 2089,
-        "endFrame": 2116
-      },
-      {
         "word": "flow",
         "start": 70.527,
         "end": 70.761,
@@ -1489,20 +1367,20 @@ export const subtitleLines = [
         "end": 71.269,
         "startFrame": 2133,
         "endFrame": 2138
-      }
-    ],
-    "startFrame": 1986,
-    "endFrame": 2138
-  },
-  {
-    "words": [
+      },
       {
         "word": "given",
         "start": 71.269,
         "end": 71.646,
         "startFrame": 2138,
         "endFrame": 2149
-      },
+      }
+    ],
+    "startFrame": 2062,
+    "endFrame": 2149
+  },
+  {
+    "words": [
       {
         "word": "the",
         "start": 71.646,
@@ -1565,7 +1443,13 @@ export const subtitleLines = [
         "end": 73.975,
         "startFrame": 2209,
         "endFrame": 2219
-      },
+      }
+    ],
+    "startFrame": 2149,
+    "endFrame": 2219
+  },
+  {
+    "words": [
       {
         "word": "and",
         "start": 73.975,
@@ -1579,26 +1463,13 @@ export const subtitleLines = [
         "end": 74.47,
         "startFrame": 2229,
         "endFrame": 2234
-      }
-    ],
-    "startFrame": 2138,
-    "endFrame": 2234
-  },
-  {
-    "words": [
+      },
       {
         "word": "he",
         "start": 74.47,
         "end": 75.081,
         "startFrame": 2234,
         "endFrame": 2252
-      },
-      {
-        "word": "he",
-        "start": 75.081,
-        "end": 77.098,
-        "startFrame": 2252,
-        "endFrame": 2313
       },
       {
         "word": "uses",
@@ -1641,7 +1512,13 @@ export const subtitleLines = [
         "end": 80.494,
         "startFrame": 2375,
         "endFrame": 2415
-      },
+      }
+    ],
+    "startFrame": 2219,
+    "endFrame": 2415
+  },
+  {
+    "words": [
       {
         "word": "it",
         "start": 80.494,
@@ -1664,18 +1541,12 @@ export const subtitleLines = [
         "endFrame": 2452
       },
       {
-        "word": "criterias",
+        "word": "criteria",
         "start": 81.731,
         "end": 82.199,
         "startFrame": 2452,
         "endFrame": 2466
-      }
-    ],
-    "startFrame": 2234,
-    "endFrame": 2466
-  },
-  {
-    "words": [
+      },
       {
         "word": "that",
         "start": 82.199,
@@ -1710,7 +1581,13 @@ export const subtitleLines = [
         "end": 83.201,
         "startFrame": 2487,
         "endFrame": 2496
-      },
+      }
+    ],
+    "startFrame": 2415,
+    "endFrame": 2496
+  },
+  {
+    "words": [
       {
         "word": "and",
         "start": 83.201,
@@ -1759,13 +1636,7 @@ export const subtitleLines = [
         "end": 86.688,
         "startFrame": 2598,
         "endFrame": 2601
-      }
-    ],
-    "startFrame": 2466,
-    "endFrame": 2601
-  },
-  {
-    "words": [
+      },
       {
         "word": "market",
         "start": 86.688,
@@ -1779,7 +1650,13 @@ export const subtitleLines = [
         "end": 87.131,
         "startFrame": 2607,
         "endFrame": 2614
-      },
+      }
+    ],
+    "startFrame": 2496,
+    "endFrame": 2614
+  },
+  {
+    "words": [
       {
         "word": "course",
         "start": 87.131,
@@ -1842,20 +1719,20 @@ export const subtitleLines = [
         "end": 89.746,
         "startFrame": 2683,
         "endFrame": 2692
-      },
+      }
+    ],
+    "startFrame": 2614,
+    "endFrame": 2692
+  },
+  {
+    "words": [
       {
         "word": "properties",
         "start": 89.746,
         "end": 90.514,
         "startFrame": 2692,
         "endFrame": 2715
-      }
-    ],
-    "startFrame": 2601,
-    "endFrame": 2715
-  },
-  {
-    "words": [
+      },
       {
         "word": "for",
         "start": 90.514,
@@ -1911,7 +1788,13 @@ export const subtitleLines = [
         "end": 92.856,
         "startFrame": 2775,
         "endFrame": 2786
-      },
+      }
+    ],
+    "startFrame": 2692,
+    "endFrame": 2786
+  },
+  {
+    "words": [
       {
         "word": "on",
         "start": 92.856,
@@ -1939,13 +1822,7 @@ export const subtitleLines = [
         "end": 94.847,
         "startFrame": 2820,
         "endFrame": 2845
-      }
-    ],
-    "startFrame": 2715,
-    "endFrame": 2845
-  },
-  {
-    "words": [
+      },
       {
         "word": "he",
         "start": 94.847,
@@ -1980,7 +1857,13 @@ export const subtitleLines = [
         "end": 96.122,
         "startFrame": 2874,
         "endFrame": 2884
-      },
+      }
+    ],
+    "startFrame": 2786,
+    "endFrame": 2884
+  },
+  {
+    "words": [
       {
         "word": "but",
         "start": 96.122,
@@ -2029,13 +1912,7 @@ export const subtitleLines = [
         "end": 98.504,
         "startFrame": 2952,
         "endFrame": 2955
-      }
-    ],
-    "startFrame": 2845,
-    "endFrame": 2955
-  },
-  {
-    "words": [
+      },
       {
         "word": "it",
         "start": 98.504,
@@ -2049,7 +1926,13 @@ export const subtitleLines = [
         "end": 99.245,
         "startFrame": 2959,
         "endFrame": 2977
-      },
+      }
+    ],
+    "startFrame": 2884,
+    "endFrame": 2977
+  },
+  {
+    "words": [
       {
         "word": "instantly",
         "start": 99.245,
@@ -2093,13 +1976,6 @@ export const subtitleLines = [
         "endFrame": 3073
       },
       {
-        "word": "uh",
-        "start": 102.42,
-        "end": 102.746,
-        "startFrame": 3073,
-        "endFrame": 3082
-      },
-      {
         "word": "with",
         "start": 102.746,
         "end": 103.006,
@@ -2121,7 +1997,7 @@ export const subtitleLines = [
         "endFrame": 3134
       }
     ],
-    "startFrame": 2955,
+    "startFrame": 2977,
     "endFrame": 3134
   },
   {
@@ -2174,9 +2050,15 @@ export const subtitleLines = [
         "end": 110.956,
         "startFrame": 3308,
         "endFrame": 3329
-      },
+      }
+    ],
+    "startFrame": 3134,
+    "endFrame": 3329
+  },
+  {
+    "words": [
       {
-        "word": "popularistic",
+        "word": "popular",
         "start": 111.126,
         "end": 111.828,
         "startFrame": 3334,
@@ -2202,13 +2084,7 @@ export const subtitleLines = [
         "end": 112.791,
         "startFrame": 3375,
         "endFrame": 3384
-      }
-    ],
-    "startFrame": 3134,
-    "endFrame": 3384
-  },
-  {
-    "words": [
+      },
       {
         "word": "He",
         "start": 112.895,
@@ -2243,7 +2119,13 @@ export const subtitleLines = [
         "end": 114.379,
         "startFrame": 3425,
         "endFrame": 3431
-      },
+      }
+    ],
+    "startFrame": 3334,
+    "endFrame": 3431
+  },
+  {
+    "words": [
       {
         "word": "and",
         "start": 114.379,
@@ -2292,13 +2174,7 @@ export const subtitleLines = [
         "end": 117.306,
         "startFrame": 3507,
         "endFrame": 3519
-      }
-    ],
-    "startFrame": 3387,
-    "endFrame": 3519
-  },
-  {
-    "words": [
+      },
       {
         "word": "be",
         "start": 117.306,
@@ -2312,7 +2188,13 @@ export const subtitleLines = [
         "end": 117.723,
         "startFrame": 3522,
         "endFrame": 3532
-      },
+      }
+    ],
+    "startFrame": 3431,
+    "endFrame": 3532
+  },
+  {
+    "words": [
       {
         "word": "and",
         "start": 117.723,
@@ -2375,20 +2257,20 @@ export const subtitleLines = [
         "end": 119.792,
         "startFrame": 3591,
         "endFrame": 3594
-      },
+      }
+    ],
+    "startFrame": 3532,
+    "endFrame": 3594
+  },
+  {
+    "words": [
       {
         "word": "client",
         "start": 119.792,
         "end": 120.0,
         "startFrame": 3594,
         "endFrame": 3600
-      }
-    ],
-    "startFrame": 3519,
-    "endFrame": 3600
-  },
-  {
-    "words": [
+      },
       {
         "word": "and",
         "start": 120.0,
@@ -2444,7 +2326,13 @@ export const subtitleLines = [
         "end": 122.628,
         "startFrame": 3673,
         "endFrame": 3679
-      },
+      }
+    ],
+    "startFrame": 3594,
+    "endFrame": 3679
+  },
+  {
+    "words": [
       {
         "word": "generates",
         "start": 122.628,
@@ -2465,13 +2353,7 @@ export const subtitleLines = [
         "end": 124.125,
         "startFrame": 3718,
         "endFrame": 3724
-      }
-    ],
-    "startFrame": 3600,
-    "endFrame": 3724
-  },
-  {
-    "words": [
+      },
       {
         "word": "The",
         "start": 124.743,
@@ -2513,7 +2395,13 @@ export const subtitleLines = [
         "end": 126.012,
         "startFrame": 3773,
         "endFrame": 3780
-      },
+      }
+    ],
+    "startFrame": 3679,
+    "endFrame": 3780
+  },
+  {
+    "words": [
       {
         "word": "client",
         "start": 126.012,
@@ -2555,13 +2443,7 @@ export const subtitleLines = [
         "end": 127.066,
         "startFrame": 3803,
         "endFrame": 3812
-      }
-    ],
-    "startFrame": 3742,
-    "endFrame": 3812
-  },
-  {
-    "words": [
+      },
       {
         "word": "this",
         "start": 127.066,
@@ -2582,7 +2464,13 @@ export const subtitleLines = [
         "end": 129.135,
         "startFrame": 3867,
         "endFrame": 3874
-      },
+      }
+    ],
+    "startFrame": 3780,
+    "endFrame": 3874
+  },
+  {
+    "words": [
       {
         "word": "the",
         "start": 129.135,
@@ -2647,7 +2535,7 @@ export const subtitleLines = [
         "endFrame": 4021
       }
     ],
-    "startFrame": 3812,
+    "startFrame": 3874,
     "endFrame": 4021
   },
   {
@@ -2714,7 +2602,13 @@ export const subtitleLines = [
         "end": 137.84,
         "startFrame": 4128,
         "endFrame": 4135
-      },
+      }
+    ],
+    "startFrame": 4021,
+    "endFrame": 4135
+  },
+  {
+    "words": [
       {
         "word": "We",
         "start": 138.452,
@@ -2735,13 +2629,7 @@ export const subtitleLines = [
         "end": 139.453,
         "startFrame": 4172,
         "endFrame": 4184
-      }
-    ],
-    "startFrame": 4021,
-    "endFrame": 4184
-  },
-  {
-    "words": [
+      },
       {
         "word": "the",
         "start": 139.453,
@@ -2783,7 +2671,13 @@ export const subtitleLines = [
         "end": 142.42,
         "startFrame": 4255,
         "endFrame": 4273
-      },
+      }
+    ],
+    "startFrame": 4154,
+    "endFrame": 4273
+  },
+  {
+    "words": [
       {
         "word": "are",
         "start": 142.42,
@@ -2811,13 +2705,7 @@ export const subtitleLines = [
         "end": 143.474,
         "startFrame": 4292,
         "endFrame": 4304
-      }
-    ],
-    "startFrame": 4184,
-    "endFrame": 4304
-  },
-  {
-    "words": [
+      },
       {
         "word": "so",
         "start": 143.578,
@@ -2852,7 +2740,13 @@ export const subtitleLines = [
         "end": 145.53,
         "startFrame": 4360,
         "endFrame": 4366
-      },
+      }
+    ],
+    "startFrame": 4273,
+    "endFrame": 4366
+  },
+  {
+    "words": [
       {
         "word": "where",
         "start": 145.53,
@@ -2887,13 +2781,7 @@ export const subtitleLines = [
         "end": 146.532,
         "startFrame": 4390,
         "endFrame": 4396
-      }
-    ],
-    "startFrame": 4307,
-    "endFrame": 4396
-  },
-  {
-    "words": [
+      },
       {
         "word": "And",
         "start": 147.339,
@@ -2921,7 +2809,13 @@ export const subtitleLines = [
         "end": 148.406,
         "startFrame": 4449,
         "endFrame": 4452
-      },
+      }
+    ],
+    "startFrame": 4366,
+    "endFrame": 4452
+  },
+  {
+    "words": [
       {
         "word": "answer",
         "start": 148.406,
@@ -2977,20 +2871,20 @@ export const subtitleLines = [
         "end": 151.243,
         "startFrame": 4533,
         "endFrame": 4537
-      }
-    ],
-    "startFrame": 4420,
-    "endFrame": 4537
-  },
-  {
-    "words": [
+      },
       {
         "word": "bother",
         "start": 151.243,
         "end": 151.451,
         "startFrame": 4537,
         "endFrame": 4544
-      },
+      }
+    ],
+    "startFrame": 4452,
+    "endFrame": 4544
+  },
+  {
+    "words": [
       {
         "word": "the",
         "start": 151.451,
@@ -3032,7 +2926,13 @@ export const subtitleLines = [
         "end": 152.778,
         "startFrame": 4580,
         "endFrame": 4583
-      },
+      }
+    ],
+    "startFrame": 4544,
+    "endFrame": 4583
+  },
+  {
+    "words": [
       {
         "word": "no",
         "start": 152.869,
@@ -3067,13 +2967,7 @@ export const subtitleLines = [
         "end": 153.988,
         "startFrame": 4613,
         "endFrame": 4620
-      }
-    ],
-    "startFrame": 4537,
-    "endFrame": 4620
-  },
-  {
-    "words": [
+      },
       {
         "word": "the",
         "start": 153.988,
@@ -3101,7 +2995,13 @@ export const subtitleLines = [
         "end": 155.94,
         "startFrame": 4671,
         "endFrame": 4678
-      },
+      }
+    ],
+    "startFrame": 4586,
+    "endFrame": 4678
+  },
+  {
+    "words": [
       {
         "word": "the",
         "start": 155.94,
@@ -3157,20 +3057,20 @@ export const subtitleLines = [
         "end": 158.347,
         "startFrame": 4734,
         "endFrame": 4750
-      }
-    ],
-    "startFrame": 4620,
-    "endFrame": 4750
-  },
-  {
-    "words": [
+      },
       {
         "word": "calling",
         "start": 158.347,
         "end": 159.466,
         "startFrame": 4750,
         "endFrame": 4784
-      },
+      }
+    ],
+    "startFrame": 4678,
+    "endFrame": 4784
+  },
+  {
+    "words": [
       {
         "word": "he's",
         "start": 159.466,
@@ -3233,7 +3133,13 @@ export const subtitleLines = [
         "end": 167.703,
         "startFrame": 5007,
         "endFrame": 5031
-      },
+      }
+    ],
+    "startFrame": 4784,
+    "endFrame": 5031
+  },
+  {
+    "words": [
       {
         "word": "okay",
         "start": 167.703,
@@ -3247,13 +3153,7 @@ export const subtitleLines = [
         "end": 168.9,
         "startFrame": 5042,
         "endFrame": 5067
-      }
-    ],
-    "startFrame": 4750,
-    "endFrame": 5067
-  },
-  {
-    "words": [
+      },
       {
         "word": "so",
         "start": 168.9,
@@ -3302,7 +3202,13 @@ export const subtitleLines = [
         "end": 172.01,
         "startFrame": 5136,
         "endFrame": 5160
-      },
+      }
+    ],
+    "startFrame": 5031,
+    "endFrame": 5160
+  },
+  {
+    "words": [
       {
         "word": "submit",
         "start": 172.01,
@@ -3337,13 +3243,7 @@ export const subtitleLines = [
         "end": 173.741,
         "startFrame": 5200,
         "endFrame": 5212
-      }
-    ],
-    "startFrame": 5067,
-    "endFrame": 5212
-  },
-  {
-    "words": [
+      },
       {
         "word": "come",
         "start": 173.741,
@@ -3371,7 +3271,13 @@ export const subtitleLines = [
         "end": 174.496,
         "startFrame": 5233,
         "endFrame": 5235
-      },
+      }
+    ],
+    "startFrame": 5160,
+    "endFrame": 5235
+  },
+  {
+    "words": [
       {
         "word": "decision",
         "start": 174.496,
@@ -3427,20 +3333,20 @@ export const subtitleLines = [
         "end": 178.074,
         "startFrame": 5327,
         "endFrame": 5342
-      }
-    ],
-    "startFrame": 5212,
-    "endFrame": 5342
-  },
-  {
-    "words": [
+      },
       {
         "word": "he",
         "start": 178.074,
         "end": 178.152,
         "startFrame": 5342,
         "endFrame": 5345
-      },
+      }
+    ],
+    "startFrame": 5235,
+    "endFrame": 5345
+  },
+  {
+    "words": [
       {
         "word": "feels",
         "start": 178.152,
@@ -3463,7 +3369,7 @@ export const subtitleLines = [
         "endFrame": 5364
       }
     ],
-    "startFrame": 5342,
+    "startFrame": 5345,
     "endFrame": 5364
   }
 ] as const;
